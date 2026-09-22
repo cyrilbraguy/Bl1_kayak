@@ -1,0 +1,23 @@
+[
+  {
+    "place_id": 122525659,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 79442,
+    "lat": "48.0447968",
+    "lon": "7.3079618",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 16,
+    "importance": 0.5685129455465597,
+    "addresstype": "village",
+    "name": "Eguisheim",
+    "display_name": "Eguisheim, Colmar-Ribeauvillé, Haut-Rhin, Collectivité européenne d'Alsace, Grand Est, France métropolitaine, 68420, France",
+    "boundingbox": [
+      "48.0240327",
+      "48.0515072",
+      "7.2412792",
+      "7.3518540"
+    ]
+  }
+]

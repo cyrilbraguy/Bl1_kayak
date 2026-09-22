@@ -1,0 +1,23 @@
+[
+  {
+    "place_id": 84328318,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 414459,
+    "lat": "43.4515922",
+    "lon": "4.4277202",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 16,
+    "importance": 0.5100269773652484,
+    "addresstype": "town",
+    "name": "Saintes-Maries-de-la-Mer",
+    "display_name": "Saintes-Maries-de-la-Mer, Arles, Bouches-du-Rhône, Provence-Alpes-Côte d'Azur, France métropolitaine, 13460, France",
+    "boundingbox": [
+      "43.4062445",
+      "43.5858463",
+      "4.2301364",
+      "4.6444785"
+    ]
+  }
+]

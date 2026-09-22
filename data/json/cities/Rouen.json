@@ -1,0 +1,44 @@
+[
+  {
+    "place_id": 99438300,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 75628,
+    "lat": "49.4404591",
+    "lon": "1.0939658",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 16,
+    "importance": 0.6944913621565563,
+    "addresstype": "city",
+    "name": "Rouen",
+    "display_name": "Rouen, Seine-Maritime, Normandie, France métropolitaine, France",
+    "boundingbox": [
+      "49.4172001",
+      "49.4652601",
+      "1.0300648",
+      "1.1521157"
+    ]
+  },
+  {
+    "place_id": 99405329,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 3018659,
+    "lat": "49.5184350",
+    "lon": "1.0221643",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 14,
+    "importance": 0.5463458416721044,
+    "addresstype": "municipality",
+    "name": "Rouen",
+    "display_name": "Rouen, Seine-Maritime, Normandie, France métropolitaine, France",
+    "boundingbox": [
+      "49.2506708",
+      "49.7851834",
+      "0.6000692",
+      "1.4521223"
+    ]
+  }
+]

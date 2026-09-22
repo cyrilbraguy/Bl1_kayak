@@ -1,0 +1,23 @@
+[
+  {
+    "place_id": 82998413,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 272287,
+    "lat": "43.5661521",
+    "lon": "4.1915400",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 16,
+    "importance": 0.5706786615523073,
+    "addresstype": "town",
+    "name": "Aigues-Mortes",
+    "display_name": "Aigues-Mortes, Nîmes, Gard, Occitanie, France métropolitaine, 30220, France",
+    "boundingbox": [
+      "43.4958113",
+      "43.5920372",
+      "4.0760703",
+      "4.2442867"
+    ]
+  }
+]

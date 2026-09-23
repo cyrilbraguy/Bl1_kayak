@@ -101,6 +101,19 @@ def _parse_price(raw_text: str) -> tuple[Optional[float], Optional[str]]:
     except ValueError:
         return None, currency
 
+def _guess_city_from_text(text: Optional[str]) -> Optional[str]:
+    """Repli : cherche un motif 'CODE_POSTAL Ville' dans un texte d'adresse brut
+    (utile quand l'adresse JSON-LD n'est pas structurée, ou pour le fallback DOM).
+    Moins fiable que addressLocality mais capte souvent la bonne ville, y compris
+    une ville voisine différente de la ville recherchée."""
+    if not text:
+        return None
+    m = re.search(r"\b\d{4,6}\s+([A-Za-zÀ-ÖØ-öø-ÿ][\w'’\-\s]*?)(?:,|\s\d|$)", text)
+    if m:
+        city = m.group(1).strip()
+        return city or None
+    return None
+
 def _build_search_url(city: str, checkin: str, checkout: str, adults: int, rooms: int, children: int) -> str:
     params = {
         "ss": city,
@@ -116,7 +129,11 @@ def _build_search_url(city: str, checkin: str, checkout: str, adults: int, rooms
 async def _extract_property_details(context, hotel_url: str) -> dict:
     """Ouvre la page de l'hôtel et extrait latitude/longitude + hotel_description.
     JSON-LD (schema.org) en priorité, fallback data-atlas-latlng / meta hotel_description."""
-    result = {"latitude": None, "longitude": None, "hotel_description": None}
+    result = {"latitude": None, 
+              "longitude": None, 
+              "hotel_description": None,
+              "address": None,
+              "city": None,}
     page = None
     try:
         page = await context.new_page()
@@ -131,6 +148,25 @@ async def _extract_property_details(context, hotel_url: str) -> dict:
                     result["longitude"] = float(geo["longitude"])
                 if result["hotel_description"] is None and data.get("description"):
                     result["hotel_description"] = str(data["description"]).strip()
+                    
+                addr = data.get("address")
+                if result["address"] is None and isinstance(addr, dict):
+                    street = addr.get("streetAddress")
+                    postal = addr.get("postalCode")
+                    locality = addr.get("addressLocality")
+                    country = addr.get("addressCountry")
+                    if isinstance(country, dict):
+                        country = country.get("name")
+                    parts = [p for p in (street, " ".join(filter(None, [postal, locality])), country) if p]
+                    if parts:
+                        result["address"] = ", ".join(parts)
+                    if locality:
+                        result["city"] = locality
+                        
+                elif result["address"] is None and isinstance(addr, str) and addr.strip():
+                    result["address"] = addr.strip()
+                    result["city"] = result["city"] or _guess_city_from_text(addr)   # <-- ligne ajoutée
+                    
             except (json.JSONDecodeError, AttributeError, TypeError, ValueError):
                 continue
 
@@ -148,6 +184,19 @@ async def _extract_property_details(context, hotel_url: str) -> dict:
                 content = await meta.get_attribute("content")
                 if content:
                     result["hotel_description"] = content.strip()
+                    
+        if result["address"] is None:
+            for sel in ('[data-testid="PropertyHeaderAddressDesktop-wrapper"]', '[data-node_tt_id="header-address-link"]'):
+                addr_el = await page.query_selector(sel)
+                if addr_el:
+                    text = (await addr_el.inner_text()).strip()
+                    if text:
+                        result["address"] = text
+                        result["city"] = result["city"] or _guess_city_from_text(text)
+                        # (supprime les 2 lignes "parts = ..." et l'ancien
+                        #  result["city"] = result["city"] or (parts[-1] if parts else text))
+                        
+                    break
     except PWTimeout:
         logger.warning("Timeout détails : %s", hotel_url)
     except Exception as e:
@@ -201,6 +250,7 @@ async def get_hotel_availability(
     max_results: int = 10,
     fetch_coordinates: bool = True,
     fetch_description: bool = True,   # <-- ajouté
+    fetch_address: bool = True,       # <-- ajouté
     headless: bool = True,
     navigation_timeout_ms: int = 30000,
 ) -> list[dict]:
@@ -226,6 +276,8 @@ async def get_hotel_availability(
     url = _build_search_url(city, checkin_date, checkout_date, group_adults, no_rooms, group_children)
     hotels: list[Hotel] = []
 
+    search_city = city.strip()  # alias non masquable : conservé même si `city` est réutilisé plus bas
+        
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=headless)
         context = await browser.new_context(
@@ -304,23 +356,34 @@ async def get_hotel_availability(
                         room_description = (await desc_el.inner_text()).strip()
                         break
                 
-                city, address = None, None
+                address = None
                 address_el = await card.query_selector(SEL_ADDRESS)
                 if address_el:
                     address = (await address_el.inner_text()).strip()
-                    parts = [p.strip() for p in address.split(",") if p.strip()]
-                    city = parts[-1] if parts else address
+                    # parts = [p.strip() for p in address.split(",") if p.strip()]
+                    # city = parts[-1] if parts else address
+                # Valeur de repli, utilisée seulement si l'extraction ci-dessous échoue
+                # (ex. fetch_address=False ou page hôtel inaccessible). L'hôtel peut être
+                # dans une ville voisine de search_city : ce n'est pas l'objectif final,
+                # juste un filet de sécurité pour ne pas laisser city à None.
+                city = search_city
 
                 if not (hotel_name and hotel_url):
                     continue  # carte incomplète, on l'ignore plutôt que de planter
 
                 lat, lng, hotel_description = (None, None, None)
-                if fetch_coordinates or fetch_description:
+                if fetch_coordinates or fetch_description or fetch_address:
                     details = await _extract_property_details(context, hotel_url)
                     if fetch_coordinates:
                         lat, lng = details["latitude"], details["longitude"]
                     if fetch_description:
                         hotel_description = details["hotel_description"]
+                        
+                    if fetch_address:
+                        # La page détail (JSON-LD) est plus fiable que la carte de résultat ;
+                        # on ne garde le repli carte que si la page détail n'a rien donné.
+                        address = details["address"] or address
+                        city = details["city"] or city
                 
                 
                 # lat, lng = (None, None)
@@ -358,6 +421,7 @@ def get_hotel_availability_sync(*args, **kwargs) -> list[dict]:
     import sys
     import threading
 
+    print('ATTENTION : get_hotel_availability_sync() est un wrapper synchrone pour Jupyter/VSCode. Z')
     result_container: dict = {}
     error_container: dict = {}
 

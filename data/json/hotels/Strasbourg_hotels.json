@@ -1,0 +1,67 @@
+[
+  {
+    "hotel_name": "Premiere Classe Strasbourg Ouest",
+    "url": "https://www.booking.com/hotel/fr/premiere-classe-strasbourg-ouest.fr.html",
+    "address": "6 Rue Cerf Berr, parc des poteries, 67200 Strasbourg, France, 67200 6 Rue Cerf Berr, parc des poteries, France",
+    "hotel_description": "Le Premiere Classe Strasbourg Ouest est situé à 5 minutes en voiture du centre-ville et du Zénith de Strasbourg.",
+    "city": "Strasbourg",
+    "latitude": 48.58745940788533,
+    "longitude": 7.690129280090332,
+    "score": 6.3,
+    "price": 570.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n2×\nChambre Triple\n6 lits (4 lits simples, 2 lits superposés)\nPetit-déjeuner compris\nAnnulation gratuite étendue\nAucun prépaiement requis – Payez sur place"
+  },
+  {
+    "hotel_name": "Auberge de Jeunesse HI Strasbourg 2 Rives",
+    "url": "https://www.booking.com/hotel/fr/auberge-de-jeunesse-hi-strasbourg.fr.html",
+    "address": "9 Rue des Cavaliers, 67000 Strasbourg, France, 67000 9 Rue des Cavaliers, France",
+    "hotel_description": "L’établissement Auberge de Jeunesse HI Strasbourg 2 Rives se situe à Strasbourg, à 4,2 km de ce lieu d’intérêt : Jardin botanique de l'Université de...",
+    "city": "Strasbourg",
+    "latitude": 48.565860748291,
+    "longitude": 7.8001856803894,
+    "score": 6.6,
+    "price": 464.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n2×\nChambre Triple avec Salle de Bains\n6 lits simples"
+  },
+  {
+    "hotel_name": "CityKamp Strasbourg",
+    "url": "https://www.booking.com/hotel/fr/camping-indigo-strasbourg.fr.html",
+    "address": "9, rue de l’Auberge de Jeunesse, 67200 Strasbourg, France, 67200 9, rue de l’Auberge de Jeunesse, France",
+    "hotel_description": "Situé à Strasbourg, le CityKamp Strasbourg propose un hébergement avec une terrasse et une connexion Wi-Fi gratuite.",
+    "city": "Strasbourg",
+    "latitude": 48.574418717304454,
+    "longitude": 7.718108745056043,
+    "score": 7.8,
+    "price": 467.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nMobile Home\nMobile home • 2 chambres • 1 salon • 1 salle de bains • 1 cuisine • 25 m²\n4 lits (2 lits simples, 1 lit double, 1 canapé-lit)"
+  },
+  {
+    "hotel_name": "Hotel Cathédrale",
+    "url": "https://www.booking.com/hotel/fr/cathedrale-strasbourg.fr.html",
+    "address": "12-13, place de la Cathédrale, 67000 Strasbourg, France, 67000 12-13, place de la Cathédrale, France",
+    "hotel_description": "Situé au cœur du centre historique, sur la place de la Cathédrale, l’Hotel Cathédrale bénéficie d’une vue privilégiée sur la cathédrale de Strasbourg.",
+    "city": "Strasbourg",
+    "latitude": 48.5817718353627,
+    "longitude": 7.74960458278656,
+    "score": 7.7,
+    "price": 2123.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n1×\nChambre Triple Cosy\n2 lits (1 lit simple, 1 lit double)\n1×\nTriple Room with Cathedrale View\n2 lits (1 lit simple, 1 lit double)"
+  },
+  {
+    "hotel_name": "L'appartement au-dessus du",
+    "url": "https://www.booking.com/hotel/fr/appartement-au-dessus-du.fr.html",
+    "address": "9 Rue du Chapon, 67000 Strasbourg, France, 67000 9 Rue du Chapon, France",
+    "hotel_description": "Occupant une maison traditionnelle à colombages sur la Grande Île de Strasbourg, l'Appartement Au-Dessus Du propose des appartements indépendants.",
+    "city": "Strasbourg",
+    "latitude": 48.58243416219062,
+    "longitude": 7.753220871090889,
+    "score": 6.9,
+    "price": 1161.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n1×\nAppartement 1 Chambre\nAppartement entier • 1 chambre • 1 salon • 1 salle de bains • 20 m²\n2 lits (1 lit double, 1 canapé-lit)\n1×\nAppartement 1 Chambre\nAppartement entier • 1 chambre • 1 salon • 1 salle de bains • 1 cuisine • 42 m²\n2 lits (1 canapé-lit, 1 grand lit double)\nSéjour gratuit pour 1 de vos enfants"
+  }
+]

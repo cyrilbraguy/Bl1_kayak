@@ -1,3 +1,9 @@
+# ====================================================================
+# Kayak project Cyril 
+# module s3_utils : 
+# s3_utils.py
+# (c) 2026-09-20 
+# ====================================================================
 """
 Sauvegarde d'un CSV sur le bucket S3 "kayak-cyril", dans le répertoire /kayak.
 
@@ -12,6 +18,7 @@ import io
 import os
 from dotenv import load_dotenv
 import logging
+import pandas as pd
 from datetime import datetime
 from pathlib import Path
 from typing import Optional, Union
@@ -19,11 +26,17 @@ from typing import Optional, Union
 import boto3
 from botocore.exceptions import BotoCoreError, ClientError, NoCredentialsError
 
+# s3_utils.py
+from __future__ import annotations
+
 logger = logging.getLogger(__name__)
 
-load_dotenv()
-AWS_BUCKET_NAME = os.getenv("AWS_BUCKET_NAME")
-S3_PREFIX = "kayak"
+
+from config_kayak import (
+    AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY,
+    AWS_BUCKET_NAME, AWS_BUCKET_DIR,
+    AWS_REGION,
+    )
 
 try:
     import pandas as pd
@@ -36,7 +49,7 @@ def save_csv_to_s3(
     data: Union[str, "pd.DataFrame"],
     filename: str,
     bucket: str = AWS_BUCKET_NAME,
-    prefix: str = S3_PREFIX,
+    prefix: str = AWS_BUCKET_DIR,
     index: bool = False,
     aws_profile: Optional[str] = None,
 ) -> str:
@@ -95,6 +108,56 @@ def timestamped_filename(base_name: str, ext: str = "csv") -> str:
     return f"{base_name}_{ts}.{ext.lstrip('.')}"
 
 
+def read_csv_from_s3(
+    bucket: str,
+    key: str,
+    *,
+    profile: str | None = None,
+    region: str | None = None,
+    **read_csv_kwargs,
+) -> pd.DataFrame:
+    """Charge un CSV depuis S3 dans un DataFrame.
+
+    Les credentials sont résolus par boto3 (variables d'env, ~/.aws/credentials, rôle IAM...).
+    Les kwargs supplémentaires sont transmis à pd.read_csv (sep, encoding, dtype, ...).
+    """
+    if not bucket or not key:
+        raise ValueError("bucket et key sont obligatoires")
+
+    try:
+        session = boto3.Session(profile_name=profile, region_name=region)
+        s3 = session.client("s3")
+        obj = s3.get_object(Bucket=bucket, Key=key)
+        body = obj["Body"].read()  # bytes
+    except NoCredentialsError:
+        raise RuntimeError(
+            "Credentials AWS introuvables. Définis AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY "
+            "ou configure un profil (aws configure)."
+        ) from None
+    except ClientError as e:
+        code = e.response.get("Error", {}).get("Code", "")
+        if code in ("NoSuchKey", "404"):
+            raise FileNotFoundError(f"s3://{bucket}/{key} introuvable") from None
+        if code in ("AccessDenied", "403"):
+            raise PermissionError(f"Accès refusé à s3://{bucket}/{key}") from None
+        if code == "NoSuchBucket":
+            raise FileNotFoundError(f"Bucket inexistant : {bucket}") from None
+        raise
+    except BotoCoreError as e:
+        raise RuntimeError(f"Erreur réseau/boto3 : {e}") from e
+
+    if not body:
+        raise ValueError(f"Fichier vide : s3://{bucket}/{key}")
+
+    try:
+        df = pd.read_csv(io.BytesIO(body), **read_csv_kwargs)
+    except pd.errors.EmptyDataError:
+        raise ValueError(f"CSV sans colonnes : s3://{bucket}/{key}") from None
+
+    logger.info("Chargé s3://%s/%s : %d lignes, %d colonnes", bucket, key, *df.shape)
+    return df
+
+
 if __name__ == "__main__":
     # Exemple avec un DataFrame en mémoire
     import pandas as pd
@@ -105,3 +168,7 @@ if __name__ == "__main__":
 
     # Exemple avec un fichier CSV déjà présent sur disque
     # uri = save_csv_to_s3("hotels_lyon.csv", "hotels_lyon.csv")
+
+
+
+

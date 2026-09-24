@@ -1,0 +1,67 @@
+[
+  {
+    "hotel_name": "Au pied du Château",
+    "url": "https://www.booking.com/hotel/fr/au-pied-du-chateau-orschwiller.fr.html",
+    "address": "Schaflager, 67600 Orschwiller, France, 67600 Schaflager, France",
+    "hotel_description": "L’hébergement Au pied du Château se trouve à Orschwiller, à seulement 3,2 km de ce lieu d’intérêt : Château du Haut-Kœnigsbourg.",
+    "city": "Chateau_du_Haut_Koenigsbourg",
+    "latitude": 48.2484025,
+    "longitude": 7.3548257,
+    "score": 9.1,
+    "price": 539.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nAppartement avec Vue sur la Montagne\nAppartement entier • 2 chambres • 1 salon • 1 salle de bains • 1 cuisine • 60 m²\n3 lits (2 lits doubles, 1 canapé-lit)"
+  },
+  {
+    "hotel_name": "Les Bords de L´Ill",
+    "url": "https://www.booking.com/hotel/fr/les-bords-de-l-ill.fr.html",
+    "address": "3, Rue De La Fecht, 68970 Illhaeusern, France, 68970 3, Rue De La Fecht, France",
+    "hotel_description": "Situé à Illhaeusern (Alsace), l’établissement Les Bords de L´Ill propose un parking privé gratuit.",
+    "city": "Chateau_du_Haut_Koenigsbourg",
+    "latitude": 48.1834093032337,
+    "longitude": 7.4300829730164,
+    "score": 8.7,
+    "price": 387.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nAppartement avec Terrasse\nAppartement entier • 2 chambres • 1 salon • 1 salle de bains • 1 cuisine • 45 m²\n4 lits (2 lits superposés, 1 canapé-lit, 1 grand lit double)"
+  },
+  {
+    "hotel_name": "Gite Du Rittersberg",
+    "url": "https://www.booking.com/hotel/fr/gite-du-rittersberg.fr.html",
+    "address": "35 Rue De Dambach, 67750 Scherwiller, France, 67750 35 Rue De Dambach, France",
+    "hotel_description": "L’établissement Gite Du Rittersberg se trouve à Scherwiller (Alsace), à 13 km de ce lieu d’intérêt : Château du Haut-Kœnigsbourg.",
+    "city": "Chateau_du_Haut_Koenigsbourg",
+    "latitude": 48.28966766314497,
+    "longitude": 7.421888516180047,
+    "score": 9.3,
+    "price": 409.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nAppartement\nAppartement entier • 2 chambres • 1 salon • 1 salle de bains • 1 cuisine • 85 m²\n5 lits (3 lits simples, 1 canapé-lit, 1 grand lit double)"
+  },
+  {
+    "hotel_name": "La Cour du Bailli Suites & Spa",
+    "url": "https://www.booking.com/hotel/fr/residence-hoteliere-la-cour-du-bailli.fr.html",
+    "address": "57 Grand Rue, 68750 Bergheim, France, 68750 57 Grand Rue, France",
+    "hotel_description": "Situé à 1 heure de route du sud de Strasbourg, l'hôtel-Résidence La Cour du Bailli bénéficie d'un centre de spa avec piscine intérieure et bain à remous.",
+    "city": "Chateau_du_Haut_Koenigsbourg",
+    "latitude": 48.20576177578065,
+    "longitude": 7.359442412853241,
+    "score": 8.4,
+    "price": 1116.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n1×\nStudio (2 Adultes)\nStudio entier • 1 salle de bains • 1 cuisine • 20 m²\n1 lit double\nAucun prépaiement requis – Payez sur place\n1×\nAppartement (4 - 5 Adultes)\n2 lits (1 lit double, 1 canapé-lit)\nAucun prépaiement requis – Payez sur place"
+  },
+  {
+    "hotel_name": "Au petit randonneur",
+    "url": "https://www.booking.com/hotel/fr/maison-au-petit-randonneur.fr.html",
+    "address": "2 Rue église, 67220 Neubois, France, 67220 2 Rue église, France",
+    "hotel_description": "L’hébergement Au petit randonneur vous accueille à Neubois, à respectivement 16 km, 10 km et 12 km de ces lieux d’intérêt : Château du Haut-Kœnigsbourg,...",
+    "city": "Chateau_du_Haut_Koenigsbourg",
+    "latitude": 48.306197995903,
+    "longitude": 7.338326871689,
+    "score": 9.5,
+    "price": 523.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nMaison 2 Chambres\nMaison de vacances entière • 2 chambres • 1 salon • 1 salle de bains • 1 cuisine • 80 m²\n4 lits (2 lits simples, 1 lit double, 1 canapé-lit)"
+  }
+]

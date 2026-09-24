@@ -1,0 +1,67 @@
+[
+  {
+    "hotel_name": "Hôtel Inn Design Issoudun",
+    "url": "https://www.booking.com/hotel/fr/marmotte-issoudun.fr.html",
+    "address": "Chemin de Postillon, 36100 Issoudun, France, 36100 Chemin de Postillon, France",
+    "hotel_description": "Located on the outskirts of Issoudun, Hotel Inn Design Resto Novo Issoudun  features comfortable and affordable accommodation.",
+    "city": "Issoudun",
+    "latitude": 46.95403023415107,
+    "longitude": 2.0062977075576782,
+    "score": 6.8,
+    "price": 531.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n1×\nChambre Double\n1 lit double\nAnnulation gratuite étendue\nAucun prépaiement requis – Payez sur place\n1×\nChambre Triple\n2 lits (1 lit double, 1 lit superposé)\nAnnulation gratuite étendue\nAucun prépaiement requis – Payez sur place"
+  },
+  {
+    "hotel_name": "Le Jardin d'Eden -Appartement de charme avec Sauna, Hammam, spa",
+    "url": "https://www.booking.com/hotel/fr/le-jardin-d-eden-appartement-de-charme-avec-sauna-hammam-spa.fr.html",
+    "address": "Rue des Bouchers, 36100 Issoudun, France, 36100 Rue des Bouchers, France",
+    "hotel_description": "Doté d’un bain à remous, l’hébergement Le Jardin d'Eden -Appartement de charme avec Sauna, Hammam, spa vous accueille à Issoudun, à 34 km de ce lieu...",
+    "city": "Issoudun",
+    "latitude": 46.947292,
+    "longitude": 1.991486,
+    "score": 9.2,
+    "price": 610.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nAppartement 4 Chambres\nAppartement entier • 4 chambres • 1 salon • 2 salles de bains • 1 cuisine • 110 m²\n4 lits (3 lits simples, 1 grand lit double)"
+  },
+  {
+    "hotel_name": "Commanderie des Champs Forts",
+    "url": "https://www.booking.com/hotel/fr/commanderie-des-champs-forts.fr.html",
+    "address": "7 Route de Levroux, 36100 Saint-Aoustrille, France, 36100 7 Route de Levroux, France",
+    "hotel_description": "Situé à Saint-Aoustrille (Région Centre), l’établissement Commanderie des Champs Forts propose un parking privé gratuit.",
+    "city": "Issoudun",
+    "latitude": 46.9459606,
+    "longitude": 1.9686443,
+    "score": 9.2,
+    "price": 7531.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nSuite Familiale Deluxe\n13 lits (1 lit simple, 1 lit double, 8 lits superposés, 3 grands lits doubles)"
+  },
+  {
+    "hotel_name": "Gîte familial avec piscine partagée, terrasse et WiFi",
+    "url": "https://www.booking.com/hotel/fr/gite-familial-avec-piscine-partagee-terrasse-et-wifi-fr-1-591-635.fr.html",
+    "address": "1 Route du Château d'Eau, 36100 Ségry, France, 36100 1 Route du Château d'Eau, France",
+    "hotel_description": "L’hébergement Gîte familial avec piscine partagée, terrasse et WiFi se trouve à Ségry, à respectivement 38 km, 39 km et 40 km de ces lieux d’intérêt :...",
+    "city": "Issoudun",
+    "latitude": 46.890224,
+    "longitude": 2.080356,
+    "score": 9.0,
+    "price": 520.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nMaison 2 Chambres\nMaison de vacances entière • 2 chambres • 1 salle de bains • 1 cuisine • 80 m²\n3 lits (2 lits simples, 1 grand lit double)"
+  },
+  {
+    "hotel_name": "École rénovée avec terrasse, 3 chambres, draps, ménage et chauffage inclus",
+    "url": "https://www.booking.com/hotel/fr/villa-paudy-4-pieces-6-personnes-fr-1-591-344.fr.html",
+    "address": "Place de la Mairie, 36260 Paudy, France, 36260 Place de la Mairie, France",
+    "hotel_description": "L’hébergement École rénovée avec terrasse, 3 chambres, draps, ménage et chauffage inclus se trouve à Paudy, à respectivement 30 km et 35 km de ces lieux...",
+    "city": "Issoudun",
+    "latitude": 47.038628,
+    "longitude": 1.919975,
+    "score": 9.5,
+    "price": 585.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nMaison 3 Chambres\nMaison de vacances entière • 2 chambres • 1 salle de bains • 1 cuisine • 100 m²\n4 lits simples"
+  }
+]

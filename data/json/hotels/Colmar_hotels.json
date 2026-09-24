@@ -1,0 +1,67 @@
+[
+  {
+    "hotel_name": "ibis Budget Colmar Centre Gare",
+    "url": "https://www.booking.com/hotel/fr/ibis-budget-colmar-centre-ville.fr.html",
+    "address": "15 Rue Stanislas, 68000 Colmar, France, 68000 15 Rue Stanislas, France",
+    "hotel_description": "L'ibis budget Colmar Centre Ville vous accueille à Colmar, dans le quartier du centre-ville, à 300 mètres de la Maison des Têtes et à 600 mètres de la...",
+    "city": "Colmar",
+    "latitude": 48.079697589205196,
+    "longitude": 7.352361588954864,
+    "score": 7.2,
+    "price": 1003.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n2×\nChambre Triple avec 1 Lit Double et 1 Lit Superposé\n4 lits (2 lits simples, 2 lits doubles)\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place"
+  },
+  {
+    "hotel_name": "ibis Colmar Est - Hotel Restaurant en Alsace",
+    "url": "https://www.booking.com/hotel/fr/ibis-colmar-horbourg-wihr.fr.html",
+    "address": "13, Route De Neuf-Brisach - Horbourg Wihr, 68180 Colmar, France, 68180 13, Route De Neuf-Brisach - Horbourg Wihr, France",
+    "hotel_description": "L'établissement ibis Colmar East - Hotel Brasserie en Alsace est situé à 5 km de la route des vins d'Alsace et à 10 km de Kaysersberg, Riquewihr et...",
+    "city": "Colmar",
+    "latitude": 48.07790332424113,
+    "longitude": 7.402797639369965,
+    "score": 7.4,
+    "price": 876.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n1×\nChambre Lits Jumeaux Standard\n1 lit simple\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place\n1×\nChambre Standard avec 1 Lit Double et 1 Lit Simple\n2 lits (1 lit simple, 1 lit double)\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place"
+  },
+  {
+    "hotel_name": "Unisotel Colmar Parc Des Exposition EX F1",
+    "url": "https://www.booking.com/hotel/fr/f1-de-colmar.fr.html",
+    "address": "36 Avenue de la Foire aux Vins, 68000 Colmar, France, 68000 36 Avenue de la Foire aux Vins, France",
+    "hotel_description": "L’établissement Unisotel Colmar Parc Des Exposition EX F1 vous accueille à Colmar, à respectivement 800 mètres et 3,8 km de ces lieux d’intérêt : Parc des...",
+    "city": "Colmar",
+    "latitude": 48.10826,
+    "longitude": 7.362704,
+    "score": 4.3,
+    "price": 364.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n2×\nChambre Triple avec Salle de Bains Commune\n4 lits (2 lits doubles, 2 lits superposés)"
+  },
+  {
+    "hotel_name": "Ibis Styles Colmar Nord",
+    "url": "https://www.booking.com/hotel/fr/novotel-colmar.fr.html",
+    "address": "49 avenue de la foire aux vins, 68000 Colmar, France, 68000 49 avenue de la foire aux vins, France",
+    "hotel_description": "Situé au nord de Colmar, l'Ibis Styles Colmar Nord offre une vue sur les Vosges.",
+    "city": "Colmar",
+    "latitude": 48.11068713707552,
+    "longitude": 7.362433075904846,
+    "score": 8.2,
+    "price": 1015.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n1×\nChambre Double Standard\n1 lit double\nSéjour gratuit pour 1 de vos enfants\nPetit-déjeuner compris\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place\n1×\nChambre Double Standard avec Canapé\n2 lits (1 lit double, 1 canapé-lit)\nSéjour gratuit pour 2 de vos enfants\nPetit-déjeuner compris\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place"
+  },
+  {
+    "hotel_name": "Gîtes La Petite Venise Colmar",
+    "url": "https://www.booking.com/hotel/fr/15-rue-des-tisserands-colmar.fr.html",
+    "address": "15 Rue des Tisserands, 68000 Colmar, France, 68000 15 Rue des Tisserands, France",
+    "hotel_description": "L’établissement Gîtes La Petite Venise Colmar se trouve dans le centre de Colmar, à respectivement 1,2 km et 700 mètres de ces lieux d’intérêt : Gare de...",
+    "city": "Colmar",
+    "latitude": 48.0740315,
+    "longitude": 7.3597238,
+    "score": 7.7,
+    "price": 474.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nAppartement\nAppartement entier • 2 chambres • 3 salons • 1 salle de bains • 1 cuisine • 45 m²\n3 lits (2 lits doubles, 1 canapé-lit)"
+  }
+]

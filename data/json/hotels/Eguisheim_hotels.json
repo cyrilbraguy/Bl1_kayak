@@ -1,0 +1,67 @@
+[
+  {
+    "hotel_name": "Résidence Pierre & Vacances Le Clos d'Eguisheim",
+    "url": "https://www.booking.com/hotel/fr/residence-pierre-et-vacances-le-clos-d-eguisheim.fr.html",
+    "address": "Route De Wettolsheim, 68420 Eguisheim, France, 68420 Route De Wettolsheim, France",
+    "hotel_description": "Reception opening hours are Monday to Thursday from 08:30 to 12:00 and from 16:00 to 19:00, Friday from 08:30 to 12:00 and from 16:00 to 20:00, Saturday...",
+    "city": "Eguisheim",
+    "latitude": 48.04502733567647,
+    "longitude": 7.311854660511017,
+    "score": 8.1,
+    "price": 604.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nAppartement 2 Chambres en Duplex (7 Personnes) - Vue sur Jardin\nAppartement entier • 2 chambres • 1 salon • 2 salles de bains • 46 m²\n4 lits (2 lits simples, 1 lit double, 1 canapé-lit)"
+  },
+  {
+    "hotel_name": "Le Zen",
+    "url": "https://www.booking.com/hotel/fr/le-zen-eguisheim.fr.html",
+    "address": "32 rue rempart sud, 68420 Eguisheim, France, 68420 32 rue rempart sud, France",
+    "hotel_description": "L’hébergement Le Zen se trouve à Eguisheim, à respectivement 6,6 km et 7 km de ces lieux d’intérêt : Maison des Têtes et Collégiale Saint-Martin.",
+    "city": "Eguisheim",
+    "latitude": 48.04270935058594,
+    "longitude": 7.304419994354248,
+    "score": 7.5,
+    "price": 576.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nAppartement Supérieur - Vue sur Ville\nAppartement entier • 1 chambre • 1 salon • 1 salle de bains • 1 cuisine • 60 m²\n3 lits (1 lit double, 2 canapés-lits)\nSéjour gratuit pour vos enfants"
+  },
+  {
+    "hotel_name": "Les trois pierres",
+    "url": "https://www.booking.com/hotel/fr/les-trois-pierres-eguisheim.fr.html",
+    "address": "10 Rue des trois pierres, 68420 Eguisheim, France, 68420 10 Rue des trois pierres, France",
+    "hotel_description": "L’hébergement Les trois pierres se situe à Eguisheim, à respectivement 6,1 km, 6,9 km et 7,4 km de ces lieux d’intérêt : Gare de Colmar, Maison des Têtes...",
+    "city": "Eguisheim",
+    "latitude": 48.045389099073,
+    "longitude": 7.301809369312,
+    "score": 8.8,
+    "price": 1060.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nMaison 3 Chambres\nMaison de vacances entière • 3 chambres • 1 salon • 2 salles de bains • 1 cuisine • 110 m²\n5 lits (2 lits simples, 1 canapé-lit, 2 grands lits doubles)"
+  },
+  {
+    "hotel_name": "la petite maison",
+    "url": "https://www.booking.com/hotel/fr/hdm-hebergement.fr.html",
+    "address": "1 Rue Des Laboureurs, 68920 Wintzenheim, France, 68920 1 Rue Des Laboureurs, France",
+    "hotel_description": "Proposant un barbecue et offrant une vue sur la ville, l’hébergement la petite maison se trouve à Wintzenheim, à respectivement 5,6 km et 6,3 km de ces...",
+    "city": "Eguisheim",
+    "latitude": 48.073852514267884,
+    "longitude": 7.287084722090185,
+    "score": 9.2,
+    "price": 430.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nMaison de Vacances\nMaison de vacances entière • 3 chambres • 1 cuisine • 90 m²\n4 lits (2 lits simples, 1 lit double, 1 grand lit double)"
+  },
+  {
+    "hotel_name": "Gîtes intemporels d'Alsace",
+    "url": "https://www.booking.com/hotel/fr/gites-intemporels-d-39-alsace.fr.html",
+    "address": "105 Route de Colmar, 68920 Wintzenheim, France, 68920 105 Route de Colmar, France",
+    "hotel_description": "L’établissement Gîtes intemporels d'Alsace se trouve à Wintzenheim, à respectivement 2,7 km et 3,4 km de ces lieux d’intérêt : Gare de Colmar et Maison des...",
+    "city": "Eguisheim",
+    "latitude": 48.068011,
+    "longitude": 7.3173397,
+    "score": 9.4,
+    "price": 614.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nAppartement 2 Chambres\nAppartement entier • 2 chambres • 1 salon • 1 salle de bains • 1 cuisine • 76 m²\n3 lits (1 canapé-lit, 2 grands lits doubles) • Lit bébé gratuit toujours disponible"
+  }
+]

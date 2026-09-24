@@ -42,8 +42,8 @@ store in db
 prompt pour le frontend streamlit : 
 
 fabrique moi un dashboard streamlit avec dedans : 
-a gauche une carte qui affichera la meteo 
-a droite une liste avec ascenseur qui affichera les hotels , et une des colonnes comportera des hyperliens qui ouvriront un navigateur 
+a gauche une carte qui affichera la meteo ; selon le plot 'plot_meteo' ci dessous 
+a droite une liste avec ascenseur qui affichera les hotels depuis la table , et une des colonnes comportera des hyperliens qui ouvriront un navigateur 
 dans le bandeau du haut :
 sur toute la largeur, le titre précédé du logo : Kayak   : [Kayak](https://seekvectorlogo.com/wp-content/uploads/2018/01/kayak-vector-logo.png) et le titre : "Plan your trip from weather forecasts"
 a gauche : 

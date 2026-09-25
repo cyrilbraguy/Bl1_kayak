@@ -36,7 +36,7 @@ from config_kayak import (
 )
 
 from load_cities import clean_name
-
+import re
 import importlib
 import pandas as pd
 import booking_scraper_init
@@ -61,6 +61,12 @@ from typing import Literal, Optional, Union
 
 
 #clean data/json/hotels before new search
+
+def extract_city(address: str) -> str | None:
+    """Extrait la ville : entre ', CODE_POSTAL ' et la virgule suivante."""
+    match = re.search(r",\s*\d{5}\s+([^,]+),", address)
+    return match.group(1).strip() if match else None
+
 
 def collect_cities_hotels(top_cities,
                           checkin_date: str,
@@ -102,6 +108,11 @@ def collect_cities_hotels(top_cities,
 
     hotels_df = pd.DataFrame(results_hotels)
     hotels_df = hotels_df.drop_duplicates(subset="url", keep="first").reset_index(drop=True)
+    
+    # extract hotel's city from address
+    hotels_df['hotel_city'] = hotels_df['address'].apply(extract_city)
+
+    
         
     return hotels_df
 
@@ -111,6 +122,7 @@ def select_top_hotels(
     n: int = 20,
     criterion: Literal["score", "price", "combined"] = "combined",
     max_price: Optional[float] = None,
+    out_all: Optional[bool] = False,
     ) -> pd.DataFrame:
     """
     Sélectionne les n meilleurs hôtels parmi toutes les villes, selon le
@@ -126,6 +138,9 @@ def select_top_hotels(
     Lève ValueError si `criterion` est invalide, si 'combined' est demandé
     sans `max_price`, ou si les colonnes 'score'/'price' sont absentes.
     """
+    # define penality : 
+    p = (10-0)/1  # (score_max - score_min)/(min unity of price : 1 €)
+    
     if criterion not in ("score", "price", "combined"):
         raise ValueError(f"criterion invalide : {criterion!r} (attendu 'score', 'price' ou 'combined')")
     if criterion == "combined" and max_price is None:
@@ -136,14 +151,19 @@ def select_top_hotels(
         raise ValueError(f"Colonnes manquantes dans le DataFrame : {missing}")
  
     clean = df.dropna(subset=["score", "price"]).copy()
- 
-    if criterion == "score":
-        ranked = clean.sort_values("score", ascending=False)
-    elif criterion == "price":
-        ranked = clean.sort_values("price", ascending=True)
-    else:  # combined
-        ranked = clean[clean["price"] <= max_price].sort_values("score", ascending=False)
- 
-    return ranked.head(n).reset_index(drop=True)
+    if out_all:
+        df['combined_score'] = df['score'] - p * (df['price'] - max_price).clip(lower=0)
+        df = df.sort_values("combined_score", ascending=False)
+        return df.reset_index(drop=True)
+    
+    else:  # default option : out_all=False
+        if criterion == "score":
+            ranked = clean.sort_values("score", ascending=False)
+        elif criterion == "price":
+            ranked = clean.sort_values("price", ascending=True)
+        else:  # combined
+            ranked = clean[clean["price"] <= max_price].sort_values("score", ascending=False)
+    
+        return ranked.head(n).reset_index(drop=True)
  
     

@@ -1,0 +1,67 @@
+[
+  {
+    "hotel_name": "Premiere Classe Annecy Cran-Gevrier RÉNOVÉ EN 2025",
+    "url": "https://www.booking.com/hotel/fr/premiere-classe-annecy-cran-gevrier.fr.html",
+    "address": "8, Bis Route Des Creuses, 74960 Annecy, France, 74960 8, Bis Route Des Creuses, France",
+    "hotel_description": "Doté d’un jardin, le Première Classe Annecy Sud vous accueille à Annecy.",
+    "city": "Annecy",
+    "latitude": 45.8954308,
+    "longitude": 6.109846199999993,
+    "score": 7.1,
+    "price": 605.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n1×\nChambre Lits Jumeaux\n2 lits simples\nPetit-déjeuner compris\n1×\nChambre Quadruple avec 1 Lit Double et 2 Lits Simples\n3 lits (2 lits simples, 1 lit double)\nSéjour gratuit pour vos enfants\nPetit-déjeuner compris"
+  },
+  {
+    "hotel_name": "B&B HOTEL Annecy Cran-Gevrier",
+    "url": "https://www.booking.com/hotel/fr/b-amp-b-annecy-cran-gevrier.fr.html",
+    "address": "16 Route de Nanfray, 74000 Annecy, France, 74000 16 Route de Nanfray, France",
+    "hotel_description": "L’établissement B&B HOTEL Annecy Cran-Gevrier vous accueille à Annecy, à respectivement 4,7 km et 5 km de ces lieux d’intérêt : Château d'Annecy et Le...",
+    "city": "Annecy",
+    "latitude": 45.892319,
+    "longitude": 6.0895437,
+    "score": 7.8,
+    "price": 625.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n1×\nChambre Double\n1 lit double\n1×\nChambre Triple\n2 lits (1 lit simple, 1 lit double)"
+  },
+  {
+    "hotel_name": "Le Pélican",
+    "url": "https://www.booking.com/hotel/fr/le-pelican-annecy1.fr.html",
+    "address": "20 Rue des Marquisats, 74000 Annecy, France, 74000 20 Rue des Marquisats, France",
+    "hotel_description": "L’établissement Le Pélican vous accueille à Annecy, à 400 mètres de ce lieu d’intérêt : Palais de l'Ile.",
+    "city": "Annecy",
+    "latitude": 45.897015,
+    "longitude": 6.131543,
+    "score": 8.8,
+    "price": 3051.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n1×\nChambre Double ou Lits Jumeaux Classique\n1 grand lit double\nAucun prépaiement requis – Payez sur place\n1×\nMezzanine\n2 grands lits doubles\nAucun prépaiement requis – Payez sur place"
+  },
+  {
+    "hotel_name": "Aparthotel Adagio Annecy Centre",
+    "url": "https://www.booking.com/hotel/fr/adagio-city-aparthotel-annecy-centre.fr.html",
+    "address": "2 Place Marie Curie (ex- Avenue Berthollet), 74000 Annecy, France, 74000 2 Place Marie Curie (ex- Avenue Berthollet), France",
+    "hotel_description": "Doté dune salle de sport, l'Aparthotel Adagio Annecy Centre propose des studios et des appartements munis d'une connexion Wi-Fi gratuite, dans le centre...",
+    "city": "Annecy",
+    "latitude": 45.903201977941485,
+    "longitude": 6.122673153877258,
+    "score": 8.3,
+    "price": 966.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nAppartement pour 6 Personnes, avec Balcon et 2 Chambres\nAppartement entier • 2 chambres • 1 salon • 2 salles de bains • 55 m²\n5 lits (2 lits simples, 1 lit double, 2 canapés-lits)\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place"
+  },
+  {
+    "hotel_name": "Centre Jean XXIII",
+    "url": "https://www.booking.com/hotel/fr/centre-jean-xxiii.fr.html",
+    "address": "Annecy-le-Vieux 10 Chemin du Bray, 74940 Annecy, France, 74940 Annecy-le-Vieux 10 Chemin du Bray, France",
+    "hotel_description": "Doté d’une terrasse bien exposée, le Centre Jean XXIII se trouve à Annecy, à 1,8 km du lac et à 3 km de la vieille ville.",
+    "city": "Annecy",
+    "latitude": 45.9183227,
+    "longitude": 6.15250679999997,
+    "score": 8.1,
+    "price": 841.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n1×\nChambre Double Standard\n1 lit double • Lit bébé gratuit toujours disponible\nSéjour gratuit pour 1 de vos enfants\nPetit-déjeuner compris\n1×\nAppartement avec Balcon\nAppartement entier • 2 chambres • 1 salon • 1 salle de bains • 50 m²\n3 lits (2 lits simples, 1 lit double) • Lit bébé gratuit toujours disponible"
+  }
+]

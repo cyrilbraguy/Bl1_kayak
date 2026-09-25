@@ -1,0 +1,67 @@
+[
+  {
+    "hotel_name": "Campanile Grenoble Centre Gare",
+    "url": "https://www.booking.com/hotel/fr/campanile-grenoble-centre-gare.fr.html",
+    "address": "6 Place De La Gare, 38000 Grenoble, France, 38000 6 Place De La Gare, France",
+    "hotel_description": "L’établissement Campanile Grenoble Centre Gare se trouve à Grenoble, à respectivement 500 mètres et 5,2 km de ces lieux d’intérêt : World Trade Center...",
+    "city": "Grenoble",
+    "latitude": 45.19051920530674,
+    "longitude": 5.716019421815872,
+    "score": 7.4,
+    "price": 571.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n2×\nChambre Triple avec Lit Queen-Size et Lit Simple\n4 lits (2 lits simples, 2 lits doubles)\nSéjour gratuit pour 1 de vos enfants"
+  },
+  {
+    "hotel_name": "B&B HOTEL Grenoble Centre Alpexpo",
+    "url": "https://www.booking.com/hotel/fr/b-amp-b-grenoble-centre-alpexpo.fr.html",
+    "address": "31, Avenue de l'Europe, 38100 Grenoble, France, 38100 31, Avenue de l'Europe, France",
+    "hotel_description": "Le B&B Grenoble Centre Alpexpo est situé à Grenoble, à seulement 800 mètres d'Alpexpo.",
+    "city": "Grenoble",
+    "latitude": 45.158836673882,
+    "longitude": 5.734435468912125,
+    "score": 7.5,
+    "price": 485.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n1×\nChambre Lits Jumeaux\n2 lits simples\n1×\nChambre Quadruple\n3 lits (2 lits simples, 1 grand lit double)"
+  },
+  {
+    "hotel_name": "Kyriad Grenoble Centre",
+    "url": "https://www.booking.com/hotel/fr/qualityhotelgrenoble.fr.html",
+    "address": "116 Cours de la Libération, 38100 Grenoble, France, 38100 116 Cours de la Libération, France",
+    "hotel_description": "Situé à Grenoble, à 200 mètres du stade Lesdiguières, le Kyriad Grenoble Centre vous accueille dans un hôtel 3 étoiles doté d'une réception ouverte 24h/24...",
+    "city": "Grenoble",
+    "latitude": 45.16819994402455,
+    "longitude": 5.711994767189026,
+    "score": 7.9,
+    "price": 484.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n1×\nChambre Double\n1 grand lit double\n1×\nChambre Triple\n3 lits simples\nSéjour gratuit pour 1 de vos enfants"
+  },
+  {
+    "hotel_name": "Novotel Grenoble Centre",
+    "url": "https://www.booking.com/hotel/fr/grenoble-centre.fr.html",
+    "address": "7 Place Robert Schuman, 38000 Grenoble, France, 38000 7 Place Robert Schuman, France",
+    "hotel_description": "Le Novotel Grenoble Centre est installé au cœur du quartier des affaires de Grenoble, à seulement quelques pas de la gare TGV.",
+    "city": "Grenoble",
+    "latitude": 45.1906950021105,
+    "longitude": 5.712595582008362,
+    "score": 8.0,
+    "price": 1298.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n1×\nChambre Double Exécutive avec Canapé-Lit\n1 grand lit double\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place\n1×\nSuite avec 1 Lit Double et 1 Canapé-Lit\nSuite privée • 35 m²\n2 lits (1 canapé-lit, 1 grand lit double)\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place"
+  },
+  {
+    "hotel_name": "greet Grenoble Centre Gare Accor Hotel",
+    "url": "https://www.booking.com/hotel/fr/ha-tel-des-alpes.fr.html",
+    "address": "45 avenue Felix Vialet, 38000 Grenoble, France, 38000 45 avenue Felix Vialet, France",
+    "hotel_description": "Situé à Grenoble, l'Hôtel des Alpes se trouve à 220 mètres de la gare et à 120 mètres de l'arrêt Gares Tramway.",
+    "city": "Grenoble",
+    "latitude": 45.190446523564894,
+    "longitude": 5.716857947409153,
+    "score": 8.2,
+    "price": 588.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n1×\nChambre POP 2 Lits Simples\n2 lits simples\n1×\nChambre Double Standard avec Lit Simple\n2 lits (1 lit simple, 1 lit double)"
+  }
+]

@@ -18,6 +18,7 @@
 
 import pandas as pd
 import requests
+from datetime import datetime, date
 
 from config_kayak import (
     WEATHER_API_KEY, AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY,
@@ -187,21 +188,45 @@ def get_weather_data_for_cities(df_cities: pd.DataFrame) -> pd.DataFrame:
     
     return pd.concat(results_weather, ignore_index=True)
       
-def select_best_weather_cities(df_weather_summary: pd.DataFrame, top_n: int = 7, start_date: pd.Timestamp = None, end_date: pd.Timestamp = None) -> pd.DataFrame:
+def select_best_weather_cities(df_weather_summary: pd.DataFrame, top_n: int = 7, 
+                               start_date: str | pd.Timestamp | None = None , 
+                               end_date: str | pd.Timestamp | None = None
+                               ) -> pd.DataFrame:
     """Select the top N cities with the best weather conditions based on comfort_score.
     between optional dates """
     # Group by city and calculate the average comfort score over the forecast period
-    mask = df_weather_summary['date'].between(pd.Timestamp.now().date(), pd.Timestamp.now().date() + pd.Timedelta(days=5))
+    df_weather_summary["date"] = pd.to_datetime(df_weather_summary["date"])
+    date_span = df_weather_summary["date"].unique()
+    min_date = date_span.min()  # today !! 
+    max_date = date_span.max() # last day !!
+    
+    start_date = pd.Timestamp(start_date) if start_date else min_date 
+    end_date = pd.Timestamp(end_date) if end_date else max_date
+
+    if start_date > end_date:
+        raise ValueError(f"start_date ({start_date}) postérieure à end_date ({end_date})")
+
+        
+    mask = df_weather_summary['date'].between(start_date, end_date)
+    
     df_weather_sub = df_weather_summary.loc[mask].copy()
     city_scores = df_weather_sub.groupby("city").agg(
-        avg_comfort_score=("comfort_score", "mean")
+        avg_comfort_score=("comfort_score", "mean"),
+        checkin_date = ("date" ,"min"),
+        checkout_date = ("date","max"),
+        rain_sum = ("rain_sum","sum"),
+        temp = ("temp_mean","mean"),
+        humidity = ("humidity_mean","mean"),
+        clear_slots = ("clear_slots_count",'sum'),
+        rain_slots = ("rain_slots_count",'sum'),
+        wind_speed_max = ("wind_speed_max","max")
     ).reset_index()
 
     # Sort by average comfort score in descending order and select top N cities
     top_cities = city_scores.sort_values("avg_comfort_score", ascending=False)
     top_cities['selected'] = 0
     top_cities.loc[top_cities.index[:top_n], 'selected'] = 1
-
+    #top_cities['checkin_date = start_date']
     return top_cities
 
 

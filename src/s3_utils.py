@@ -13,6 +13,7 @@ Identifiants AWS : via ~/.aws/credentials, variables d'environnement
 (AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY / AWS_SESSION_TOKEN), ou un profil
 nommé passé en argument. Aucune clé en dur dans ce fichier.
 """
+from __future__ import annotations
 
 import io
 import os
@@ -27,7 +28,6 @@ import boto3
 from botocore.exceptions import BotoCoreError, ClientError, NoCredentialsError
 
 # s3_utils.py
-from __future__ import annotations
 
 logger = logging.getLogger(__name__)
 

@@ -1,0 +1,67 @@
+[
+  {
+    "hotel_name": "LOCAPPART CASSIS en Provence",
+    "url": "https://www.booking.com/hotel/fr/locappart-cassis-en-provence.fr.html",
+    "address": "17 Rue Michel Arnaud, 13260 Cassis, France, 13260 17 Rue Michel Arnaud, France",
+    "hotel_description": "L’hébergement LOCAPPART CASSIS en Provence vous accueille à Cassis, à respectivement 19 km et 23 km de ces lieux d’intérêt : Orange Vélodrome et Basilique...",
+    "city": "Cassis",
+    "latitude": 43.2149899,
+    "longitude": 5.5382298,
+    "score": 8.5,
+    "price": 904.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nAppartement 3 Chambres\nAppartement entier • 3 chambres • 1 salon • 2 salles de bains • 1 cuisine • 115 m²\n4 lits (1 lit simple, 1 lit superposé, 1 canapé-lit, 1 grand lit double)\nSéjour gratuit pour 1 de vos enfants"
+  },
+  {
+    "hotel_name": "Le petit clos St Devote par Dodo à Cassis",
+    "url": "https://www.booking.com/hotel/fr/petit-clos-par-dodo-a-cassis.fr.html",
+    "address": "17 Rue Abbé Paul Mouton, 13260 Cassis, France, 13260 17 Rue Abbé Paul Mouton, France",
+    "hotel_description": "Situé à Cassis, l’hébergement Le petit clos St Devote par Dodo à Cassis offre une vue sur la ville.",
+    "city": "Cassis",
+    "latitude": 43.2164946,
+    "longitude": 5.5375654,
+    "score": 8.9,
+    "price": 978.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nAppartement 3 Chambres\nAppartement entier • 3 chambres • 1 salon • 3 salles de bains • 1 cuisine • 110 m²\n3 lits (1 lit double, 2 grands lits doubles)"
+  },
+  {
+    "hotel_name": "New Cocon Cassis",
+    "url": "https://www.booking.com/hotel/fr/new-cocon-cassis.fr.html",
+    "address": "3 Rue Pierre Eydin, 13260 Cassis, France, 13260 3 Rue Pierre Eydin, France",
+    "hotel_description": "L’hébergement New Cocon Cassis se situe à Cassis, à respectivement 19 km, 23 km et 4,7 km de ces lieux d’intérêt : Orange Vélodrome, Basilique Notre-Dame...",
+    "city": "Cassis",
+    "latitude": 43.2147146,
+    "longitude": 5.5400588,
+    "score": 9.1,
+    "price": 896.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nAppartement 3 Chambres\nAppartement entier • 1 chambre • 1 salle de bains • 50 m²\n1 lit double"
+  },
+  {
+    "hotel_name": "La Viguerie",
+    "url": "https://www.booking.com/hotel/fr/la-viguerie.fr.html",
+    "address": "Bâtiment Les Roses 4 Avenue Alphonse Daudet, 13260 Cassis, France, 13260 Bâtiment Les Roses 4 Avenue Alphonse Daudet, France",
+    "hotel_description": "L’hébergement La Viguerie vous accueille à Cassis, à respectivement 700 mètres et 600 mètres de ces lieux d’intérêt : Plage de la Grande Mer et Plage de la...",
+    "city": "Cassis",
+    "latitude": 43.217717058899,
+    "longitude": 5.536964103391,
+    "score": 8.4,
+    "price": 821.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nAppartement\nAppartement entier • 2 chambres • 1 salon • 1 salle de bains • 1 cuisine • 50 m²\n4 lits (2 lits superposés, 1 canapé-lit, 1 grand lit double)\nSéjour gratuit pour 1 de vos enfants"
+  },
+  {
+    "hotel_name": "L ORANGER - Plein centre - 6 Personnes - Clim",
+    "url": "https://www.booking.com/hotel/fr/charmante-maison-plein-centre-de-cassis-6-personnes-50-m-du-petit-port.fr.html",
+    "address": "10 Rue Jean Baptiste Ducros, 13260 Cassis, France, 13260 10 Rue Jean Baptiste Ducros, France",
+    "hotel_description": "L’hébergement L ORANGER - Plein centre - 6 Personnes - Clim se trouve à Cassis, à seulement 300 mètres de ce lieu d’intérêt : Plage de la Grande Mer.",
+    "city": "Cassis",
+    "latitude": 43.215438,
+    "longitude": 5.5371212,
+    "score": 9.1,
+    "price": 1030.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nMaison 3 Chambres\nMaison de vacances entière • 3 chambres • 2 salles de bains • 1 cuisine • 70 m²\n3 lits (2 lits doubles, 1 grand lit double)"
+  }
+]

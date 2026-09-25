@@ -1,0 +1,67 @@
+[
+  {
+    "hotel_name": "Camping Le Saint Clair",
+    "url": "https://www.booking.com/hotel/fr/le-saint-clair-moustiers-sainte-marie.fr.html",
+    "address": "2 Route des Salles - Aups, 04360 Moustiers-Sainte-Marie, France, 04360 2 Route des Salles - Aups, France",
+    "hotel_description": "Situé à Moustiers-Sainte-Marie (Provence-Alpes-Côte d'Azur), l’établissement Camping Le Saint Clair propose un parking privé gratuit.",
+    "city": "Gorges_du_Verdon",
+    "latitude": 43.828238999999996,
+    "longitude": 6.223991,
+    "score": 8.1,
+    "price": 333.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n1×\nMobile Home\nMobile home • 1 chambre • 1 salon • 1 salle de bains • 17 m²\n1 lit double\n1×\nMobile Home\nMobile home • 2 chambres • 1 salon • 1 salle de bains • 1 cuisine • 27 m²\n3 lits (2 lits simples, 1 lit double)"
+  },
+  {
+    "hotel_name": "Auberge des Salles",
+    "url": "https://www.booking.com/hotel/fr/auberge-des-salles.fr.html",
+    "address": "18 Rue St Catherine, 83630 Les Salles-sur-Verdon, France, 83630 18 Rue St Catherine, France",
+    "hotel_description": "Située aux Salles-sur-Verdon, l’Auberge des Salles propose une terrasse offrant une vue panoramique sur le lac de Sainte-Croix et le parc naturel régional...",
+    "city": "Gorges_du_Verdon",
+    "latitude": 43.77239231716274,
+    "longitude": 6.208481642852803,
+    "score": 8.7,
+    "price": 835.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n1×\nChambre Double - Vue sur Village\nTypes de lits : 1 lit double ou 2 lits simples\nAucun prépaiement requis – Payez sur place\n1×\nChambre Triple - Vue sur Lac\nPlusieurs types de lits\nAucun prépaiement requis – Payez sur place"
+  },
+  {
+    "hotel_name": "Camping Rives du Lac de Sainte Croix",
+    "url": "https://www.booking.com/hotel/fr/camping-rives-du-lac-de-sainte-croix.fr.html",
+    "address": "Quartier Notre Dame - Chemin de la Blache - RD71 Camping Rives du Lac de Sainte Croix, 83630 Bauduen, France, 83630 Quartier Notre Dame - Chemin de la Blache - RD71 Camping Rives du Lac de Sainte Croix, France",
+    "hotel_description": "Situé à Bauduen (Provence-Alpes-Côte d'Azur), l’établissement Camping Rives du Lac de Sainte Croix comprend un parking privé gratuit.",
+    "city": "Gorges_du_Verdon",
+    "latitude": 43.722453,
+    "longitude": 6.181732,
+    "score": 8.2,
+    "price": 340.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n2×\nMobile Home\n2 mobile homes • 4 chambres • 2 salons • 2 salles de bains • 2 cuisines\n6 lits (4 lits simples, 2 lits doubles)"
+  },
+  {
+    "hotel_name": "Maison de campagne 6 personnes",
+    "url": "https://www.booking.com/hotel/fr/maison-de-campagne-6-personnes.fr.html",
+    "address": "990 Chemin des Palets, 83560 Saint-Julien, France, 83560 990 Chemin des Palets, France",
+    "hotel_description": "Situé à Saint-Julien, l’hébergement Maison de campagne 6 personnes met à votre disposition une connexion Wi-Fi gratuite et offre une vue sur la montagne.",
+    "city": "Gorges_du_Verdon",
+    "latitude": 43.6901454,
+    "longitude": 5.8909076,
+    "score": 9.1,
+    "price": 422.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nMaison 3 Chambres\nMaison de vacances entière • 3 chambres • 1 salon • 3 salles de bains • 1 cuisine • 70 m²\n4 lits (3 lits doubles, 1 canapé-lit)\nAnnulation gratuite"
+  },
+  {
+    "hotel_name": "Les Canyons du Verdon",
+    "url": "https://www.booking.com/hotel/fr/les-canyons-du-verdon.fr.html",
+    "address": "Boulevard Saint Michel, 04120 Castellane, France, 04120 Boulevard Saint Michel, France",
+    "hotel_description": "Situé dans le parc régional du Verdon, l'établissement Les Canyons du Verdon dispose d'une piscine extérieure avec chaises longues, d'un jardin et d’un...",
+    "city": "Gorges_du_Verdon",
+    "latitude": 43.85067237749856,
+    "longitude": 6.508229970932007,
+    "score": 7.8,
+    "price": 495.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n1×\nChambre Double\n1 lit double\nAucun prépaiement requis – Payez sur place\n1×\nChambre Triple Confort\nPlusieurs types de lits\nAucun prépaiement requis – Payez sur place"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "hotel_name": "Premiere Classe Besancon Ecole Valentin",
+    "url": "https://www.booking.com/hotel/fr/premiere-classe-besancon-ecole-valentin.fr.html",
+    "address": "7 Route d'Epinal, 25480 Besançon, France, 25480 7 Route d'Epinal, France",
+    "hotel_description": "Situé à proximité de l'Alsace et du Jura, cet hôtel est facilement accessible depuis l'autoroute A36.",
+    "city": "Besancon",
+    "latitude": 47.27044103591704,
+    "longitude": 5.9982722997665405,
+    "score": 6.9,
+    "price": 388.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n1×\nChambre Triple (1 Lit Double et 1 Lit Simple)\n2 lits (1 lit double, 1 lit superposé)\n1×\nChambre Triple\n3 lits simples"
+  },
+  {
+    "hotel_name": "Accueil Hotel Besançon",
+    "url": "https://www.booking.com/hotel/fr/accueil-besancon.fr.html",
+    "address": "6 Rue Louis Aragon, 25000 Besançon, France, 25000 6 Rue Louis Aragon, France",
+    "hotel_description": "L’établissement Accueil Hotel Besançon se situe à Besançon, à respectivement 4,4 km et 7,9 km de ces lieux d’intérêt : Micropolis et Gare de...",
+    "city": "Besancon",
+    "latitude": 47.216012,
+    "longitude": 5.9423711,
+    "score": 5.5,
+    "price": 312.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n2×\nChambre Double Standard\n4 lits (2 lits simples, 2 lits doubles)"
+  },
+  {
+    "hotel_name": "hotelF1 Besancon Ouest Micropolis",
+    "url": "https://www.booking.com/hotel/fr/hotelf1-besancon-ouest-micropolis.fr.html",
+    "address": "1 Rue Pierre Rubens, 25000 Besançon, France, 25000 1 Rue Pierre Rubens, France",
+    "hotel_description": "L'hotelF1 Besancon Ouest Micropolis - vous accueille à Besançon, à 1 km du centre de conventions Micropolis.",
+    "city": "Besancon",
+    "latitude": 47.21853701449286,
+    "longitude": 5.982121987766277,
+    "score": 4.3,
+    "price": 288.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n2×\nChambre Triple\n4 lits (2 lits doubles, 2 lits superposés)\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place"
+  },
+  {
+    "hotel_name": "Comfort Aparthotel Besancon Hauts du Chazal",
+    "url": "https://www.booking.com/hotel/fr/residence-hauts-du-chazal.fr.html",
+    "address": "26, rue Paul Milleret, 25000 Besançon, France, 25000 26, rue Paul Milleret, France",
+    "hotel_description": "Installé à Besançon, à moins de 4,1 km du parc des expositions Micropolis, le Comfort Aparthotel Besancon Hauts du Chazal vous propose une terrasse, des...",
+    "city": "Besancon",
+    "latitude": 47.22448655881508,
+    "longitude": 5.9561240673065186,
+    "score": 7.9,
+    "price": 989.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n1×\nStudio Double\n1 lit double\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place\n1×\nStudio Triple Standard\n2 lits (1 lit simple, 1 lit double)\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place"
+  },
+  {
+    "hotel_name": "Appartement 6 prsn Garage & Terrasse privée",
+    "url": "https://www.booking.com/hotel/fr/appartement-6-prsn-garage-amp-terrasse-privee.fr.html",
+    "address": "5 Allée de l'Île aux Moineaux, 25000 Besançon, France, 25000 5 Allée de l'Île aux Moineaux, France",
+    "hotel_description": "L’hébergement Appartement 6 prsn Garage & Terrasse privée se trouve à Besançon, à respectivement 1,5 km et 6,5 km de ces lieux d’intérêt : Gare de...",
+    "city": "Besancon",
+    "latitude": 47.2396698,
+    "longitude": 6.0343043,
+    "score": 7.5,
+    "price": 450.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nAppartement 2 Chambres avec Terrasse\nAppartement entier • 2 chambres • 1 salon • 1 salle de bains • 1 cuisine • 60 m²\n3 lits (1 canapé-lit, 2 grands lits doubles)"
+  }
+]

@@ -70,6 +70,7 @@ AWS_DB_NAME = os.getenv("AWS_DB_NAME")
 AWS_DB_USER = os.getenv("AWS_DB_USER")
 AWS_DB_PASS = os.getenv("AWS_DB_PASS")
 AWS_REGION = os.getenv("AWS_REGION")
+RDSHOST = os.getenv("RDSHOST")
 
 BASE_URL_NOMINATIM = "https://nominatim.openstreetmap.org/search"
 BASE_URL_OPENWEATHERMAP = "https://api.openweathermap.org/data/2.5"

@@ -1,16 +1,16 @@
 [
   {
-    "hotel_name": "Novotel Dijon Sud",
-    "url": "https://www.booking.com/hotel/fr/novotel-dijon-sud.fr.html",
-    "address": "11 Route De Beaune, 21160 Dijon, France, 21160 11 Route De Beaune, France",
-    "hotel_description": "Situé sur la route des vins de Bourgogne, le Novotel Dijon Sud se trouve à 10 minutes de Dijon, dans la région des vignobles de Marsannay-la-Côte.",
+    "hotel_name": "Grand Hôtel La Cloche Dijon - MGallery Collection",
+    "url": "https://www.booking.com/hotel/fr/gh-la-cloche-dijon-mgallery.fr.html",
+    "address": "14 Place Darcy, 21000 Dijon, France, 21000 14 Place Darcy, France",
+    "hotel_description": "Situé au cœur de la Bourgogne, le Grand Hôtel La Cloche Dijon MGallery Hotel Collection bénéficie d'un emplacement idéal à proximité des principales...",
     "city": "Dijon",
-    "latitude": 47.27952742932506,
-    "longitude": 5.0077056884765625,
-    "score": 7.1,
-    "price": 673.0,
+    "latitude": 47.32413783879986,
+    "longitude": 5.033770054578781,
+    "score": 8.7,
+    "price": 4946.0,
     "currency": "EUR",
-    "room_description": "Recommandé pour votre groupe\n2×\nChambre Double Classique avec Canapé-Lit\n4 lits (2 lits doubles, 2 canapés-lits)\nSéjour gratuit pour 1 de vos enfants\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place"
+    "room_description": "Recommandé pour votre groupe\n1×\nChambre Lit Queen-Size Classique\n1 grand lit double\nAnnulation gratuite\n1×\nSuite Présidentielle - Montrachet\nSuite privée • 100 m²\n2 lits (1 très grand lit double, 1 canapé-lit)\nSéjour gratuit pour 1 de vos enfants\nAnnulation gratuite"
   },
   {
     "hotel_name": "Holiday Inn Dijon Sud - Longvic by IHG",
@@ -34,7 +34,7 @@
     "latitude": 47.329601,
     "longitude": 5.077276,
     "score": 7.7,
-    "price": 422.0,
+    "price": 420.0,
     "currency": "EUR",
     "room_description": "Recommandé pour votre groupe\n2×\nChambre Triple avec 1 Lit Double et 1 Lit Superposé\n2 lits doubles"
   },
@@ -47,21 +47,21 @@
     "latitude": 47.3557,
     "longitude": 5.052,
     "score": 8.2,
-    "price": 707.0,
+    "price": 767.0,
     "currency": "EUR",
     "room_description": "Recommandé pour votre groupe\n1×\nChambre 1 Lit Double Standard - Vue sur Ville\n1 lit double\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place\n1×\nChambre Double Standard avec 2 Lits Doubles - Vue sur Ville\n2 lits doubles\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place"
   },
   {
-    "hotel_name": "Appart'hôtel Odalys City - Dijon Centre Les Cordeliers",
-    "url": "https://www.booking.com/hotel/fr/appart-39-odalys-les-cordeliers.fr.html",
-    "address": "3/5, rue Turgot, Centre-ville de Dijon, 21000 Dijon, France, 21000 3/5, rue Turgot, France",
-    "hotel_description": "L’Appart'hôtel Odalys City - Dijon Centre Les Cordeliers vous accueille dans le centre historique de Dijon.",
+    "hotel_name": "B&B HOTEL Dijon Centre",
+    "url": "https://www.booking.com/hotel/fr/b-amp-b-dijon-centre.fr.html",
+    "address": "5 rue du Château - Place Grangier, Centre-ville de Dijon, 21000 Dijon, France, 21000 5 rue du Château - Place Grangier, France",
+    "hotel_description": "Le B & B Hôtel Dijon Centre est situé à Dijon, à 2 km du parc des expositions Dijon Congrexpo et à 5 km du Zénith de la ville.",
     "city": "Dijon",
-    "latitude": 47.318270014552496,
-    "longitude": 5.040114623313457,
-    "score": 8.1,
-    "price": 645.0,
+    "latitude": 47.322817066024044,
+    "longitude": 5.036885317790961,
+    "score": 8.2,
+    "price": 638.0,
     "currency": "EUR",
-    "room_description": "Recommandé pour votre groupe\nAppartement 2 Chambres (6 Adultes)\nAppartement entier • 2 chambres • 1 salon • 1 salle de bains • 50 m²\n4 lits (2 lits simples, 1 lit double, 1 canapé-lit)\nAnnulation gratuite étendue"
+    "room_description": "Recommandé pour votre groupe\n1×\nChambre Double - Accessible aux Personnes à Mobilité Réduite\n1 lit double\n1×\nChambre Quadruple\n3 lits (2 lits simples, 1 lit double)"
   }
 ]

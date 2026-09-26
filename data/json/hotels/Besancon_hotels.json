@@ -8,7 +8,7 @@
     "latitude": 47.27044103591704,
     "longitude": 5.9982722997665405,
     "score": 6.9,
-    "price": 388.0,
+    "price": 305.0,
     "currency": "EUR",
     "room_description": "Recommandé pour votre groupe\n1×\nChambre Triple (1 Lit Double et 1 Lit Simple)\n2 lits (1 lit double, 1 lit superposé)\n1×\nChambre Triple\n3 lits simples"
   },
@@ -21,9 +21,22 @@
     "latitude": 47.216012,
     "longitude": 5.9423711,
     "score": 5.5,
-    "price": 312.0,
+    "price": 254.0,
     "currency": "EUR",
     "room_description": "Recommandé pour votre groupe\n2×\nChambre Double Standard\n4 lits (2 lits simples, 2 lits doubles)"
+  },
+  {
+    "hotel_name": "ibis budget Besançon Centre Gare",
+    "url": "https://www.booking.com/hotel/fr/ibis-budget-besanasson-centre-gare.fr.html",
+    "address": "5, avenue Maréchal Foch, 25000 Besançon, France, 25000 5, avenue Maréchal Foch, France",
+    "hotel_description": "Situé à Besançon, à seulement 100 mètres de la gare de la Viotte, l'ibis budget Besançon Centre Gare propose des chambres simples dotées d'une connexion...",
+    "city": "Besancon",
+    "latitude": 47.246846407466016,
+    "longitude": 6.023120284080505,
+    "score": 7.7,
+    "price": 693.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n1×\nChambre Double\n1 lit double\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place\n1×\nChambre Triple\n2 lits (1 lit double, 1 lit superposé)\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place"
   },
   {
     "hotel_name": "hotelF1 Besancon Ouest Micropolis",
@@ -34,7 +47,7 @@
     "latitude": 47.21853701449286,
     "longitude": 5.982121987766277,
     "score": 4.3,
-    "price": 288.0,
+    "price": 216.0,
     "currency": "EUR",
     "room_description": "Recommandé pour votre groupe\n2×\nChambre Triple\n4 lits (2 lits doubles, 2 lits superposés)\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place"
   },
@@ -47,21 +60,8 @@
     "latitude": 47.22448655881508,
     "longitude": 5.9561240673065186,
     "score": 7.9,
-    "price": 989.0,
+    "price": 820.0,
     "currency": "EUR",
-    "room_description": "Recommandé pour votre groupe\n1×\nStudio Double\n1 lit double\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place\n1×\nStudio Triple Standard\n2 lits (1 lit simple, 1 lit double)\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place"
-  },
-  {
-    "hotel_name": "Appartement 6 prsn Garage & Terrasse privée",
-    "url": "https://www.booking.com/hotel/fr/appartement-6-prsn-garage-amp-terrasse-privee.fr.html",
-    "address": "5 Allée de l'Île aux Moineaux, 25000 Besançon, France, 25000 5 Allée de l'Île aux Moineaux, France",
-    "hotel_description": "L’hébergement Appartement 6 prsn Garage & Terrasse privée se trouve à Besançon, à respectivement 1,5 km et 6,5 km de ces lieux d’intérêt : Gare de...",
-    "city": "Besancon",
-    "latitude": 47.2396698,
-    "longitude": 6.0343043,
-    "score": 7.5,
-    "price": 450.0,
-    "currency": "EUR",
-    "room_description": "Recommandé pour votre groupe\nAppartement 2 Chambres avec Terrasse\nAppartement entier • 2 chambres • 1 salon • 1 salle de bains • 1 cuisine • 60 m²\n3 lits (1 canapé-lit, 2 grands lits doubles)"
+    "room_description": "Recommandé pour votre groupe\n1×\nStudio Double\n1 lit double\nAnnulation gratuite étendue\nAucun prépaiement requis – Payez sur place\n1×\nStudio Triple Standard\n2 lits (1 lit simple, 1 lit double)\nAnnulation gratuite étendue\nAucun prépaiement requis – Payez sur place"
   }
 ]

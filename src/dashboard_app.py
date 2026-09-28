@@ -16,6 +16,7 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+
 # --- Rend les modules du projet importables (ajuste SRC_DIR si besoin) ---
 BASE_DIR = Path(__file__).resolve().parent
 SRC_DIR = BASE_DIR / "src"
@@ -26,8 +27,12 @@ if SRC_DIR.is_dir() and str(SRC_DIR) not in sys.path:
 # scrap_hotels(checkin, checkout, n_adults, n_children, n_rooms) -> DataFrame hôtels
 # get_weather_summary() -> DataFrame colonnes [date, city, lat, lon, avg_comfort_score, selected]
 try:
-    from hotels import scrap_hotels           # noqa: E402
-    from weather import get_weather_summary   # noqa: E402
+    # from data_access import load_top_cities, load_weather
+    # from hotels_live import search_hotels
+    from datetime import date
+    from data_access import load_search_keys, load_hotels_for, load_top_cities, load_weather
+    from date_picker import render_date_picker, render_search_action
+    from availability import keys_from_df, DEFAULT_OCCUPANCY
 except ImportError as e:
     st.error(
         f"Import impossible : {e}\n\n"
@@ -128,14 +133,42 @@ def plot_city_hotels(cities_top20_hotels: pd.DataFrame, city: str):
 # Chargement des données météo (mis en cache, ne recharge pas à chaque clic)
 # ============================================================
 
-@st.cache_data(ttl=3600, show_spinner="Chargement des prévisions météo...")
-def load_weather() -> pd.DataFrame:
-    try:
-        return get_weather_summary()
-    except Exception as e:
-        st.error(f"Erreur lors du chargement météo : {e}")
-        return pd.DataFrame(columns=["date", "city", "lat", "lon", "avg_comfort_score", "selected"])
+# -- 28/09 
+# @st.cache_data(ttl=3600, show_spinner="Chargement des prévisions météo...")
+# def load_weather() -> pd.DataFrame:
+#     try:
+#         return get_weather_summary()
+#     except Exception as e:
+#         st.error(f"Erreur lors du chargement météo : {e}")
+#         return pd.DataFrame(columns=["date", "city", "lat", "lon", "avg_comfort_score", "selected"])
 
+# ++ 28/09 
+if "hotels_df" not in st.session_state:
+    st.session_state.hotels_df = None
+
+try:
+    keys = keys_from_df(load_search_keys())
+    weather, cities = load_weather(), load_top_cities()
+except Exception as e:  # ex. timeout RDS / security group
+    st.error(f"Base de données inaccessible : {e}")
+    st.stop()
+
+# Dates proposées = dates des fenêtres précalculées (aujourd'hui et après)
+today = date.today()
+available_dates = sorted({d for k in keys for d in (k.checkin, k.checkout) if d >= today})
+
+# Carte météo France : dernier run de la table weather + coordonnées des villes
+if weather.empty:
+    top_cities = pd.DataFrame(columns=["city", "lat", "lon", "avg_comfort_score", "selected"])
+else:
+    latest = weather[weather["checkin_date"] == weather["checkin_date"].max()].drop_duplicates("city_id")
+    coords = cities.drop_duplicates("city_id")[["city_id", "city_lat", "city_lon"]]
+    top_cities = (
+        latest.merge(coords, on="city_id", how="left")
+        .rename(columns={"city_lat": "lat", "city_lon": "lon"})
+        .dropna(subset=["lat", "lon"])
+    )
+# end ++
 
 if "hotels_df" not in st.session_state:
     st.session_state.hotels_df = None
@@ -166,54 +199,89 @@ with st.container():
     with col_title:
         st.markdown("## Plan your trip from weather forecasts")
 
+    # --28/09 
+    # col_weather, col_hotels = st.columns(2)
+
+    # # ---- Bloc hotels (droite) ----
+    # with col_hotels:
+    #     st.markdown("#### Hotels")
+    #     h1, h2, h3 = st.columns(3)
+    #     with h1:
+    #         n_adults = st.number_input("Adults", min_value=1, value=2, step=1)
+    #     with h2:
+    #         n_children = st.number_input("Children", min_value=0, value=0, step=1)
+    #     with h3:
+    #         n_rooms = st.number_input("Rooms", min_value=1, value=1, step=1)
+
+    #     search_clicked = st.button("🔍 Search", use_container_width=True)
+    #     if search_clicked:
+    #         if checkin_date is None:
+    #             st.error("Aucune date de prévision disponible, recherche impossible.")
+    #         elif checkin_date > checkout_date:
+    #             st.error("La date de check-in doit précéder la date de check-out.")
+    #         else:
+    #             with st.spinner("Recherche des hôtels en cours..."):
+    #                 try:
+    #                     st.session_state.hotels_df = search_hotels(top_cities, checkin_date, checkout_date, n_adults, n_children, n_rooms)
+    #                     st.success(f"{len(st.session_state.hotels_df)} hôtels trouvés.")
+    #                 except Exception as e:
+    #                     st.error(f"Erreur lors de la recherche d'hôtels : {e}")
+
+
+    # # ---- Bloc météo (gauche) ----
+    # with col_weather:
+    #     st.markdown("#### Weather")
+
+    #     if result_weather.empty:
+    #         st.warning("Aucune prévision météo disponible.")
+    #         checkin_date = checkout_date = None
+    #     else:
+    #         date_span = sorted(result_weather["date"].unique())
+    #         available_dates = date_span[:5]  # aujourd'hui à J+4
+
+    #         c1, c2 = st.columns(2)
+    #         with c1:
+    #             checkin_date = st.selectbox("Check-in", available_dates, index=0)
+    #         with c2:
+    #             checkout_options = [d for d in available_dates if d >= checkin_date]
+    #             checkout_date = st.selectbox(
+    #                 "Check-out", checkout_options, index=len(checkout_options) - 1
+    #             )
+
+    # ++ 28/09:
     col_weather, col_hotels = st.columns(2)
 
-    # ---- Bloc météo (gauche) ----
-    with col_weather:
-        st.markdown("#### Weather")
-
-        if result_weather.empty:
-            st.warning("Aucune prévision météo disponible.")
-            checkin_date = checkout_date = None
-        else:
-            date_span = sorted(result_weather["date"].unique())
-            available_dates = date_span[:5]  # aujourd'hui à J+4
-
-            c1, c2 = st.columns(2)
-            with c1:
-                checkin_date = st.selectbox("Check-in", available_dates, index=0)
-            with c2:
-                checkout_options = [d for d in available_dates if d >= checkin_date]
-                checkout_date = st.selectbox(
-                    "Check-out", checkout_options, index=len(checkout_options) - 1
-                )
-
-    # ---- Bloc hotels (droite) ----
+    # 1) Occupation d'abord : les pastilles 🟢/🟠 en dépendent
     with col_hotels:
         st.markdown("#### Hotels")
         h1, h2, h3 = st.columns(3)
-        with h1:
-            n_adults = st.number_input("Adults", min_value=1, value=2, step=1)
-        with h2:
-            n_children = st.number_input("Children", min_value=0, value=0, step=1)
-        with h3:
-            n_rooms = st.number_input("Rooms", min_value=1, value=1, step=1)
+        n_adults = h1.number_input("Adults", min_value=1, value=DEFAULT_OCCUPANCY["n_adults"], step=1)
+        n_children = h2.number_input("Children", min_value=0, value=DEFAULT_OCCUPANCY["n_children"], step=1)
+        n_rooms = h3.number_input("Rooms", min_value=1, value=DEFAULT_OCCUPANCY["n_rooms"], step=1)
+    occupancy = {"n_adults": n_adults, "n_children": n_children, "n_rooms": n_rooms}
 
-        search_clicked = st.button("🔍 Search", use_container_width=True)
-        if search_clicked:
-            if checkin_date is None:
-                st.error("Aucune date de prévision disponible, recherche impossible.")
-            elif checkin_date > checkout_date:
-                st.error("La date de check-in doit précéder la date de check-out.")
-            else:
-                with st.spinner("Recherche des hôtels en cours..."):
-                    try:
-                        st.session_state.hotels_df = scrap_hotels(
-                            checkin_date, checkout_date, n_adults, n_children, n_rooms
-                        )
-                        st.success(f"{len(st.session_state.hotels_df)} hôtels trouvés.")
-                    except Exception as e:
-                        st.error(f"Erreur lors de la recherche d'hôtels : {e}")
+    # 2) Dates (colonne de gauche) avec statut
+    with col_weather:
+        st.markdown("#### Weather")
+        if len(available_dates) < 2:
+            st.warning("Aucune recherche précalculée : lance d'abord pipeline.py.")
+            picked = None
+        else:
+            picked = render_date_picker(available_dates, occupancy, keys)
+
+    # 3) Message + bouton adaptés au statut (on revient dans la colonne de droite)
+    with col_hotels:
+        if picked:
+            checkin, checkout, in_db = picked
+            n_scraped = int(top_cities["selected"].sum()) if not top_cities.empty else 0
+            action = render_search_action(in_db, n_cities=n_scraped)
+            if action == "load":
+                try:
+                    st.session_state.hotels_df = load_hotels_for(checkin, checkout, **occupancy)
+                except Exception as e:
+                    st.error(f"Lecture des hôtels impossible : {e}")
+            elif action == "search":
+                st.info("Recherche live à implémenter (ENABLE_LIVE_SEARCH).")
 
 st.divider()
 
@@ -244,6 +312,9 @@ with col_left:
 
 with col_right:
     st.markdown("#### Hotel list")
+    if hotels_df is not None and "scraped_at" in hotels_df.columns and not hotels_df.empty:
+        st.caption(f"Données récupérées le {pd.to_datetime(hotels_df['scraped_at']).max():%d/%m/%Y %H:%M}")
+        
     if hotels_df is not None and not hotels_df.empty:
         candidate_cols = [
             "hotel_name", "city", "score_hotel", "price_hotel", "currency_hotel", "url_hotel",

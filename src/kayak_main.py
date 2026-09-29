@@ -33,7 +33,7 @@ CHECKOUT_DATE_NR = -1  # last day of weather forecasts
 n_adults = 2
 n_children = 3
 n_rooms = 2
-max_results = 5
+max_results = 2    #nb max hotels found per city
 max_price = 500
 
 from pathlib import Path

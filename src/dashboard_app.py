@@ -59,6 +59,8 @@ st.markdown(
 # Fonctions de plot (adaptées : retournent fig au lieu de fig.show())
 # ============================================================
 
+
+
 def plot_France_cities(top_cities: pd.DataFrame):
     """Carte des villes de France avec indice de confort météo."""
     df = top_cities.copy()
@@ -77,14 +79,14 @@ def plot_France_cities(top_cities: pd.DataFrame):
             "lon": False,
             "marker_size": False,
         },
-        zoom=5,
+        zoom=4,
         center={"lat": 46.6, "lon": 2.5},
         mapbox_style="open-street-map",
         color="avg_comfort_score",
         color_continuous_scale=px.colors.sequential.Jet,
         title="Top villes - indice de confort météo",
     )
-    fig.update_layout(height=480, margin=dict(l=0, r=0, t=40, b=0))
+    fig.update_layout(height=550, margin=dict(l=0, r=0, t=40, b=0))
     return fig
 
 
@@ -128,6 +130,65 @@ def plot_city_hotels(cities_top20_hotels: pd.DataFrame, city: str):
     fig.update_layout(height=440, margin=dict(l=0, r=0, t=40, b=0))
     return fig
 
+import pandas as pd
+import streamlit as st
+
+
+def afficher_hotels(hotels_df: pd.DataFrame | None) -> None:
+    """Affiche le tableau des hôtels avec le nom cliquable (lien vers l'hôtel)."""
+    if hotels_df is None or hotels_df.empty:
+        st.info("La liste des hôtels apparaîtra ici après une recherche.")
+        return
+
+        nom_col, "city", "score_hotel", "price_hotel", "currency_hotel",
+        nom_col, "city", "score_hotel", "price_hotel", "currency_hotel",
+    df = hotels_df.copy().sort_values(by="score_hotel",ascending=False)  # évite de modifier le DataFrame d'origine
+
+    # Colonne cliquable : "<url>#<nom>" -> la regex n'affichera que le nom
+    if {"hotel_name", "url_hotel"} <= set(df.columns):
+        nom = (
+            df["hotel_name"].astype("string")
+            .fillna("Hôtel")
+            .str.replace("#", "", regex=False)  # '#' casserait la regex
+            .str.strip()
+        )
+        url = df["url_hotel"].astype("string").str.strip()
+        url_valide = url.notna() & url.str.startswith(("http://", "https://"), na=False)
+
+        # Sans URL valide : on garde le nom seul (affiché en texte simple)
+        df["hotel_link"] = nom.where(~url_valide, url + "#" + nom)
+        nom_col = "hotel_link"
+    else:
+        nom_col = "hotel_name" if "hotel_name" in df.columns else None
+
+    candidate_cols = [
+        nom_col, "city", "score_hotel", "price_hotel",
+    ]
+    display_cols = [c for c in candidate_cols if c and c in df.columns]
+
+    column_config = {}
+    if nom_col == "hotel_link":
+        column_config["hotel_link"] = st.column_config.LinkColumn(
+            "Hôtel",
+            display_text=r"#(.*)$",  # affiche le nom situé après le '#'
+        )
+    if "city" in display_cols:
+        column_config["city"] = st.column_config.TextColumn("Ville")
+    if "price_hotel" in display_cols:
+        column_config["price_hotel"] = st.column_config.NumberColumn("Prix (€)", format="%.0f")
+    if "score_hotel" in display_cols:
+        column_config["score_hotel"] = st.column_config.NumberColumn("Note", format="%.1f")
+    if "currency_hotel" in display_cols:
+        column_config["currency_hotel"] = st.column_config.TextColumn("Devise")
+
+    st.dataframe(
+        df[display_cols],
+        column_config=column_config,
+        height=850,
+        use_container_width=True,
+        hide_index=True,
+    )
+
 
 # ============================================================
 # Chargement des données météo (mis en cache, ne recharge pas à chaque clic)
@@ -165,31 +226,54 @@ else:
     coords = cities.drop_duplicates("city_id")[["city_id", "city_lat", "city_lon"]]
     top_cities = (
         latest.merge(coords, on="city_id", how="left")
-        .rename(columns={"city_lat": "lat", "city_lon": "lon"})
-        .dropna(subset=["lat", "lon"])
+         .dropna(subset=["lat", "lon"])
+         .drop(columns=['city_lat','city_lon'])
     )
 # end ++
 
-if "hotels_df" not in st.session_state:
-    st.session_state.hotels_df = None
+# --
+# if "hotels_df" not in st.session_state:
+#     st.session_state.hotels_df = None
 
-result_weather = load_weather()
+# result_weather = load_weather()
 
-# Villes/indice météo (top_cities) : dernière date par ville, ou agrégat moyen
-if not result_weather.empty:
-    top_cities = (
-        result_weather.groupby(["city", "lat", "lon"], as_index=False)["avg_comfort_score"]
-        .mean()
-    )
-    top_cities["selected"] = 0
-else:
-    top_cities = pd.DataFrame(columns=["city", "lat", "lon", "avg_comfort_score", "selected"])
+# # Villes/indice météo (top_cities) : dernière date par ville, ou agrégat moyen
+# if not result_weather.empty:
+#     top_cities = (
+#         result_weather.groupby(["city", "lat", "lon"], as_index=False)["avg_comfort_score"]
+#         .mean()
+#     )
+#     top_cities["selected"] = 0
+# else:
+#     top_cities = pd.DataFrame(columns=["city", "lat", "lon", "avg_comfort_score", "selected"])
 
 
 # ============================================================
 # BANDEAU DU HAUT (~1/5 de la hauteur)
 # ============================================================
+
+# Espace au-dessus du logo et du titre (padding haut de la page)
+st.markdown(
+    """
+    <style>
+        /* Zone principale : padding haut augmenté (défaut ≈ 6rem) */
+        .block-container {
+            padding-top: 0.25rem;
+        }
+        /* Décalage du titre pour l'aligner visuellement avec le logo */
+        .kayak-title h2 {
+            margin-top: 0.4rem;
+            padding-top: 0;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 with st.container():
+    # Espacement vertical supplémentaire au-dessus de la ligne logo/titre
+    st.markdown("<div style='height: 0.25rem;'></div>", unsafe_allow_html=True)
+
     col_logo, col_title = st.columns([1, 6])
     with col_logo:
         st.image(
@@ -197,7 +281,19 @@ with st.container():
             width=110,
         )
     with col_title:
-        st.markdown("## Plan your trip from weather forecasts")
+        st.markdown(
+            "<div class='kayak-title'><h2>Plan your trip from weather forecasts</h2></div>",
+            unsafe_allow_html=True,
+        )
+# with st.container():
+#     col_logo, col_title = st.columns([1, 6])
+#     with col_logo:
+#         st.image(
+#             "https://seekvectorlogo.com/wp-content/uploads/2018/01/kayak-vector-logo.png",
+#             width=110,
+#         )
+#     with col_title:
+#         st.markdown("## Plan your trip from weather forecasts")
 
     # --28/09 
     # col_weather, col_hotels = st.columns(2)
@@ -287,7 +383,7 @@ st.divider()
 
 
 # ============================================================
-# CORPS PRINCIPAL
+# CORPS PRINCIPAL 1 
 # ============================================================
 col_left, col_right = st.columns([3, 2])
 
@@ -297,11 +393,21 @@ with col_left:
     else:
         st.info("Aucune donnée météo chargée pour le moment.")
 
+hotels_df = st.session_state.hotels_df
+with col_right:
+    st.markdown("#### Hotel list")
+    afficher_hotels(hotels_df)
+st.divider()
+# ============================================================
+# CORPS PRINCIPAL 2 
+# ============================================================
+col_left2, col_right2 = st.columns([3, 2])
+with col_left2:
     st.markdown("#### Zoom sur une ville")
-    hotels_df = st.session_state.hotels_df
     if hotels_df is not None and not hotels_df.empty and "city" in hotels_df.columns:
         cities_list = sorted(hotels_df["city"].dropna().unique())
         selected_city = st.selectbox("Choisir une ville", cities_list)
+        hotels_df2 = hotels_df[hotels_df["city"]==selected_city]
         fig_city = plot_city_hotels(hotels_df, selected_city)
         if fig_city is not None:
             st.plotly_chart(fig_city, use_container_width=True)
@@ -310,37 +416,45 @@ with col_left:
     else:
         st.info("Lance une recherche d'hôtels pour afficher le détail par ville.")
 
-with col_right:
-    st.markdown("#### Hotel list")
-    if hotels_df is not None and "scraped_at" in hotels_df.columns and not hotels_df.empty:
-        st.caption(f"Données récupérées le {pd.to_datetime(hotels_df['scraped_at']).max():%d/%m/%Y %H:%M}")
+with col_right2:
+    st.markdown(f"#### Hotels à {selected_city}")
+    afficher_hotels(hotels_df2)
         
-    if hotels_df is not None and not hotels_df.empty:
-        candidate_cols = [
-            "hotel_name", "city", "score_hotel", "price_hotel", "currency_hotel", "url_hotel",
-        ]
-        display_cols = [c for c in candidate_cols if c in hotels_df.columns]
+    
+    # if hotels_df is not None and "scraped_at" in hotels_df.columns and not hotels_df.empty:
+    #     st.caption(f"Données récupérées le {pd.to_datetime(hotels_df['scraped_at']).max():%d/%m/%Y %H:%M}")
+        
+    # if hotels_df is not None and not hotels_df.empty:
+    #     candidate_cols = [
+    #         "hotel_name", "city", "score_hotel", "price_hotel", "currency_hotel", "url_hotel",
+    #     ]
+    #     display_cols = [c for c in candidate_cols if c in hotels_df.columns]
 
-        column_config = {}
-        if "url_hotel" in display_cols:
-            column_config["url_hotel"] = st.column_config.LinkColumn(
-                "Lien", display_text="Voir l'hôtel"
-            )
-        if "price_hotel" in display_cols:
-            column_config["price_hotel"] = st.column_config.NumberColumn(
-                "Prix", format="%.0f"
-            )
-        if "score_hotel" in display_cols:
-            column_config["score_hotel"] = st.column_config.NumberColumn(
-                "Note", format="%.1f"
-            )
+    #     column_config = {}
+    #     if "hotel_name" in display_cols:
+    #         column_config["hotel_name"] = st.column_config.LinkColumn(
+    #             "hotel name", display_text= hotels_df["hotel_name"] 
+    #         )
+        
+    #     if "url_hotel" in display_cols:
+    #         column_config["url_hotel"] = st.column_config.LinkColumn(
+    #             "Lien", display_text="Voir l'hôtel"
+    #         )
+    #     if "price_hotel" in display_cols:
+    #         column_config["price_hotel"] = st.column_config.NumberColumn(
+    #             "Prix", format="%.0f"
+    #         )
+    #     if "score_hotel" in display_cols:
+    #         column_config["score_hotel"] = st.column_config.NumberColumn(
+    #             "Note", format="%.1f"
+    #         )
 
-        st.dataframe(
-            hotels_df[display_cols],
-            column_config=column_config,
-            height=850,
-            use_container_width=True,
-            hide_index=True,
-        )
-    else:
-        st.info("La liste des hôtels apparaîtra ici après une recherche.")
+    #     st.dataframe(
+    #         hotels_df[display_cols],
+    #         column_config=column_config,
+    #         height=850,
+    #         use_container_width=True,
+    #         hide_index=True,
+    #     )
+    # else:
+    #     st.info("La liste des hôtels apparaîtra ici après une recherche.")

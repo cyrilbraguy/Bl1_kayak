@@ -7,6 +7,7 @@
 
 # rds_utils.py
 from __future__ import annotations
+import os
 
 import logging
 from urllib.parse import quote_plus
@@ -21,8 +22,27 @@ from config_kayak import (
     WEATHER_API_KEY, AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY,
     AWS_BUCKET_NAME, AWS_BUCKET_DIR,
     AWS_DB_NAME, AWS_DB_USER, AWS_DB_PASS, AWS_REGION,
-    RDSHOST,
+    RDSHOST,DATABASE_URL
 )
+
+
+
+def get_pg_engine(database_url: str | None = None):
+    """Engine Postgres (Neon, RDS, local) depuis DATABASE_URL, avec SSL et tolérance au démarrage à froid."""
+    url = database_url or DATABASE_URL
+    if not url:
+        raise ValueError("DATABASE_URL absente (variable d'environnement ou paramètre)")
+    if url.startswith("postgres://"):
+        url = "postgresql://" + url[len("postgres://"):]
+    if url.startswith("postgresql://"):
+        url = url.replace("postgresql://", "postgresql+psycopg2://", 1)  # force le driver psycopg2
+
+    return create_engine(
+        url,
+        pool_pre_ping=True,        # revalide la connexion (le compute a pu se suspendre)
+        pool_recycle=300,          # recycle avant les coupures côté serveur
+        connect_args={"connect_timeout": 30, "sslmode": "require"},  # 30 s : marge pour le réveil
+    )
 
 def get_rds_engine(
     host: str,

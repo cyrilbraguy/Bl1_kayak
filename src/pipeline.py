@@ -13,7 +13,9 @@ from load_cities import load_cities, get_coordinates_cities
 from get_weather_forecasts import get_weather_data_for_cities, select_best_weather_cities
 from scrap_hotels import collect_cities_hotels, select_top_hotels
 from s3_utils import save_csv_to_s3, timestamped_filename, read_csv_from_s3
-from rds_utils import get_rds_engine, save_df_to_rds
+from rds_utils import get_rds_engine, save_df_to_rds, get_pg_engine
+
+from availability import build_date_windows, run_hotel_searches, keys_from_df, DEFAULT_OCCUPANCY
 
 CHECKIN_DATE_NR = 1
 CHECKOUT_DATE_NR = -1
@@ -48,8 +50,11 @@ def run_pipeline(
     checkout_date = date_span[CHECKOUT_DATE_NR].isoformat()
 
     top_cities = select_best_weather_cities(
-        result_weather, top_n=7, start_date=checkin_date, end_date=checkout_date
+        result_weather, top_n=5, start_date=checkin_date, end_date=checkout_date
     )
+    
+    print(f"top cities before \n {top_cities}")
+    
     top_cities = top_cities.merge(
         df_cities.drop(columns=["lat", "lon"]), how="left", left_on="city", right_on="city_name"
     )
@@ -58,6 +63,8 @@ def run_pipeline(
     )
     top_cities.to_csv(os.path.join(DATA_DIR_CSV, "top_weather_cities.csv"), index=False, encoding="utf-8")
     save_csv_to_s3(top_cities, timestamped_filename("weather_top_cities"))
+
+    print(f"after:\n {top_cities.head()}")
 
     # scrap booking : 
     # hotels_df = collect_cities_hotels(
@@ -74,11 +81,11 @@ def run_pipeline(
     
     # scenario pre_select : 
     # move get engine : 
-    engine = get_rds_engine(
-            host=RDSHOST, database=AWS_DB_NAME, user=AWS_DB_USER, password=AWS_DB_PASS,
-            port=5432, driver="postgresql+psycopg2",
-        )
-    from availability import build_date_windows, run_hotel_searches, keys_from_df, DEFAULT_OCCUPANCY
+    # engine = get_rds_engine(
+    #         host=RDSHOST, database=AWS_DB_NAME, user=AWS_DB_USER, password=AWS_DB_PASS,
+    #         port=5432, driver="postgresql+psycopg2",
+    #     )
+    engine = get_pg_engine() #use engine with default DATABASE_URL default variable
 
     # windows = build_date_windows(result_weather["date"].unique())
     # existing = keys_from_df(pd.read_sql(
@@ -102,6 +109,8 @@ def run_pipeline(
         existing = set()
 
     windows = build_date_windows(result_weather["date"].unique())
+    
+    # Hotels search new version :
     hotels_all, failed = run_hotel_searches(
         top_cities, windows, DEFAULT_OCCUPANCY,
         collect_fn=collect_cities_hotels, select_fn=select_top_hotels,
@@ -130,12 +139,14 @@ def run_pipeline(
     # ++ 28/09 scenario pre_select
     cities_top20_hotels = top_cities.merge(
             hotels_all.drop(columns=["checkin_date", "checkout_date"]),  # <- seul changement
-        how="outer", left_on="city_name", right_on="city",
+        how="outer", left_on="city_name_", right_on="city",
         suffixes=["_city", "_hotel"],
         )
     # end ++
     cities_top20_hotels = cities_top20_hotels.sort_values("combined_score_hotel", ascending=False)
     cities_top20_hotels = cities_top20_hotels.rename(columns={"city_city": "city"}).drop(columns=["city_hotel"])
+
+    print(f"top cities et top20 hotels:\n {cities_top20_hotels}")
 
     cities_top20_hotels.to_csv(os.path.join(DATA_DIR_CSV, "hotels_top20_cities.csv"), index=False, encoding="utf-8")
     save_csv_to_s3(cities_top20_hotels, "hotels_top20cities.csv")
@@ -155,8 +166,10 @@ def run_pipeline(
     #                "address_hotel", "hotel_description", "lat_hotel", "lon_hotel", "score_hotel",
     #                "price_hotel", "currency_hotel", "room_description", "combined_score_hotel", "hotel_city"]
     weather_cols = ["city_id", "city", "checkin_date", "checkout_date", "avg_comfort_score", "temp",
-                     "humidity", "wind_speed_max", "clear_slots", "rain_slots", "rain_sum", "selected"]
+                     "humidity", "wind_speed_max", "clear_slots", "rain_slots", "rain_sum", "selected","city_lat", "city_lon"]
 
+    weather_rename = {"city_lat":"lat",
+                      "city_lon":"lon"}
     df_cities2 = df[cities_cols].dropna().drop_duplicates()
     
     # -- 28/09
@@ -172,13 +185,18 @@ def run_pipeline(
         .drop_duplicates()
     )
     # end ++
-    df_weather2 = df[weather_cols].dropna().drop_duplicates()
+    df_weather2 = df[weather_cols].rename(columns=weather_rename).dropna().drop_duplicates()
 
     
     try:
-        save_df_to_rds(df_cities2, "cities", engine, if_exists="append")
-        save_df_to_rds(df_hotels2, "hotels", engine, if_exists="append")
-        save_df_to_rds(df_weather2, "weather", engine, if_exists="append")
+        # save_df_to_rds(df_cities2, "cities", engine, if_exists="append")
+        # save_df_to_rds(df_hotels2, "hotels", engine, if_exists="append")
+        # save_df_to_rds(df_weather2, "weather", engine, if_exists="append")
+        df_cities2.to_sql(name="cities",con=engine,if_exists="replace",index=False)
+        df_hotels2.to_sql(name="hotels",con=engine,if_exists="replace",index=False)
+        df_weather2.to_sql(name="weather",con=engine,if_exists="replace",index=False)
+        
+        
     finally:
         engine.dispose()
 
@@ -186,5 +204,7 @@ def run_pipeline(
 
 
 if __name__ == "__main__":
-    summary = run_pipeline()
+    summary = run_pipeline(
+        max_results = 6,
+        max_price = 300,)
     print(summary)

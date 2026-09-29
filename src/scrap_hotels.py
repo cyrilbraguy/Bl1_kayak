@@ -61,11 +61,15 @@ from typing import Literal, Optional, Union
 
 
 #clean data/json/hotels before new search
-
+# gestion des erreurs :
 def extract_city(address: str) -> str | None:
     """Extrait la ville : entre ', CODE_POSTAL ' et la virgule suivante."""
-    match = re.search(r",\s*\d{5}\s+([^,]+),", address)
-    return match.group(1).strip() if match else None
+    if not address:
+        return None
+    else:
+        
+        match = re.search(r",\s*\d{5}\s+([^,]+),", address)
+        return match.group(1).strip() if match else None    
 
 
 def collect_cities_hotels(top_cities,
@@ -110,9 +114,9 @@ def collect_cities_hotels(top_cities,
     hotels_df = hotels_df.drop_duplicates(subset="url", keep="first").reset_index(drop=True)
     
     # extract hotel's city from address
-    hotels_df['hotel_city'] = hotels_df['address'].apply(extract_city)
-
+    hotels_df['hotel_city'] = hotels_df['address'].apply(extract_city).fillna("")
     
+       
         
     return hotels_df
 

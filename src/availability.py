@@ -1,7 +1,8 @@
 """
 availability.py
 ===============
-Gestion des « fenêtres de dates » déjà recherchées (en base) vs à rechercher (scraping lent).
+Gestion des « fenêtres de dates » déjà recherchées (en base) 
+vs à rechercher (scraping lent).
 
 Aucune dépendance Streamlit : utilisable dans pipeline.py ET dashboard_app.py.
 
@@ -64,7 +65,8 @@ def make_key(
 
 
 def build_date_windows(date_span: Iterable, n_checkins: int = 4) -> list[tuple[date, date]]:
-    """Fenêtres précalculées : j→j+4, j+1→j+4, j+2→j+4, j+3→j+4.
+    """ Builds precalculated trip windows on 5 days : 5, 4, 3, 2 days 
+    Fenêtres précalculées : j→j+4, j+1→j+4, j+2→j+4, j+3→j+4.
 
     Le checkout est la 5e date de prévision (ou la dernière disponible s'il y en a moins).
     """
@@ -72,7 +74,11 @@ def build_date_windows(date_span: Iterable, n_checkins: int = 4) -> list[tuple[d
     if len(dates) < 2:
         raise ValueError("Il faut au moins 2 dates de prévision pour construire une fenêtre")
     checkout = dates[min(4, len(dates) - 1)]
-    return [(ci, checkout) for ci in dates[:n_checkins] if ci < checkout]
+    list_windows  = [(ci, checkout) for ci in dates[:n_checkins] if ci < checkout]
+    une_window = [(dates[3],checkout)]
+    deux_windows = [(dates[1],checkout),(dates[3],checkout)]
+    
+    return deux_windows
 
 
 # ----------------------------------------------------------------------
@@ -152,6 +158,7 @@ def run_hotel_searches(
     failed: list[SearchKey] = []
 
     for checkin, checkout in windows:
+        print(f"* search hotels for window {checkin} - {checkout}")
         key = make_key(checkin, checkout, **occupancy)
         if key in skip_keys:
             logger.info("Déjà en base, ignorée : %s", key)

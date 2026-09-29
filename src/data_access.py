@@ -5,15 +5,19 @@ import pandas as pd
 from sqlalchemy import create_engine
 from config_kayak import RDSHOST, AWS_DB_NAME, AWS_DB_USER, AWS_DB_PASS
 from sqlalchemy import text
+from rds_utils import get_pg_engine
 
-@st.cache_resource
-def get_engine():
-    from urllib.parse import quote_plus
-    pwd = quote_plus(AWS_DB_PASS)
-    return create_engine(
-        f"postgresql+psycopg2://{AWS_DB_USER}:{pwd}@{RDSHOST}:5432/{AWS_DB_NAME}",
-        pool_pre_ping=True,
-    )
+
+get_engine = st.cache_resource(get_pg_engine)
+# --28/09 base Neon
+# @st.cache_resource
+# def get_engine():
+#     from urllib.parse import quote_plus
+#     pwd = quote_plus(AWS_DB_PASS)
+#     return create_engine(
+#         f"postgresql+psycopg2://{AWS_DB_USER}:{pwd}@{RDSHOST}:5432/{AWS_DB_NAME}",
+#         pool_pre_ping=True,
+#     )
 
 
 @st.cache_data(ttl=3600, show_spinner="Chargement des données...")

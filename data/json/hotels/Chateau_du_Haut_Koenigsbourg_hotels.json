@@ -1,0 +1,67 @@
+[
+  {
+    "hotel_name": "Au pied du Château",
+    "url": "https://www.booking.com/hotel/fr/au-pied-du-chateau-orschwiller.fr.html",
+    "address": "Schaflager, 67600 Orschwiller, France, 67600 Schaflager, France",
+    "hotel_description": "L’hébergement Au pied du Château se trouve à Orschwiller, à seulement 3,2 km de ce lieu d’intérêt : Château du Haut-Kœnigsbourg.",
+    "city": "Chateau_du_Haut_Koenigsbourg",
+    "latitude": 48.2484025,
+    "longitude": 7.3548257,
+    "score": 9.2,
+    "price": 404.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nAppartement avec Vue sur la Montagne\nAppartement entier • 2 chambres • 1 salon • 1 salle de bains • 1 cuisine • 60 m²\n3 lits (2 lits doubles, 1 canapé-lit)"
+  },
+  {
+    "hotel_name": "Gîte 1 - Aux Deux Hameaux",
+    "url": "https://www.booking.com/hotel/fr/gite-aux-deux-hameaux.fr.html",
+    "address": "8 Chemin de l'Église, 67220 Saint-Pierre-Bois, France, 67220 8 Chemin de l'Église, France",
+    "hotel_description": "L’hébergement Gîte 1 - Aux Deux Hameaux offre une vue sur la montagne, à environ 14 km de ce lieu d’intérêt : Cigoland.",
+    "city": "Chateau_du_Haut_Koenigsbourg",
+    "latitude": 48.33605194091797,
+    "longitude": 7.357649803161621,
+    "score": 9.5,
+    "price": 396.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nChambre Quadruple avec Douche\n2 grands lits doubles\nSéjour gratuit pour 1 de vos enfants"
+  },
+  {
+    "hotel_name": "Spacieux duplex 1 à 6 personnes",
+    "url": "https://www.booking.com/hotel/fr/spacieux-duplex-1-a-6-personnes.fr.html",
+    "address": "3 Rue de l'Église, 67600 Ebersheim, France, 67600 3 Rue de l'Église, France",
+    "hotel_description": "L’hébergement Spacieux duplex 1 à 6 personnes offre une vue sur le jardin, à environ 19 km de ce lieu d’intérêt : Château du Haut-Kœnigsbourg.",
+    "city": "Chateau_du_Haut_Koenigsbourg",
+    "latitude": 48.30435,
+    "longitude": 7.502731,
+    "score": 9.9,
+    "price": 250.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nAppartement 2 Chambres\nAppartement entier • 2 chambres • 1 salon • 1 salle de bains • 1 cuisine • 130 m²\n4 lits (1 lit simple, 1 très grand lit double, 1 canapé-lit, 1 grand lit double)\nSéjour gratuit pour vos enfants"
+  },
+  {
+    "hotel_name": "Duplex au cœur de l’Alsace",
+    "url": "https://www.booking.com/hotel/fr/duplex-au-coeur-de-l-alsace.fr.html",
+    "address": "34 Rue Langert, 67600 Muttersholtz, France, 67600 34 Rue Langert, France",
+    "hotel_description": "L’hébergement Duplex au cœur de l’Alsace se situe à Muttersholtz, à respectivement 25 km, 28 km et 31 km de ces lieux d’intérêt : Musée Würth, Parc des...",
+    "city": "Chateau_du_Haut_Koenigsbourg",
+    "latitude": 48.2645536,
+    "longitude": 7.5333957,
+    "score": 9.3,
+    "price": 473.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nAppartement 3 Chambres\nAppartement entier • 3 chambres • 1 salon • 1 salle de bains • 80 m²\n4 lits (1 canapé-lit, 3 grands lits doubles)\nAnnulation gratuite"
+  },
+  {
+    "hotel_name": "Hôtel Val-Vignes Colmar Haut-Koenigsbourg, The Originals Relais",
+    "url": "https://www.booking.com/hotel/fr/val-vignes.fr.html",
+    "address": "23, chemin du Wall, 68590 Saint-Hippolyte, France, 68590 23, chemin du Wall, France",
+    "hotel_description": "L'Hôtel Val-Vignes Colmar Haut-Koenigsbourg, The Originals Relais est situé à Saint-Hippolyte, sur la route des vins d'Alsace, à 12 minutes de route du...",
+    "city": "Chateau_du_Haut_Koenigsbourg",
+    "latitude": 48.23481955207035,
+    "longitude": 7.367786765098572,
+    "score": 8.5,
+    "price": 1103.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n1×\nChambre Double ou Lits Jumeaux Premium\nTypes de lits : 1 lit double ou 2 lits simples\nAucun prépaiement requis – Payez sur place\n1×\nChambre Familiale\nPlusieurs types de lits\nSéjour gratuit pour 2 de vos enfants\nPetit-déjeuner compris\nAucun prépaiement requis – Payez sur place"
+  }
+]

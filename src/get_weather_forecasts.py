@@ -15,13 +15,17 @@
 
 
 #WEATHER_API_KEY = weather_api_key
-
+from __future__ import annotations
+import logging
 import pandas as pd
 import requests
 from datetime import datetime, date
+from typing import Callable, Iterable, NamedTuple
+
+logger = logging.getLogger(__name__)
 
 from config_kayak import (
-    WEATHER_API_KEY, AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY,
+    WEATHER_API_KEY, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY,
     AWS_BUCKET_NAME, AWS_BUCKET_DIR,
     AWS_DB_NAME, AWS_DB_USER, AWS_DB_PASS, AWS_REGION,
 
@@ -170,7 +174,22 @@ def summarize_weather(df: pd.DataFrame, hour_start: int = 8, hour_end: int = 20)
     return summary
 
 
-def get_weather_data_for_cities(df_cities: pd.DataFrame) -> pd.DataFrame:
+def get_weather_data_for_cities(df_cities: pd.DataFrame, scraped_dt : pd.Timestamp) -> pd.DataFrame:
+    """collect weather data for all cities from a df_cities dataftrame 
+
+    Args:
+        df_cities (pd.DataFrame): pd.DataFrame of cities 
+                                  coming from for example get_coordinates_cities(cities_list_df)
+                                  with  columns at least :
+                                  city_name, city_lat, city_lon of all cities  
+        scraped_dt (pd.Timestamp): timestamp of scraping activity to uniformize scraped datetime on all tables
+
+    Returns:
+        pd.DataFrame: DataFrame of weather forecast
+    """
+    if not scraped_dt:
+            scraped_dt = pd.Timestamp.now()
+            
     results_weather = []
     for _, row in df_cities.iterrows():
         name = row['city_name']
@@ -182,11 +201,58 @@ def get_weather_data_for_cities(df_cities: pd.DataFrame) -> pd.DataFrame:
         
         sw = summarize_weather(df_weather)
         sw['city'] = name
+        sw['scraped_at'] = scraped_dt
         results_weather.append(sw)
         
         # display(sw)  # Optionally display the summary for each city
     
     return pd.concat(results_weather, ignore_index=True)
+
+class SearchKey(NamedTuple): # to define later 
+    checkin: date
+    checkout: date
+    
+
+def run_weather_searches(
+    df_weather_summary: pd.DataFrame,
+    windows: list[tuple[date, date]],
+    select_weather_cities_fn: Callable,
+    scraped_dt: pd.Timestamp,
+    top_n: int = 7, 
+     
+    ) -> pd.DataFrame: # tuple[pd.DataFrame, list[SearchKey]]
+    
+    #skip_keys = skip_keys or set()
+    weather_summary_windows: list[pd.DataFrame] = []
+    failed: list[SearchKey] = []
+    
+    for checkin, checkout in windows:
+        print(f"select best weather cities for window {checkin} - {checkout}")
+        
+        try:
+            weather_sum_win = select_weather_cities_fn(
+                                    df_weather_summary, 
+                                    top_n = top_n, 
+                                    start_date= checkin, end_date= checkout)
+            weather_sum_win["scraped_at"] = scraped_dt   
+        except Exception:
+            logger.exception("Échec de la weather best cities selection %s", (checkin, checkout))
+            #failed.append(key)
+            continue 
+        
+        if weather_sum_win is None or weather_sum_win.empty:
+            logger.warning("Aucune meteo pour %s", (checkin, checkout))
+            continue
+
+        weather_sum_win = weather_sum_win.copy()
+        weather_sum_win["checkin_date"] = checkin
+        weather_sum_win["checkout_date"] = checkout
+        
+        weather_summary_windows.append(weather_sum_win)
+        
+    result_weather_windows = pd.concat(weather_summary_windows, ignore_index=True) if weather_summary_windows else pd.DataFrame() 
+    return result_weather_windows #, failed
+
       
 def select_best_weather_cities(df_weather_summary: pd.DataFrame, top_n: int = 7, 
                                start_date: str | pd.Timestamp | None = None , 
@@ -205,12 +271,11 @@ def select_best_weather_cities(df_weather_summary: pd.DataFrame, top_n: int = 7,
 
     if start_date > end_date:
         raise ValueError(f"start_date ({start_date}) postérieure à end_date ({end_date})")
-
         
     mask = df_weather_summary['date'].between(start_date, end_date)
     
     df_weather_sub = df_weather_summary.loc[mask].copy()
-    city_scores = df_weather_sub.groupby("city").agg(
+    city_scores = df_weather_sub.groupby(["city"]).agg(
         avg_comfort_score=("comfort_score", "mean"),
         checkin_date = ("date" ,"min"),
         checkout_date = ("date","max"),
@@ -219,7 +284,8 @@ def select_best_weather_cities(df_weather_summary: pd.DataFrame, top_n: int = 7,
         humidity = ("humidity_mean","mean"),
         clear_slots = ("clear_slots_count",'sum'),
         rain_slots = ("rain_slots_count",'sum'),
-        wind_speed_max = ("wind_speed_max","max")
+        wind_speed_max = ("wind_speed_max","max"),
+        scraped_at = ("scraped_at","first"),
     ).reset_index()
 
     # Sort by average comfort score in descending order and select top N cities

@@ -1,0 +1,80 @@
+[
+  {
+    "hotel_name": "ibis budget Rouen Centre Rive Gauche",
+    "url": "https://www.booking.com/hotel/fr/ibis-budget-rouen-centre-rive-gauche.fr.html",
+    "address": "55 Avenue De La Liberation, 76100 Rouen, France, 76100 55 Avenue De La Liberation, France",
+    "hotel_description": "L'Hotel ibis budget Rouen Centre Rive Gauche Gauche se situe à Rouen, à 2,4 km du Kindarena, le palais des sports de la ville.",
+    "city": "Rouen",
+    "latitude": 49.425341,
+    "longitude": 1.068718,
+    "score": 8.3,
+    "price": 70.0,
+    "currency": "EUR",
+    "room_description": "Chambre Lits Jumeaux Standard avec Lit Escamotable\n3 lits simples"
+  },
+  {
+    "hotel_name": "Hyatt Place Rouen",
+    "url": "https://www.booking.com/hotel/fr/hyatt-place-rouen.fr.html",
+    "address": "77 route de Neufchatel, 76000 Rouen, France, 76000 77 route de Neufchatel, France",
+    "hotel_description": "L’établissement Hyatt Place Rouen vous accueille à Rouen, à 900 mètres de ce lieu d’intérêt : Gare de Rouen-Rive-Droite.",
+    "city": "Rouen",
+    "latitude": 49.453285640641354,
+    "longitude": 1.0982852973166501,
+    "score": 8.6,
+    "price": 139.0,
+    "currency": "EUR",
+    "room_description": "Chambre Lit King-Size - Vue sur Jardin\n1 très grand lit double\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place"
+  },
+  {
+    "hotel_name": "Radisson Blu Hotel, Rouen Centre",
+    "url": "https://www.booking.com/hotel/fr/radisson-blu-rouen-centre.fr.html",
+    "address": "6-8 Rue du Donjon, 76000 Rouen, France, 76000 6-8 Rue du Donjon, France",
+    "hotel_description": "L’établissement Radisson Blu Hotel, Rouen Centre est idéalement placé à Rouen.",
+    "city": "Rouen",
+    "latitude": 49.446441,
+    "longitude": 1.09412,
+    "score": 8.9,
+    "price": 184.0,
+    "currency": "EUR",
+    "room_description": "Chambre Standard\nPlusieurs types de lits\nPlus que 6 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "B&B HOTEL Rouen Centre",
+    "url": "https://www.booking.com/hotel/fr/comforthotelrouencentre.fr.html",
+    "address": "20 Place de L'Eglise St-Sever, 76100 Rouen, France, 76100 20 Place de L'Eglise St-Sever, France",
+    "hotel_description": "Un établissement idéalement situé pour découvrir Rouen, ville d’art, d’histoire et de culture.",
+    "city": "Rouen",
+    "latitude": 49.4303262811811,
+    "longitude": 1.0848328471183777,
+    "score": 6.9,
+    "price": 58.0,
+    "currency": "EUR",
+    "room_description": "Chambre Lits Jumeaux\n2 lits simples\nAnnulation gratuite"
+  },
+  {
+    "hotel_name": "ibis Rouen Centre Rive Droite Pasteur",
+    "url": "https://www.booking.com/hotel/fr/ibis-rouen-centre-rive-droite-pasteur.fr.html",
+    "address": "7 rue Montaigne, 76000 Rouen, France, 76000 7 rue Montaigne, France",
+    "hotel_description": "Possédant un bar, l’établissement ibis Rouen Centre Rive Droite Pasteur vous accueille à Rouen dans la région Haute-Normandie, à respectivement 1,2 km et...",
+    "city": "Rouen",
+    "latitude": 49.4435,
+    "longitude": 1.07581,
+    "score": 8.2,
+    "price": 106.0,
+    "currency": "EUR",
+    "room_description": "Chambre Lits Jumeaux Standard\n2 lits simples\nPlus que 7 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "Mercure Rouen Centre Cathédrale",
+    "url": "https://www.booking.com/hotel/fr/mercure-rouen-centre.fr.html",
+    "address": "7 Rue Croix de Fer, 76000 Rouen, France, 76000 7 Rue Croix de Fer, France",
+    "hotel_description": "Le Mercure Rouen Centre Cathédrale propose des chambres climatisées dotées d'une télévision par satellite, d'une connexion Wi-Fi gratuite et d'une salle de...",
+    "city": "Rouen",
+    "latitude": 49.44117284656542,
+    "longitude": 1.0951754450798035,
+    "score": 8.5,
+    "price": 112.0,
+    "currency": "EUR",
+    "room_description": "Chambre Lits Jumeaux Classique\n1 lit simple"
+  }
+]

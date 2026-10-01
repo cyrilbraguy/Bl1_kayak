@@ -1,0 +1,80 @@
+[
+  {
+    "hotel_name": "336 Saint-Honore Hotel By Chapitre Collection",
+    "url": "https://www.booking.com/hotel/fr/336-saint-honore-by-chapitre-collection.fr.html",
+    "address": "336 Rue Saint-Honore, 75001 Paris, France, 75001 336 Rue Saint-Honore, France",
+    "hotel_description": "Proposant un salon commun, l’établissement 336 Saint-Honore Hotel By Chapitre Collection se situe dans le centre de Paris, à 800 mètres de ce lieu...",
+    "city": "Paris",
+    "latitude": 48.8658442396337,
+    "longitude": 2.33032888902993,
+    "score": 9.9,
+    "price": 423.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double Supérieure\n1 grand lit double\nPlus que 1 disponible à ce tarif"
+  },
+  {
+    "hotel_name": "Mercure Tour Eiffel Grenelle",
+    "url": "https://www.booking.com/hotel/fr/toureiffelparis.fr.html",
+    "address": "64, Boulevard de Grenelle, 15e arr., 75015 Paris, France, 75015 64, Boulevard de Grenelle, France",
+    "hotel_description": "Mercure Tour Eiffel Grenelle is located in Paris’ 15th district, just 10 minutes’ walk from the Eiffel Tower.",
+    "city": "Paris",
+    "latitude": 48.85051235502713,
+    "longitude": 2.2926490008831024,
+    "score": 8.1,
+    "price": 264.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double Classique\n1 lit double\nPlus que 7 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "Hotel Mercure La Sorbonne Saint-Germain-des-Prés",
+    "url": "https://www.booking.com/hotel/fr/paris-la-sorbonne.fr.html",
+    "address": "14 Rue de la Sorbonne, 5e arr., 75005 Paris, France, 75005 14 Rue de la Sorbonne, France",
+    "hotel_description": "Cet hôtel Mercure est situé en face de l'Université de Paris La Sorbonne.",
+    "city": "Paris",
+    "latitude": 48.84941277105371,
+    "longitude": 2.343228757381439,
+    "score": 8.7,
+    "price": 530.0,
+    "currency": "EUR",
+    "room_description": "Chambre Standard avec 2 Lits Simples\n2 lits simples"
+  },
+  {
+    "hotel_name": "Hilton Garden Inn Paris La Villette",
+    "url": "https://www.booking.com/hotel/fr/hilton-garden-inn-paris-la-villette.fr.html",
+    "address": "27 Quai de le Gironde, 19e arr., 75019 Paris, France, 75019 27 Quai de le Gironde, France",
+    "hotel_description": "L’établissement Hilton Garden Inn Paris La Villette vous accueille à Paris, à 3,7 km de ce lieu d’intérêt : Gare du Nord.",
+    "city": "Paris",
+    "latitude": 48.8963,
+    "longitude": 2.383245,
+    "score": 8.2,
+    "price": 139.0,
+    "currency": "EUR",
+    "room_description": "Chambre Lit Queen-Size\n1 grand lit double\nAucun prépaiement requis – Payez sur place\nPlus que 3 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "Bradford Elysées - Astotel",
+    "url": "https://www.booking.com/hotel/fr/bradfordelysees.fr.html",
+    "address": "10 rue Saint-Philippe-du-Roule, 8e arr., 75008 Paris, France, 75008 10 rue Saint-Philippe-du-Roule, France",
+    "hotel_description": "Occupant un bâtiment haussmannien, le Bradford Elysées - Astotel est un établissement 4 étoiles, installé au cœur de Paris, à proximité des célèbres...",
+    "city": "Paris",
+    "latitude": 48.87291320304089,
+    "longitude": 2.3081912844827457,
+    "score": 9.1,
+    "price": 454.0,
+    "currency": "EUR",
+    "room_description": "Chambre Lits Jumeaux\n2 lits simples\nPlus que 3 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "Hôtel Botaniste",
+    "url": "https://www.booking.com/hotel/fr/botaniste.fr.html",
+    "address": "11 rue Molitor, 16e arr., 75016 Paris, France, 75016 11 rue Molitor, France",
+    "hotel_description": "L’établissement Hôtel Botaniste se situe à Paris, à 1,2 km de ce lieu d’intérêt : Parc des Princes. Il possède une terrasse, un bar et un parking privé.",
+    "city": "Paris",
+    "latitude": 48.844839,
+    "longitude": 2.264669,
+    "score": 8.6,
+    "price": 267.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double ou Lits Jumeaux Standard - « Mélisse » - Maison Boileau - 39 Rue Boileau\nTypes de lits : 1 lit double ou 2 lits simples\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place\nPlus que 5 disponibles à ce tarif"
+  }
+]

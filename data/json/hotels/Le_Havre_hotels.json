@@ -1,0 +1,80 @@
+[
+  {
+    "hotel_name": "All Suites Appart Hôtel - Le Havre Centre - Les docks",
+    "url": "https://www.booking.com/hotel/fr/all-suites-appart-le-havre.fr.html",
+    "address": "5-7 Place Armand Frémont, 76600 Le Havre, France, 76600 5-7 Place Armand Frémont, France",
+    "hotel_description": "Situé au Havre, l’établissement All Suites Appart Hôtel - Le Havre Centre - Les docks possède une connexion Wi-Fi gratuite, un salon commun, une terrasse...",
+    "city": "Le_Havre",
+    "latitude": 49.488691,
+    "longitude": 0.12592899999999999,
+    "score": 8.4,
+    "price": 73.0,
+    "currency": "EUR",
+    "room_description": "Studio Standard (Lit Double)\nStudio entier • 1 cuisine • 26 m²\n1 grand lit double"
+  },
+  {
+    "hotel_name": "Novotel Le Havre Centre Gare",
+    "url": "https://www.booking.com/hotel/fr/novotellehavre.fr.html",
+    "address": "20 Cours Lafayette, 76600 Le Havre, France, 76600 20 Cours Lafayette, France",
+    "hotel_description": "Le Novotel Le Havre est situé sur le front de mer au niveau des Docks Vauban, à proximité du centre du Havre.",
+    "city": "Le_Havre",
+    "latitude": 49.49160831471097,
+    "longitude": 0.12526988983154297,
+    "score": 8.1,
+    "price": 115.0,
+    "currency": "EUR",
+    "room_description": "Chambre Classique avec 1 Lit Double et 1 Canapé\n1 très grand lit double"
+  },
+  {
+    "hotel_name": "Hilton Garden Inn Le Havre Centre",
+    "url": "https://www.booking.com/hotel/fr/hilton-garden-inn-le-havre-centre.fr.html",
+    "address": "128 Boulevard Clemenceau, Perret, 76600 Le Havre, France, 76600 128 Boulevard Clemenceau, France",
+    "hotel_description": "Situé en bord de mer, l’établissement Hilton Garden Inn Le Havre Centre propose des hébergements 4 étoiles au Havre.",
+    "city": "Le_Havre",
+    "latitude": 49.49008699,
+    "longitude": 0.097746957,
+    "score": 8.3,
+    "price": 149.0,
+    "currency": "EUR",
+    "room_description": "Chambre Lit Queen-Size\n1 grand lit double\nAucun prépaiement requis – Payez sur place"
+  },
+  {
+    "hotel_name": "Appart'hôtel Odalys City - Le Havre Centre Les Docks",
+    "url": "https://www.booking.com/hotel/fr/odalys-city-le-havre-centre-les-docks.fr.html",
+    "address": "95 Quai Colbert, 76600 Le Havre, France, 76600 95 Quai Colbert, France",
+    "hotel_description": "L’établissement Appart'hôtel Odalys City - Le Havre Centre Les Docks se trouve au Havre, à respectivement 2,9 km et 2,4 km de ces lieux d’intérêt : Plage...",
+    "city": "Le_Havre",
+    "latitude": 49.4925039,
+    "longitude": 0.129779,
+    "score": 8.4,
+    "price": 53.0,
+    "currency": "EUR",
+    "room_description": "Studio\nStudio entier • 1 salle de bains • 19 m²\nTypes de lits : 1 lit double ou 2 lits simples"
+  },
+  {
+    "hotel_name": "Ibis Budget Le Havre Les Docks",
+    "url": "https://www.booking.com/hotel/fr/ibis-budget-le-havre-centre.fr.html",
+    "address": "36 Rue Du Dr Piasceki , 76600 Le Havre, France, 76600 36 Rue Du Dr Piasceki, France",
+    "hotel_description": "L'Ibis Budget Le Havre Les Docks est situé au Havre, à 4,4 km de la salle de spectacles Le Volcan.",
+    "city": "Le_Havre",
+    "latitude": 49.49424468286882,
+    "longitude": 0.14285242609787474,
+    "score": 7.7,
+    "price": 45.0,
+    "currency": "EUR",
+    "room_description": "Chambre Triple\n2 lits (1 lit double, 1 lit superposé)"
+  },
+  {
+    "hotel_name": "Hotel Spa Le Pasino",
+    "url": "https://www.booking.com/hotel/fr/pasino.fr.html",
+    "address": "Place Jules Ferry, Perret, 76600 Le Havre, France, 76600 Place Jules Ferry, France",
+    "hotel_description": "Situé au cœur du Havre, l’Hôtel Spa le Pasino possède une piscine intérieure, un spa avec sauna et un casino sur place.",
+    "city": "Le_Havre",
+    "latitude": 49.49117449151481,
+    "longitude": 0.11193662881851196,
+    "score": 8.4,
+    "price": 126.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double Confort\n1 grand lit double\nAnnulation gratuite"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "hotel_name": "Best Western Voiron Centre",
+    "url": "https://www.booking.com/hotel/fr/kyriad-voiron-chartreuse.fr.html",
+    "address": "72 Boulevard Becquart Castelbon, 38500 Voiron, France, 38500 72 Boulevard Becquart Castelbon, France",
+    "hotel_description": "Le Best Western Voiron centre est situé au centre de Voiron, à 12 minutes en voiture de la zone industrielle de Centr’Alp et à seulement 9 minutes à pied...",
+    "city": "Voiron",
+    "latitude": 45.362117,
+    "longitude": 5.590764,
+    "score": 8.0,
+    "price": 811.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n1×\nChambre Lit King-Size Standard - Non-Fumeurs\n1 très grand lit double\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place\n1×\nChambre Lit King-Size Supérieure avec Canapé-Lit - Non-Fumeurs\n2 lits (1 très grand lit double, 1 canapé-lit)\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place"
+  },
+  {
+    "hotel_name": "Hôtel Le Palladior Voiron",
+    "url": "https://www.booking.com/hotel/fr/best-western-palladior.fr.html",
+    "address": "4 Rue A. Bouffard Roupé, 38500 Voiron, France, 38500 4 Rue A. Bouffard Roupé, France",
+    "hotel_description": "Situé à Voiron, en Isère, à proximité de l'autoroute A48, l'Hôtel Le Palladior Voiron dispose d'un restaurant (fermé le samedi et le dimanche) avec...",
+    "city": "Voiron",
+    "latitude": 45.34991157666767,
+    "longitude": 5.569969117641449,
+    "score": 7.7,
+    "price": 577.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\n1×\nChambre Double Standard\n1 lit double\n1×\nChambre Lit Queen-Size Supérieure avec Canapé-Lit\n2 lits (1 canapé-lit, 1 grand lit double)\nSéjour gratuit pour 1 de vos enfants"
+  },
+  {
+    "hotel_name": "Voiron grande maison",
+    "url": "https://www.booking.com/hotel/fr/voiron-grande-maison.fr.html",
+    "address": "33 Rue de la Tour de Criel, 38500 Voiron, France, 38500 33 Rue de la Tour de Criel, France",
+    "hotel_description": "L’hébergement Voiron grande maison se trouve à Voiron, à 26 km de ce lieu d’intérêt : World Trade Center Grenoble.",
+    "city": "Voiron",
+    "latitude": 45.3559125,
+    "longitude": 5.5923532,
+    "score": 8.9,
+    "price": 388.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nMaison 3 Chambres\nMaison de vacances entière • 3 chambres • 1 salon • 2 salles de bains • 1 cuisine • 110 m²\n5 lits (2 lits simples, 2 lits doubles, 1 canapé-lit)"
+  },
+  {
+    "hotel_name": "Basile – T3 climatisé tout équipé • 6 pers • Centre de Voiron • Proche gare",
+    "url": "https://www.booking.com/hotel/fr/basile-t3-climatise-tout-equipe-6-pers-centre-de-voiron-proche-gare.fr.html",
+    "address": "4 place de la bascule, 38500 Voiron, France, 38500 4 place de la bascule, France",
+    "hotel_description": "L’hébergement Basile – T3 climatisé tout équipé • 6 pers • Centre de Voiron • Proche gare se trouve à Voiron, à respectivement 25 km et 26 km de ces lieux...",
+    "city": "Voiron",
+    "latitude": 45.365813,
+    "longitude": 5.594585,
+    "score": null,
+    "price": 311.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nAppartement 2 Chambres\nAppartement entier • 60 m²\n3 lits doubles"
+  },
+  {
+    "hotel_name": "The Eighteen _ Hyper-centre - T3 de 65m² - 8 Pers.",
+    "url": "https://www.booking.com/hotel/fr/the-eighteen-hyper-centre-t3-de-65m2-8-pers.fr.html",
+    "address": "18 Avenue Jean Jaurès, 38500 Voiron, France, 38500 18 Avenue Jean Jaurès, France",
+    "hotel_description": "L’hébergement The Eighteen _ Hyper-centre - T3 de 65m² - 8 Pers.",
+    "city": "Voiron",
+    "latitude": 45.367179063026,
+    "longitude": 5.588694336108,
+    "score": 9.4,
+    "price": 511.0,
+    "currency": "EUR",
+    "room_description": "Recommandé pour votre groupe\nAppartement 2 Chambres\nAppartement entier • 2 chambres • 1 salon • 1 salle de bains • 1 cuisine • 65 m²\n4 lits (2 canapés-lits, 2 grands lits doubles)"
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "place_id": 90024913,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 184482,
+    "lat": "45.3631386",
+    "lon": "5.5910751",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 16,
+    "importance": 0.5867248450910875,
+    "addresstype": "town",
+    "name": "Voiron",
+    "display_name": "Voiron, Grenoble, Isère, Auvergne-Rhône-Alpes, France métropolitaine, 38500, France",
+    "boundingbox": [
+      "45.3447946",
+      "45.4162527",
+      "5.5567315",
+      "5.6174542"
+    ]
+  }
+]

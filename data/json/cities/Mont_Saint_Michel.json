@@ -1,0 +1,149 @@
+[
+  {
+    "place_id": 285390554,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "way",
+    "osm_id": 211285890,
+    "lat": "48.6359541",
+    "lon": "-1.5114600",
+    "class": "place",
+    "type": "islet",
+    "place_rank": 20,
+    "importance": 0.4711675122514022,
+    "addresstype": "islet",
+    "name": "Mont Saint-Michel",
+    "display_name": "Mont Saint-Michel, Le Mont-Saint-Michel, Avranches, Manche, Normandie, France métropolitaine, 50170, France",
+    "boundingbox": [
+      "48.6349172",
+      "48.6370310",
+      "-1.5133292",
+      "-1.5094796"
+    ]
+  },
+  {
+    "place_id": 120517360,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "node",
+    "osm_id": 11981568929,
+    "lat": "48.6906680",
+    "lon": "5.8818463",
+    "class": "natural",
+    "type": "peak",
+    "place_rank": 18,
+    "importance": 0.16006674219882505,
+    "addresstype": "peak",
+    "name": "Mont Saint-Michel",
+    "display_name": "Mont Saint-Michel, Toul, Meurthe-et-Moselle, Grand Est, France métropolitaine, 54200, France",
+    "boundingbox": [
+      "48.6906180",
+      "48.6907180",
+      "5.8817963",
+      "5.8818963"
+    ]
+  },
+  {
+    "place_id": 120977476,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "node",
+    "osm_id": 11964639486,
+    "lat": "48.7747476",
+    "lon": "7.3597920",
+    "class": "natural",
+    "type": "peak",
+    "place_rank": 18,
+    "importance": 0.16006415884641792,
+    "addresstype": "peak",
+    "name": "Mont Saint-Michel",
+    "display_name": "Mont Saint-Michel, Saint-Jean-Saverne, Saverne, Bas-Rhin, Collectivité européenne d'Alsace, Grand Est, France métropolitaine, 67700, France",
+    "boundingbox": [
+      "48.7746976",
+      "48.7747976",
+      "7.3597420",
+      "7.3598420"
+    ]
+  },
+  {
+    "place_id": 82353108,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "node",
+    "osm_id": 9581659906,
+    "lat": "43.8977090",
+    "lon": "7.3644173",
+    "class": "natural",
+    "type": "peak",
+    "place_rank": 18,
+    "importance": 0.16005805981536583,
+    "addresstype": "peak",
+    "name": "Mont Saint-Michel",
+    "display_name": "Mont Saint-Michel, Lucéram, Nice, Alpes-Maritimes, Provence-Alpes-Côte d'Azur, France métropolitaine, 06440, France",
+    "boundingbox": [
+      "43.8976590",
+      "43.8977590",
+      "7.3643673",
+      "7.3644673"
+    ]
+  },
+  {
+    "place_id": 82037995,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "node",
+    "osm_id": 1581196576,
+    "lat": "43.8496443",
+    "lon": "7.0938927",
+    "class": "natural",
+    "type": "peak",
+    "place_rank": 18,
+    "importance": 0.16005770580605783,
+    "addresstype": "peak",
+    "name": "Mont Saint-Michel",
+    "display_name": "Mont Saint-Michel, Les Ferres, Grasse, Alpes-Maritimes, Provence-Alpes-Côte d'Azur, France métropolitaine, 06510, France",
+    "boundingbox": [
+      "43.8495943",
+      "43.8496943",
+      "7.0938427",
+      "7.0939427"
+    ]
+  },
+  {
+    "place_id": 285576331,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "node",
+    "osm_id": 5972710523,
+    "lat": "48.6360211",
+    "lon": "-1.5114947",
+    "class": "natural",
+    "type": "peak",
+    "place_rank": 18,
+    "importance": 0.1600350019073777,
+    "addresstype": "peak",
+    "name": "Mont Saint-Michel",
+    "display_name": "Mont Saint-Michel, Le Mont-Saint-Michel, Avranches, Manche, Normandie, France métropolitaine, 50170, France",
+    "boundingbox": [
+      "48.6359711",
+      "48.6360711",
+      "-1.5115447",
+      "-1.5114447"
+    ]
+  },
+  {
+    "place_id": 89610466,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "node",
+    "osm_id": 3203444440,
+    "lat": "45.5519941",
+    "lon": "6.0019508",
+    "class": "natural",
+    "type": "peak",
+    "place_rank": 18,
+    "importance": 0.10540294855860563,
+    "addresstype": "peak",
+    "name": "Mont Saint-Michel",
+    "display_name": "Mont Saint-Michel, Curienne, Chambéry, Savoie, Auvergne-Rhône-Alpes, France métropolitaine, 73190, France",
+    "boundingbox": [
+      "45.5519441",
+      "45.5520441",
+      "6.0019008",
+      "6.0020008"
+    ]
+  }
+]

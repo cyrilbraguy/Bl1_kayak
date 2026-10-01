@@ -1,0 +1,80 @@
+[
+  {
+    "hotel_name": "Ibis Budget Bayeux",
+    "url": "https://www.booking.com/hotel/fr/etap-bayeux.fr.html",
+    "address": "Zone d'Activité de Nonant, Rue des Longues Haies, 14400 Bayeux, France, 14400 Zone d'Activité de Nonant, Rue des Longues Haies, France",
+    "hotel_description": "Between Caen and Cherbourg, near the exit 36 on the N13 motorway, Hotel Ibis Budget Bayeux is just 13 km to the D-Day landing beaches.",
+    "city": "Bayeux",
+    "latitude": 49.25375889425724,
+    "longitude": -0.6468093395233154,
+    "score": 8.1,
+    "price": 71.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double avec Lit Superposé\n2 lits (1 lit double, 1 lit superposé)"
+  },
+  {
+    "hotel_name": "B&B HOTEL Bayeux",
+    "url": "https://www.booking.com/hotel/fr/premiere-classe-bayeux.fr.html",
+    "address": "Chemin De La Cambette, 14400 Bayeux, France, 14400 Chemin De La Cambette, France",
+    "hotel_description": "Ce B&B HOTEL Bayeux se trouve à seulement 5 minutes en voiture de la route N13, en périphérie de Bayeux.",
+    "city": "Bayeux",
+    "latitude": 49.269428715614055,
+    "longitude": -0.7066869735717773,
+    "score": 8.1,
+    "price": 84.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double Standard\n1 lit double"
+  },
+  {
+    "hotel_name": "Hotel Reine Mathilde",
+    "url": "https://www.booking.com/hotel/fr/reine-mathilde-bayeux.fr.html",
+    "address": "23 Rue Larcher, 14400 Bayeux, France, 14400 23 Rue Larcher, France",
+    "hotel_description": "L'hôtel Reine Mathilde se situe dans le quartier médiéval de Bayeux, à seulement 300 mètres du musée de la Tapisserie.",
+    "city": "Bayeux",
+    "latitude": 49.276031585766006,
+    "longitude": -0.7017248868942261,
+    "score": 8.6,
+    "price": 123.0,
+    "currency": "EUR",
+    "room_description": "Petite Chambre Double\n1 grand lit double\nAnnulation gratuite\nPlus que 1 disponible à ce tarif"
+  },
+  {
+    "hotel_name": "Le Declic",
+    "url": "https://www.booking.com/hotel/fr/le-mogador-bayeux.fr.html",
+    "address": "20 rue Alain Chartier, 14400 Bayeux, France, 14400 20 rue Alain Chartier, France",
+    "hotel_description": "L'établissement Le Declic est situé à Bayeux, à 100 mètres de la cathédrale Notre-Dame de Bayeux et à 15 km de la plage d'Omaha.",
+    "city": "Bayeux",
+    "latitude": 49.27933593079586,
+    "longitude": -0.7070561004303499,
+    "score": 8.2,
+    "price": 108.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double\n1 lit double\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place\nPlus que 3 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "Château de Bellefontaine - Teritoria",
+    "url": "https://www.booking.com/hotel/fr/chateau-de-bellefontaine.fr.html",
+    "address": "49, Rue de Bellefontaine, 14400 Bayeux, France, 14400 49, Rue de Bellefontaine, France",
+    "hotel_description": "À 800 mètres du centre de Bayeux et de sa cathédrale, l'établissement Château de Bellefontaine - Teritoria est un manoir du XVIIIe siècle proposant des...",
+    "city": "Bayeux",
+    "latitude": 49.269740241146884,
+    "longitude": -0.6888395547866821,
+    "score": 8.0,
+    "price": 272.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double ou Lits Jumeaux De Luxe\n2 lits (1 lit simple, 1 très grand lit double)\nAnnulation gratuite\nPlus que 1 disponible à ce tarif"
+  },
+  {
+    "hotel_name": "Hôtel De Brunville & Spa",
+    "url": "https://www.booking.com/hotel/fr/hoteldebrunville.fr.html",
+    "address": "9 Rue Genas-Duhomme, 14400 Bayeux, France, 14400 9 Rue Genas-Duhomme, France",
+    "hotel_description": "Situé à seulement 400 mètres de la cathédrale de Bayeux, l’Hôtel De Brunville & Spa propose une piscine extérieure chauffée et un jacuzzi accessibles toute...",
+    "city": "Bayeux",
+    "latitude": 49.27815768633019,
+    "longitude": -0.7035139203071594,
+    "score": 7.9,
+    "price": 251.0,
+    "currency": "EUR",
+    "room_description": "Chambre Lits Jumeaux\n2 lits simples\nPlus que 1 disponible à ce tarif"
+  }
+]

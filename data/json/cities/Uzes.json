@@ -1,0 +1,44 @@
+[
+  {
+    "place_id": 87817750,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 380050,
+    "lat": "44.0121279",
+    "lon": "4.4196718",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 16,
+    "importance": 0.5757292410230347,
+    "addresstype": "village",
+    "name": "Uzès",
+    "display_name": "Uzès, Nîmes, Gard, Occitanie, France métropolitaine, 30700, France",
+    "boundingbox": [
+      "43.9811093",
+      "44.0765914",
+      "4.3852299",
+      "4.4467859"
+    ]
+  },
+  {
+    "place_id": 425446885,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "node",
+    "osm_id": 6077628196,
+    "lat": "44.0121279",
+    "lon": "4.4196718",
+    "class": "place",
+    "type": "town",
+    "place_rank": 18,
+    "importance": 0.16006375448233767,
+    "addresstype": "town",
+    "name": "Uzès",
+    "display_name": "Uzès, Nîmes, Gard, Occitanie, France métropolitaine, 30700, France",
+    "boundingbox": [
+      "43.9721279",
+      "44.0521279",
+      "4.3796718",
+      "4.4596718"
+    ]
+  }
+]

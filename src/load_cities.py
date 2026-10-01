@@ -16,7 +16,7 @@ Returns:
 
 import config_kayak as config_kayak
 from config_kayak import (
-    WEATHER_API_KEY, AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY,
+    WEATHER_API_KEY, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY,
     AWS_BUCKET_NAME, AWS_BUCKET_DIR,
     AWS_DB_NAME, AWS_DB_USER, AWS_DB_PASS, AWS_REGION,
 

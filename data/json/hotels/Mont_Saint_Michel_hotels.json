@@ -1,0 +1,80 @@
+[
+  {
+    "hotel_name": "Hôtel Vert",
+    "url": "https://www.booking.com/hotel/fr/vert.fr.html",
+    "address": "La Caserne, 50170 Le Mont-Saint-Michel, France, 50170 La Caserne, France",
+    "hotel_description": "L’Hotel Vert vous propose des chambres décorées dans des tons pastel, dotées d’une salle de bains privative, d’une télévision ainsi que d’une connexion...",
+    "city": "Mont_Saint_Michel",
+    "latitude": 48.61470048629041,
+    "longitude": -1.5096169710159302,
+    "score": 8.1,
+    "price": 164.0,
+    "currency": "EUR",
+    "room_description": "Chambre Triple (1 Lit Double et 1 Lit Simple)\n2 lits (1 lit simple, 1 lit double)"
+  },
+  {
+    "hotel_name": "Hotel Gabriel",
+    "url": "https://www.booking.com/hotel/fr/hotel-gabriel.fr.html",
+    "address": "Route du Mont Saint Michel, 50170 Le Mont-Saint-Michel, France, 50170 Route du Mont Saint Michel, France",
+    "hotel_description": "Hotel Gabriel is located 1.6 Km from Mont Saint-Michel. It offers free Wi-Fi access and en suite rooms just a 25-minute walk from the walls of the old...",
+    "city": "Mont_Saint_Michel",
+    "latitude": 48.61538141368341,
+    "longitude": -1.510709971189499,
+    "score": 8.1,
+    "price": 192.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double - Accessible aux Personnes à Mobilité Réduite\n1 grand lit double\nAucun prépaiement requis – Payez sur place\nPlus que 1 disponible à ce tarif"
+  },
+  {
+    "hotel_name": "Mercure Mont Saint Michel",
+    "url": "https://www.booking.com/hotel/fr/mont-saint-michel.fr.html",
+    "address": "La Caserne, 50170 Le Mont-Saint-Michel, France, 50170 La Caserne, France",
+    "hotel_description": "Installé dans des espaces verts à seulement 2 km de l'abbaye du Mont-Saint-Michel, le Mercure Mont Saint Michel propose des chambres spacieuses avec salle...",
+    "city": "Mont_Saint_Michel",
+    "latitude": 48.61424652959294,
+    "longitude": -1.510545015335083,
+    "score": 8.4,
+    "price": 245.0,
+    "currency": "EUR",
+    "room_description": "Chambre Standard avec 1 Lit Double et 1 Lit Simple\n2 lits (1 lit simple, 1 lit double)\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place\nPlus que 7 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "Le Saint Aubert",
+    "url": "https://www.booking.com/hotel/fr/hotel-saint-aubert.fr.html",
+    "address": "La Caserne, 50170 Le Mont-Saint-Michel, France, 50170 La Caserne, France",
+    "hotel_description": "Set amid lush greenery, just 2 km from the Mont Saint-Michel, the hotel welcomes you in a warm and friendly atmosphere.",
+    "city": "Mont_Saint_Michel",
+    "latitude": 48.612937834706464,
+    "longitude": -1.5101051330566406,
+    "score": 7.3,
+    "price": 177.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double ou Lits Jumeaux Classique\nTypes de lits : 1 lit double ou 2 lits simples\nPetit-déjeuner compris\nPlus que 2 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "Auberge Saint Pierre",
+    "url": "https://www.booking.com/hotel/fr/auberge-saint-pierre.fr.html",
+    "address": "Grande Rue, 50170 Le Mont-Saint-Michel, France, 50170 Grande Rue, France",
+    "hotel_description": "Située sur le Mont-Saint-Michel, l'Auberge Saint Pierre est composée de petits bâtiments à colombages datant du XIVe siècle.",
+    "city": "Mont_Saint_Michel",
+    "latitude": 48.63568797869143,
+    "longitude": -1.5098825097084045,
+    "score": 7.9,
+    "price": 424.0,
+    "currency": "EUR",
+    "room_description": "Chambre Quadruple\n4 lits simples\nPlus que 1 disponible à ce tarif"
+  },
+  {
+    "hotel_name": "Apparthôtel Mont Saint Michel - Résidence Fleurdumont",
+    "url": "https://www.booking.com/hotel/fr/residence-fleurdumont.fr.html",
+    "address": "5 rue Grandelle, 50170 Beauvoir, France, 50170 5 rue Grandelle, France",
+    "hotel_description": "L’Apparthôtel Mont Saint Michel - Résidence Fleurdumont propose un hébergement acceptant les animaux domestiques à Beauvoir, à 4,4 km de l’abbaye du...",
+    "city": "Mont_Saint_Michel",
+    "latitude": 48.596482169806976,
+    "longitude": -1.5031469166023044,
+    "score": 8.5,
+    "price": 99.0,
+    "currency": "EUR",
+    "room_description": "Studio avec Terrasse\nStudio entier • 1 salle de bains • 1 cuisine • 32 m²\n1 grand lit double\nPlus que 1 disponible à ce tarif"
+  }
+]

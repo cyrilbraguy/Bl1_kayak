@@ -6,11 +6,13 @@ import pandas as pd
 
 import config_kayak
 from config_kayak import (
-    AWS_BUCKET_NAME, AWS_BUCKET_DIR, AWS_DB_NAME, AWS_DB_USER,
-    AWS_DB_PASS, RDSHOST, DATA_DIR_CSV,
+    AWS_BUCKET_NAME, AWS_BUCKET_DIR, DATA_DIR_CSV, 
+    
 )
 from load_cities import load_cities, get_coordinates_cities
-from get_weather_forecasts import get_weather_data_for_cities, select_best_weather_cities
+from get_weather_forecasts import (
+    get_weather_data_for_cities, 
+    select_best_weather_cities, run_weather_searches)
 from scrap_hotels import collect_cities_hotels, select_top_hotels
 from s3_utils import save_csv_to_s3, timestamped_filename, read_csv_from_s3
 from rds_utils import get_rds_engine, save_df_to_rds, get_pg_engine
@@ -19,6 +21,12 @@ from availability import build_date_windows, run_hotel_searches, keys_from_df, D
 
 CHECKIN_DATE_NR = 1
 CHECKOUT_DATE_NR = -1
+
+SRC_DIR = Path(__file__).resolve().parent
+BASE_DIR = SRC_DIR.parent
+os.chdir(BASE_DIR)
+if str(SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(SRC_DIR))
 
 
 def run_pipeline(
@@ -30,29 +38,39 @@ def run_pipeline(
 ) -> dict:
     """Exécute le pipeline complet : villes -> météo -> hôtels -> S3 -> RDS.
     Retourne un résumé pour logging/monitoring."""
-
-    SRC_DIR = Path(__file__).resolve().parent
-    BASE_DIR = SRC_DIR.parent
-    os.chdir(BASE_DIR)
-    if str(SRC_DIR) not in sys.path:
-        sys.path.insert(0, str(SRC_DIR))
-
+    #get cities coord & save to s3
+    scraped_dt = pd.Timestamp.now()  # scraped_datetime added 01/10/2026
     cities_list_df = load_cities()
     results_df = get_coordinates_cities(cities_list_df)
     results_df.to_csv(os.path.join(DATA_DIR_CSV, "cities.csv"), index=False, encoding="utf-8")
     save_csv_to_s3(results_df, "cities.csv")
 
+    # get weather data on 5 days free formula 
     df_cities = results_df
-    result_weather = get_weather_data_for_cities(df_cities)
-
+    # scraped_dt
+    result_weather = get_weather_data_for_cities(df_cities, scraped_dt = scraped_dt)
+    result_weather['scraped_at'] = scraped_dt
+    
+    # Weather summary on different time windows (for trip)
+    # build different time windows for weather and hotels search target
+    windows = build_date_windows(result_weather["date"].unique())
+    
     date_span = result_weather["date"].unique()
     checkin_date = date_span[CHECKIN_DATE_NR].isoformat()
     checkout_date = date_span[CHECKOUT_DATE_NR].isoformat()
 
-    top_cities = select_best_weather_cities(
-        result_weather, top_n=5, start_date=checkin_date, end_date=checkout_date
-    )
+    # top_cities = select_best_weather_cities(
+    #     result_weather, top_n=5, start_date=checkin_date, end_date=checkout_date
+    # )
+    engine = get_pg_engine() #use engine with default DATABASE_URL default variable
     
+        
+    top_cities = run_weather_searches(
+                    result_weather, windows,
+                    select_weather_cities_fn = select_best_weather_cities,
+                    scraped_dt = scraped_dt,
+                    top_n = 5,
+                    )
     print(f"top cities before \n {top_cities}")
     
     top_cities = top_cities.merge(
@@ -66,40 +84,8 @@ def run_pipeline(
 
     print(f"after:\n {top_cities.head()}")
 
-    # scrap booking : 
-    # hotels_df = collect_cities_hotels(
-    #     top_cities, checkin_date, checkout_date, n_adults, n_children, n_rooms, max_results
-    # )
-    # top20_hotels_combined = select_top_hotels(
-    #     hotels_df, n=20, criterion="combined", max_price=max_price, out_all=True
-    # ).rename(columns={
-    #     "url": "url_hotel", "address": "address_hotel", "latitude": "lat_hotel",
-    #     "longitude": "lon_hotel", "score": "score_hotel", "price": "price_hotel",
-    #     "currency": "currency_hotel", "combined_score": "combined_score_hotel",
-    # })
-    #stop scrap 
+    # engine SQL base :
     
-    # scenario pre_select : 
-    # move get engine : 
-    # engine = get_rds_engine(
-    #         host=RDSHOST, database=AWS_DB_NAME, user=AWS_DB_USER, password=AWS_DB_PASS,
-    #         port=5432, driver="postgresql+psycopg2",
-    #     )
-    engine = get_pg_engine() #use engine with default DATABASE_URL default variable
-
-    # windows = build_date_windows(result_weather["date"].unique())
-    # existing = keys_from_df(pd.read_sql(
-    #     "SELECT DISTINCT checkin_date, checkout_date, n_adults, n_children, n_rooms FROM hotels", engine))
-
-    # hotels_all, failed = run_hotel_searches(
-    #     top_cities, windows, DEFAULT_OCCUPANCY,
-    #     collect_fn=collect_cities_hotels, select_fn=select_top_hotels,
-    #     skip_keys=existing, max_results=5, max_price=500,
-    # )
-    
-    # --- 2eme propal 
-    
-        # Recherches déjà en base (vide si la table/colonnes n'existent pas encore)
     try:
         existing = keys_from_df(pd.read_sql(
             "SELECT DISTINCT checkin_date, checkout_date, n_adults, n_children, n_rooms FROM hotels",
@@ -108,13 +94,14 @@ def run_pipeline(
         print(f"Lecture des recherches existantes impossible ({e}) : on part de zéro")
         existing = set()
 
-    windows = build_date_windows(result_weather["date"].unique())
+    
     
     # Hotels search new version :
     hotels_all, failed = run_hotel_searches(
         top_cities, windows, DEFAULT_OCCUPANCY,
         collect_fn=collect_cities_hotels, select_fn=select_top_hotels,
         skip_keys=existing, max_results=max_results, max_price=max_price,
+        scraped_dt = scraped_dt,
     )
     if failed:
         print(f"Recherches en échec : {failed}")
@@ -156,7 +143,7 @@ def run_pipeline(
     cities_cols = ["city_id", "city", "city_lat", "city_lon", "city_name_", "city_plus"]
     
     hotels_cols = [  #++ 28/09
-        "city", "city_id", "checkin_date", "checkout_date", "n_adults", "n_children", "n_rooms",
+        "city_id", "city", "city_name_", "checkin_date", "checkout_date", "n_adults", "n_children", "n_rooms",
         "scraped_at", "hotel_name", "url_hotel", "address_hotel","hotel_city", "hotel_description",
         "lat_hotel", "lon_hotel", "score_hotel", "price_hotel", "currency_hotel",
         "room_description", "combined_score_hotel"
@@ -165,7 +152,7 @@ def run_pipeline(
     # hotels_cols = ["city", "city_id", "checkin_date", "checkout_date", "hotel_name", "url_hotel",
     #                "address_hotel", "hotel_description", "lat_hotel", "lon_hotel", "score_hotel",
     #                "price_hotel", "currency_hotel", "room_description", "combined_score_hotel", "hotel_city"]
-    weather_cols = ["city_id", "city", "checkin_date", "checkout_date", "avg_comfort_score", "temp",
+    weather_cols = ["city_id", "city", "checkin_date", "checkout_date", "scraped_at", "avg_comfort_score", "temp",
                      "humidity", "wind_speed_max", "clear_slots", "rain_slots", "rain_sum", "selected","city_lat", "city_lon"]
 
     weather_rename = {"city_lat":"lat",
@@ -173,17 +160,17 @@ def run_pipeline(
     df_cities2 = df[cities_cols].dropna().drop_duplicates()
     
     # -- 28/09
-    # df_hotels2 = df[hotels_cols].dropna().drop_duplicates()
+    df_hotels2 = df[hotels_cols].dropna().drop_duplicates()
     # ++
-    df_hotels2 = hotels_all.merge(
-        top_cities[["city", "city_id"]].drop_duplicates(), on="city", how="left"
-    )
-    hotels_cols = [c for c in hotels_cols if c in df_hotels2.columns]
-    df_hotels2 = (
-        df_hotels2[hotels_cols]
-        .dropna(subset=["city_id", "hotel_name", "checkin_date", "checkout_date"])
-        .drop_duplicates()
-    )
+    # df_hotels2 = hotels_all.merge(
+    #     top_cities[["city", "city_id"]].drop_duplicates(), on="city", how="left"
+    # )
+    # hotels_cols = [c for c in hotels_cols if c in df_hotels2.columns]
+    # df_hotels2 = (
+    #     df_hotels2[hotels_cols]
+    #     .dropna(subset=["city_id", "hotel_name", "checkin_date", "checkout_date"])
+    #     .drop_duplicates()
+    # )
     # end ++
     df_weather2 = df[weather_cols].rename(columns=weather_rename).dropna().drop_duplicates()
 

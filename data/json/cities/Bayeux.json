@@ -1,0 +1,44 @@
+[
+  {
+    "place_id": 286942707,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 145776,
+    "lat": "49.2764624",
+    "lon": "-0.7024738",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 16,
+    "importance": 0.6124001184225292,
+    "addresstype": "town",
+    "name": "Bayeux",
+    "display_name": "Bayeux, Calvados, Normandie, France métropolitaine, 14400, France",
+    "boundingbox": [
+      "49.2608110",
+      "49.2934736",
+      "-0.7275523",
+      "-0.6757378"
+    ]
+  },
+  {
+    "place_id": 284288323,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "relation",
+    "osm_id": 1656892,
+    "lat": "49.2455634",
+    "lon": "-0.7916770",
+    "class": "boundary",
+    "type": "administrative",
+    "place_rank": 14,
+    "importance": 0.5395807894335442,
+    "addresstype": "municipality",
+    "name": "Bayeux",
+    "display_name": "Bayeux, Calvados, Normandie, France métropolitaine, France",
+    "boundingbox": [
+      "49.0931683",
+      "49.3978952",
+      "-1.1412392",
+      "-0.4113237"
+    ]
+  }
+]

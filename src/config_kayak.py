@@ -8,6 +8,9 @@
 import json
 from dotenv import load_dotenv
 import os
+import sys
+from pathlib import Path
+
 import requests
 import pandas as pd
 import warnings
@@ -18,6 +21,11 @@ import time
 
 from django.conf.locale import de
 
+SRC_DIR = Path(__file__).resolve().parent
+BASE_DIR = SRC_DIR.parent
+
+if str(SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(SRC_DIR))
 
 # activate debug messages 
 logger = logging.getLogger(__name__)
@@ -62,7 +70,7 @@ config_cities_list = ["Mont Saint Michel",
 
 load_dotenv()
 WEATHER_API_KEY = os.getenv("WEATHER_API_KEY")
-AWS_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY= os.getenv("AWS_SECRET_ACCESS_KEY")
 AWS_BUCKET_NAME = os.getenv("AWS_BUCKET_NAME")
 AWS_BUCKET_DIR = os.getenv("AWS_BUCKET_DIR")
@@ -79,7 +87,7 @@ BASE_URL_OPENWEATHERMAP = "https://api.openweathermap.org/data/2.5"
 CONFIG_CITIES_FILE = "cities.csv"
 MAX_CITIES_NUMBER = 35
 
-DATA_DIR = "data"
+DATA_DIR = f"{BASE_DIR}/data"
 DATA_DIR_CONFIG = f"{DATA_DIR}/config"
 os.makedirs(DATA_DIR_CONFIG, exist_ok=True)
 

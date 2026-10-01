@@ -45,14 +45,19 @@ class SearchKey(NamedTuple):
 # ----------------------------------------------------------------------
 # Utilitaires de base
 # ----------------------------------------------------------------------
-def to_date(value) -> date:
-    """Normalise str / datetime / pd.Timestamp / np.datetime64 / date en datetime.date."""
-    if isinstance(value, datetime):  # inclut pd.Timestamp (datetime est testé avant date)
-        return value.date()
-    if isinstance(value, date):
-        return value
-    return pd.to_datetime(value).date()
+TZ_LOCAL = "Europe/Paris"
 
+def to_date(value) -> date:
+    """Normalise str / datetime / Timestamp (naïf ou tz-aware) / date en datetime.date."""
+    if value is None or pd.isna(value):
+        raise ValueError("Date manquante")
+    # date pure (mais pas datetime, qui hérite de date) : rien à faire
+    if isinstance(value, date) and not isinstance(value, datetime):
+        return value
+    ts = pd.Timestamp(value)
+    if ts.tzinfo is not None:
+        ts = ts.tz_convert(TZ_LOCAL)  # évite le décalage d'un jour lié au fuseau
+    return ts.date()
 
 def make_key(
     checkin,
@@ -146,6 +151,7 @@ def run_hotel_searches(
     max_results: int = 5,
     max_price: float = 500,
     top_n: int = 20,
+    scraped_dt: pd.Timestamp,
 ) -> tuple[pd.DataFrame, list[SearchKey]]:
     """Exécute une recherche par fenêtre de dates et concatène les résultats.
 
@@ -157,6 +163,8 @@ def run_hotel_searches(
     frames: list[pd.DataFrame] = []
     failed: list[SearchKey] = []
 
+    if not scraped_dt:
+        scraped_dt = pd.Timestamp.now()
     for checkin, checkout in windows:
         print(f"* search hotels for window {checkin} - {checkout}")
         key = make_key(checkin, checkout, **occupancy)
@@ -184,7 +192,7 @@ def run_hotel_searches(
         top["n_adults"] = key.n_adults
         top["n_children"] = key.n_children
         top["n_rooms"] = key.n_rooms
-        top["scraped_at"] = pd.Timestamp.now()
+        top["scraped_at"] = scraped_dt
         frames.append(top)
         logger.info("Recherche terminée %s : %d hôtels", key, len(top))
 

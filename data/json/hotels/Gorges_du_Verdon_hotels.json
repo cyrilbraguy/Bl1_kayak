@@ -1,0 +1,28 @@
+[
+  {
+    "hotel_name": "Le 10 18 hôtel restaurant",
+    "url": "https://www.booking.com/hotel/fr/auberge-du-castellas-sainte-croix-du-verdon.fr.html",
+    "address": "auberge du castellas le castellas, 04500 Sainte-Croix-de-Verdon, France, 04500 auberge du castellas le castellas, France",
+    "hotel_description": "L’établissement Le 10 18 hôtel restaurant se trouve à Sainte-Croix-de-Verdon, à 16 km de ce lieu d’intérêt : Village de Moustiers-Sainte-Marie.",
+    "city": "Gorges_du_Verdon",
+    "latitude": 43.756056,
+    "longitude": 6.140723,
+    "score": 8.0,
+    "price": 79.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double - Côté Nord\n1 lit double\nAucun prépaiement requis – Payez sur place\nPlus que 3 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "Auberge des Salles",
+    "url": "https://www.booking.com/hotel/fr/auberge-des-salles.fr.html",
+    "address": "18 Rue St Catherine, 83630 Les Salles-sur-Verdon, France, 83630 18 Rue St Catherine, France",
+    "hotel_description": "Située aux Salles-sur-Verdon, l’Auberge des Salles propose une terrasse offrant une vue panoramique sur le lac de Sainte-Croix et le parc naturel régional...",
+    "city": "Gorges_du_Verdon",
+    "latitude": 43.77239231716274,
+    "longitude": 6.208481642852803,
+    "score": 8.7,
+    "price": 111.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double - Vue sur Village\nTypes de lits : 1 lit double ou 2 lits simples\nAucun prépaiement requis – Payez sur place\nPlus que 4 disponibles à ce tarif"
+  }
+]

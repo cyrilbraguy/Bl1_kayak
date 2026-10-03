@@ -1,0 +1,57 @@
+name: Déploiement vers le Space Hugging Face
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:        # lancement manuel depuis l'onglet Actions
+
+concurrency:                # un seul déploiement à la fois
+  group: deploy-hf-space
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Installer huggingface_hub
+        run: pip install --quiet huggingface_hub
+
+      - name: Envoyer le code vers le Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_SPACE_ID: ${{ vars.HF_SPACE_ID }}
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          python - <<'PY'
+          import os, sys
+          from huggingface_hub import HfApi
+
+          token = os.environ.get("HF_TOKEN", "").strip()
+          space = os.environ.get("HF_SPACE_ID", "").strip()
+          if not token or not space:
+              sys.exit("HF_TOKEN (secret) ou HF_SPACE_ID (variable) manquant.")
+
+          # Accepte l'URL complète ou "utilisateur/space"
+          space = space.removeprefix("https://huggingface.co/spaces/").strip("/")
+
+          api = HfApi(token=token)
+          api.upload_folder(
+              repo_id=space,
+              repo_type="space",
+              folder_path=".",
+              commit_message=f"Déploiement depuis GitHub ({os.environ['COMMIT_SHA'][:7]})",
+              # Jamais envoyés : historique git, workflows, secrets, caches, notebooks, données générées
+              ignore_patterns=[
+                  ".git/*", ".github/*", ".env", ".env.*", "*.ipynb",
+                  "*__pycache__/*", ".venv/*", "data/*.csv", "data/logs/*",
+              ],
+          )
+          print(f"Space mis à jour : https://huggingface.co/spaces/{space}")
+          PY

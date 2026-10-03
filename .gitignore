@@ -7,8 +7,8 @@ data/html/*
 
 
 # --- Python ---
-__pycache__/
-*.py[cod]
+src/__pycache__/
+src/*.py[cod]
 .venv/
 venv/
 env/

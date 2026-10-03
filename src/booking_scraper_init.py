@@ -40,6 +40,7 @@ from dataclasses import dataclass, asdict
 from datetime import date
 from typing import Optional
 from urllib.parse import urlencode
+import unicodedata
 
 from playwright.async_api import async_playwright, TimeoutError as PWTimeout
 
@@ -114,6 +115,42 @@ def _guess_city_from_text(text: Optional[str]) -> Optional[str]:
         return city or None
     return None
 
+def _norm(text: Optional[str]) -> str:
+    """Minuscules, sans accents ni ponctuation : sert uniquement à comparer."""
+    t = unicodedata.normalize("NFKD", str(text or ""))
+    t = "".join(c for c in t if not unicodedata.combining(c)).lower()
+    return re.sub(r"[^\w]+", " ", t).strip()
+
+
+def _contains(haystack: str, needle: Optional[str]) -> bool:
+    """True si `needle` apparaît comme mot(s) entier(s) dans `haystack`."""
+    n = _norm(needle)
+    if not n:
+        return True  # élément vide : rien à ajouter
+    return re.search(rf"(?<!\w){re.escape(n)}(?!\w)", _norm(haystack)) is not None
+
+
+def _build_address(street, postal, locality, country) -> Optional[str]:
+    """Assemble l'adresse sans dupliquer ce que `street` contient déjà."""
+    result = (street or "").strip().strip(",")
+    ville = " ".join(p for p in (postal, locality) if p and not _contains(result, p))
+    pays = country if country and not _contains(result, country) else None
+    return ", ".join(p for p in (result, ville, pays) if p) or None
+
+
+def _clean_address(text: Optional[str]) -> Optional[str]:
+    """Nettoie une adresse brute : 1re ligne, segments identiques supprimés."""
+    if not text:
+        return None
+    first_line = text.strip().splitlines()[0]
+    seen, out = set(), []
+    for seg in (s.strip() for s in first_line.split(",")):
+        key = _norm(seg)
+        if seg and key not in seen:
+            seen.add(key)
+            out.append(seg)
+    return ", ".join(out) or None
+
 def _build_search_url(city: str, checkin: str, checkout: str, adults: int, rooms: int, children: int) -> str:
     params = {
         "ss": city,
@@ -157,14 +194,17 @@ async def _extract_property_details(context, hotel_url: str) -> dict:
                     country = addr.get("addressCountry")
                     if isinstance(country, dict):
                         country = country.get("name")
-                    parts = [p for p in (street, " ".join(filter(None, [postal, locality])), country) if p]
-                    if parts:
-                        result["address"] = ", ".join(parts)
+                    # parts = [p for p in (street, " ".join(filter(None, [postal, locality])), country) if p]
+                    # if parts:
+                    #     result["address"] = ", ".join(parts)
+                    # update get address 01/10/2026
+                    result["address"] = _build_address(street, postal, locality, country)
                     if locality:
                         result["city"] = locality
                         
                 elif result["address"] is None and isinstance(addr, str) and addr.strip():
-                    result["address"] = addr.strip()
+                    # result["address"] = addr.strip()
+                    result["address"] = _clean_address(addr)  
                     result["city"] = result["city"] or _guess_city_from_text(addr)   # <-- ligne ajoutée
                     
             except (json.JSONDecodeError, AttributeError, TypeError, ValueError):
@@ -191,7 +231,9 @@ async def _extract_property_details(context, hotel_url: str) -> dict:
                 if addr_el:
                     text = (await addr_el.inner_text()).strip()
                     if text:
-                        result["address"] = text
+                        # result["address"] = text
+                        result["address"] = _clean_address(text)
+                                                
                         result["city"] = result["city"] or _guess_city_from_text(text)
                         # (supprime les 2 lignes "parts = ..." et l'ancien
                         #  result["city"] = result["city"] or (parts[-1] if parts else text))

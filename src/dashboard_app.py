@@ -20,7 +20,7 @@ import streamlit as st
 # --- Rend les modules du projet importables (ajuste SRC_DIR si besoin) ---
 BASE_DIR = Path(__file__).resolve().parent
 SRC_DIR = f"{BASE_DIR}/src"
-if SRC_DIR.is_dir() and str(SRC_DIR) not in sys.path:
+if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 # --- Imports des fonctions métier existantes : À ADAPTER ---
@@ -75,6 +75,64 @@ def build_top_cities(weather: pd.DataFrame, cities: pd.DataFrame,
     vide = pd.DataFrame(columns=COLS_TOP_CITIES)
     if weather is None or weather.empty:
         return vide
+    try:
+        w = weather.copy()
+        # Normalisation des types pour comparer date / datetime / Timestamp sans surprise
+        #w["checkin_date"] = pd.to_datetime(w["checkin_date"]).dt.date
+        
+        w["checkin_date"] = w["checkin_date"].map(to_date)
+        checkin = to_date(checkin) if checkin is not None else w["checkin_date"].max()
+        w = w[w["checkin_date"] == checkin]
+
+        if checkout is not None and "checkout_date" in w.columns:
+            w["checkout_date"] = w["checkout_date"].map(to_date)
+            w = w[w["checkout_date"] == to_date(checkout)]
+                
+        # if checkin is None:
+        #     checkin = w["checkin_date"].max()
+        # w = w[w["checkin_date"] == pd.Timestamp(checkin).date()]
+
+        # # Filtre sur le check-out si la colonne existe dans la table weather
+        # if checkout is not None and "checkout_date" in w.columns:
+        #     w["checkout_date"] = pd.to_datetime(w["checkout_date"]).dt.date
+        #     w = w[w["checkout_date"] == pd.Timestamp(checkout).date()]
+
+        if w.empty:
+            return vide
+
+        coords = cities.drop_duplicates("city_id")[["city_id", "city_lat", "city_lon"]]
+        return (
+            w.drop_duplicates("city_id")
+             .merge(coords, on="city_id", how="left")
+             .dropna(subset=["lat", "lon"])
+             .drop(columns=["city_lat", "city_lon"])
+        )
+    except Exception as e:
+        st.error(f"Erreur de filtrage des villes : {e}")
+        return vide
+
+def sub_top_hotels(hotels_df: pd.DataFrame, checkin=None, checkout=None) -> pd.DataFrame:
+    """select subset of hotels with checkin & checkout dates 
+    
+    """
+    cols_hotels = hotels_df.columns
+    vide = pd.DataFrame(columns=cols_hotels)
+    try:
+        sub_hotels_df = hotels_df[hotels_df[["checkin_date","checkout_date"]] == [checkin, checkout]]
+        if sub_hotels_df.empty:
+            return vide
+        
+        if weather is None or weather.empty:
+            return vide
+        sub_hotels_df["nights"] = (checkout - checkin).days
+        
+        return sub_hotels_df
+    
+    except Exception as e:
+            st.error(f"Erreur de filtrage des hotels : {e}")
+            return vide
+    
+    
     try:
         w = weather.copy()
         # Normalisation des types pour comparer date / datetime / Timestamp sans surprise
@@ -176,14 +234,15 @@ def plot_city_hotels(cities_top20_hotels: pd.DataFrame, city: str):
             "lon_hotel": False,
             "marker_hotel_size": False,
         },
-        zoom=10,
+        zoom=12,
         center={"lat": lat_city, "lon": lon_city},
         mapbox_style="open-street-map",
         color="score_hotel",
         color_continuous_scale=px.colors.sequential.Jet,
         title=f"Hotels in {city} from {checkin_date} to {checkout_date}",
     )
-    fig.update_layout(height=440, margin=dict(l=0, r=0, t=40, b=0))
+    fig.update_layout(height=600, margin=dict(l=0, r=0, t=40, b=0))
+    
     return fig
 
 import pandas as pd
@@ -237,6 +296,7 @@ def afficher_hotels(hotels_df: pd.DataFrame | None,
 
     candidate_cols = [
         "city", "avg_comfort_score", nom_col, "combined_score_hotel", "score_hotel", "price_hotel",
+        "checkin_date","checkout_date"
     ]
     display_cols = [c for c in candidate_cols if c and c in df.columns]
 
@@ -258,8 +318,11 @@ def afficher_hotels(hotels_df: pd.DataFrame | None,
         column_config["avg_comfort_score"] = st.column_config.TextColumn("Score météo")
     if "combined_score_hotel" in display_cols:
         column_config["combined_score_hotel"] = st.column_config.TextColumn("Note Glob")
-    
-    
+    if "checkin_date" in display_cols:
+            column_config["checkin_date"] = st.column_config.DateColumn("checkin")
+    if "checkout_date" in display_cols:
+                column_config["checkout_date"] = st.column_config.DateColumn("checkout")
+        
     st.dataframe(
         df[display_cols],
         column_config=column_config,
@@ -267,6 +330,8 @@ def afficher_hotels(hotels_df: pd.DataFrame | None,
         use_container_width=True,
         hide_index=True,
     )
+
+
 
 
 # ============================================================
@@ -392,6 +457,7 @@ with st.container():
     if picked:
         checkin, checkout, _ = picked
     top_cities = build_top_cities(weather, cities, checkin, checkout)
+    # build_top_hotels ? 
     
     # 3) Message + bouton adaptés au statut (on revient dans la colonne de droite)
     with col_hotels:
@@ -400,8 +466,11 @@ with st.container():
             n_scraped = int(top_cities["selected"].sum()) if not top_cities.empty else 0
             action = render_search_action(in_db, n_cities=n_scraped)
             st.session_state.hotels_df = load_hotels_for(checkin, checkout, **occupancy)
+            
+            
             if action == "load":
                 try:
+                    #st.session.sub_top_hotels = sub_top_hotels(hotels_df: pd.DataFrame, checkin=None, checkout=None)
                     st.session_state.hotels_df = load_hotels_for(checkin, checkout, **occupancy)
                 except Exception as e:
                     st.error(f"Lecture des hôtels impossible : {e}")
@@ -437,20 +506,45 @@ st.divider()
 # CORPS PRINCIPAL 2 
 # ============================================================
 col_left2, col_right2 = st.columns([2, 2])
-selected_city, hotels_df2 = None, None   
+selected_city, hotels_df2 = None, None  
+
+
 with col_left2:
-    st.markdown("#### Zoom sur une ville")
     if hotels_df is not None and not hotels_df.empty and "city" in hotels_df.columns:
         cities_list = sorted(hotels_df["city"].dropna().unique())
-        selected_city = st.selectbox("Choisir une ville", cities_list)
-        hotels_df2 = hotels_df[hotels_df["city"]==selected_city]
+        ##hotels_df2 = hotels_df[hotels_df["city"]==selected_city]
+        col_l2_1, col_l2_2 = st.columns([1,1])
+        with col_l2_1: 
+            st.markdown("#### Zoom sur une ville")
+        with col_l2_2:
+            selected_city = st.selectbox("Choisir une ville", cities_list)
+            hotels_df2 = hotels_df[hotels_df["city"]==selected_city]
+        
+        
         fig_city = plot_city_hotels(hotels_df, selected_city)
         if fig_city is not None:
             st.plotly_chart(fig_city, use_container_width=True)
         else:
             st.warning("Pas de données hôtels pour cette ville.")
     else:
+        cities_list = pd.DataFrame()
+        hotels_df2 = pd.DataFrame()
+        
         st.info("Lance une recherche d'hôtels pour afficher le détail par ville.")
+    
+
+        
+    # if hotels_df is not None and not hotels_df.empty and "city" in hotels_df.columns:
+    #     cities_list = sorted(hotels_df["city"].dropna().unique())
+    #     selected_city = st.selectbox("Choisir une ville", cities_list)
+    #     hotels_df2 = hotels_df[hotels_df["city"]==selected_city]
+    #     fig_city = plot_city_hotels(hotels_df, selected_city)
+    #     if fig_city is not None:
+    #         st.plotly_chart(fig_city, use_container_width=True)
+    #     else:
+    #         st.warning("Pas de données hôtels pour cette ville.")
+    # else:
+    #     st.info("Lance une recherche d'hôtels pour afficher le détail par ville.")
 
 with col_right2:
     st.markdown(f"#### Hotels à {selected_city}")

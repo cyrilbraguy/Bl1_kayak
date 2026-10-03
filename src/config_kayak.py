@@ -19,8 +19,6 @@ import json
 import random
 import time
 
-from django.conf.locale import de
-
 SRC_DIR = Path(__file__).resolve().parent
 BASE_DIR = SRC_DIR.parent
 

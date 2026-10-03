@@ -65,8 +65,11 @@ def make_key(
     n_adults: int = DEFAULT_OCCUPANCY["n_adults"],
     n_children: int = DEFAULT_OCCUPANCY["n_children"],
     n_rooms: int = DEFAULT_OCCUPANCY["n_rooms"],
+    
 ) -> SearchKey:
-    return SearchKey(to_date(checkin), to_date(checkout), int(n_adults), int(n_children), int(n_rooms))
+    return SearchKey(to_date(checkin), to_date(checkout),
+                     int(n_adults), int(n_children), int(n_rooms)
+                     )
 
 
 def build_date_windows(date_span: Iterable, n_checkins: int = 4) -> list[tuple[date, date]]:
@@ -137,6 +140,25 @@ def estimate_search_minutes(n_cities: int, seconds_per_city: float = 30.0) -> fl
     return max(0.0, n_cities * seconds_per_city / 60.0)
 
 
+def filter_dates(df: pd.DataFrame,
+                    checkin, checkout, 
+                    col_in: str = "checkin_date",
+                    col_out: str = "checkout_date") -> pd.DataFrame:
+    """filtrage de la table des cities ou hotels 
+    sur les dates checkin et checkout 
+    """
+    if df is None or df.empty:
+        return pd.DataFrame() if df is None else df.iloc[0:0].copy()
+    if col_in not in df.columns:
+        raise KeyError(f"Colonne absente : {col_in}")
+
+    masque = df[col_in].map(to_date) == to_date(checkin)
+    if col_out in df.columns and checkout is not None:
+        masque &= df[col_out].map(to_date) == to_date(checkout)
+
+    return df.loc[masque].copy()
+
+
 # ----------------------------------------------------------------------
 # Côté pipeline : lancer plusieurs recherches sans refaire celles déjà en base
 # ----------------------------------------------------------------------
@@ -152,6 +174,7 @@ def run_hotel_searches(
     max_price: float = 500,
     top_n: int = 20,
     scraped_dt: pd.Timestamp,
+    force : bool = False,
 ) -> tuple[pd.DataFrame, list[SearchKey]]:
     """Exécute une recherche par fenêtre de dates et concatène les résultats.
 
@@ -169,11 +192,17 @@ def run_hotel_searches(
         print(f"* search hotels for window {checkin} - {checkout}")
         key = make_key(checkin, checkout, **occupancy)
         if key in skip_keys:
-            logger.info("Déjà en base, ignorée : %s", key)
+            if force: 
+                logger.info("déjà en base mais recherche forcée %s", key)
+            else:
+                
+                logger.info("Déjà en base, ignorée : %s", key)
             continue
         try:
+            top_cities_sub = filter_dates(top_cities, checkin, checkout)
+            print(top_cities_sub.head())
             raw = collect_fn(
-                top_cities, checkin.isoformat(), checkout.isoformat(),
+                top_cities_sub, checkin.isoformat(), checkout.isoformat(),
                 key.n_adults, key.n_children, key.n_rooms, max_results,
             )
             top = select_fn(raw, n=top_n, criterion="combined", max_price=max_price, out_all=True)

@@ -4,6 +4,12 @@ import sys
 from pathlib import Path
 import pandas as pd
 
+from sqlalchemy import create_engine
+from sqlalchemy.types import (
+    Integer, BigInteger, SmallInteger, Float, Numeric, String, Text,
+    Boolean, Date, DateTime,
+)
+
 import config_kayak
 from config_kayak import (
     AWS_BUCKET_NAME, AWS_BUCKET_DIR, DATA_DIR_CSV, 
@@ -29,12 +35,98 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 
+
+# Types SQL cibles, par colonne (adapte aux noms de tes colonnes)
+DTYPES_CITIES = {
+    "city_id":           Text(),
+    "city":              Text(),
+    "city_lat":          Float(),
+    "city_lon":          Float(),
+    "city_name_":        Text(),
+    "city_plus":         Text(),
+}
+
+DTYPES_HOTELS = {
+    "city_id":           Text(),
+    "city":              String(100),
+    "city_name_":        Text(),
+    "checkin_date":      Date(),
+    "checkout_date":     Date(),
+    "n_adults":          SmallInteger(),
+    "n_children":        SmallInteger(),
+    "n_rooms":           SmallInteger(),
+    "scraped_at":        DateTime(),
+
+    "hotel_name":        Text(),
+    "url_hotel":         Text(),
+    "address_hotel":     Text(),
+    "hotel_city":        Text(),
+    "hotel_description": Text(),
+    "room_description":  Text(),
+    "lat_hotel":         Float(),
+    "lon_hotel":         Float(),
+  
+    "score_hotel":       Numeric(10, 2),
+    "price_hotel":       Numeric(10, 2),
+    "currency_hotel":    Text(),
+    "combined_score_hotel": Numeric(10, 2),
+}
+
+DTYPES_WEATHER = {
+    "city_id":           Text(),
+    "city":              Text(),
+    #"city_name_":        Text(),
+    "checkin_date":      Date(),
+    "checkout_date":     Date(),
+    "scraped_at":        DateTime(),
+    "avg_comfort_score": Numeric(4, 1),
+    "temp":              Numeric(5, 2),
+    "humidity":          Numeric(5, 2),
+    "wind_speed_max":    Numeric(10, 2),
+    "clear_slots":       Integer(),
+    "rain_slots":        Integer(),
+    "rain_sum":          Numeric(10, 2),
+    "selected":          Integer(),
+    "lat":               Float(),
+    "lon":               Float(),
+}
+
+def sauver_df(df: pd.DataFrame, table: str, engine, dtypes: dict,
+              if_exists: str = "append") -> None:
+    """Écrit df en base en forçant les types SQL, avec conversions pandas préalables."""
+    out = df.copy()
+
+    # Conversions pandas : sinon une colonne 'object' peut partir en TEXT malgré le dtype
+    for col, typ in dtypes.items():
+        if col not in out.columns:
+            continue
+        if isinstance(typ, Date):
+            out[col] = pd.to_datetime(out[col]).dt.date
+        elif isinstance(typ, DateTime):
+            out[col] = pd.to_datetime(out[col])
+        elif isinstance(typ, (Integer, SmallInteger, BigInteger)):
+            out[col] = pd.to_numeric(out[col], errors="coerce").astype("Int64")  # entier nullable
+        elif isinstance(typ, (Float, Numeric)):
+            out[col] = pd.to_numeric(out[col], errors="coerce")
+
+    # On ne garde dans dtype que les colonnes présentes (sinon erreur)
+    dtype_utile = {c: t for c, t in dtypes.items() if c in out.columns}
+    out.to_sql(table, engine, if_exists=if_exists, index=False,
+               dtype=dtype_utile, method="multi", chunksize=1000)
+
+
+# Utilisation
+
+
+# *** 
+
 def run_pipeline(
     n_adults: int = 2,
     n_children: int = 3,
     n_rooms: int = 2,
     max_results: int = 5,
     max_price: float = 500,
+    force: bool = False
 ) -> dict:
     """Exécute le pipeline complet : villes -> météo -> hôtels -> S3 -> RDS.
     Retourne un résumé pour logging/monitoring."""
@@ -102,6 +194,7 @@ def run_pipeline(
         collect_fn=collect_cities_hotels, select_fn=select_top_hotels,
         skip_keys=existing, max_results=max_results, max_price=max_price,
         scraped_dt = scraped_dt,
+        force = force,
     )
     if failed:
         print(f"Recherches en échec : {failed}")
@@ -131,7 +224,7 @@ def run_pipeline(
         )
     # end ++
     cities_top20_hotels = cities_top20_hotels.sort_values("combined_score_hotel", ascending=False)
-    cities_top20_hotels = cities_top20_hotels.rename(columns={"city_city": "city"}).drop(columns=["city_hotel"])
+    cities_top20_hotels = cities_top20_hotels.rename(columns={"city_city": "city","scraped_at_city":"scraped_at"}).drop(columns=["city_hotel"])
 
     print(f"top cities et top20 hotels:\n {cities_top20_hotels}")
 
@@ -179,9 +272,12 @@ def run_pipeline(
         # save_df_to_rds(df_cities2, "cities", engine, if_exists="append")
         # save_df_to_rds(df_hotels2, "hotels", engine, if_exists="append")
         # save_df_to_rds(df_weather2, "weather", engine, if_exists="append")
-        df_cities2.to_sql(name="cities",con=engine,if_exists="replace",index=False)
-        df_hotels2.to_sql(name="hotels",con=engine,if_exists="replace",index=False)
-        df_weather2.to_sql(name="weather",con=engine,if_exists="replace",index=False)
+        
+        # exemple avec DTYPES :
+        # sauver_df(df_hotels, "hotels", engine, DTYPES_HOTELS)
+        df_cities2.to_sql(name="cities",con=engine,if_exists="replace",index=False, dtype=DTYPES_CITIES)
+        df_hotels2.to_sql(name="hotels",con=engine,if_exists="replace",index=False, dtype=DTYPES_HOTELS)
+        df_weather2.to_sql(name="weather",con=engine,if_exists="replace",index=False, dtype=DTYPES_WEATHER)
         
         
     finally:
@@ -193,5 +289,6 @@ def run_pipeline(
 if __name__ == "__main__":
     summary = run_pipeline(
         max_results = 6,
-        max_price = 300,)
+        max_price = 300,
+        force=True)
     print(summary)

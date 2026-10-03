@@ -49,8 +49,9 @@ jobs:
               commit_message=f"Déploiement depuis GitHub ({os.environ['COMMIT_SHA'][:7]})",
               # Jamais envoyés : historique git, workflows, secrets, caches, notebooks, données générées
               ignore_patterns=[
-                  ".git/*", ".github/*", ".env", ".env.*", "*.ipynb",
-                  "*__pycache__/*", ".venv/*", "data/*.csv", "data/logs/*",
+              ".git/*", ".github/*", ".env", ".env.*", "*.ipynb",
+              "*__pycache__/*", ".venv/*",
+              "data/json/*", "data/logs/*",   # dossiers précis, jamais "data/*.csv"
               ],
           )
           print(f"Space mis à jour : https://huggingface.co/spaces/{space}")

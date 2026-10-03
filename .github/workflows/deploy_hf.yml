@@ -2,7 +2,7 @@ name: Déploiement vers le Space Hugging Face
 
 on:
   push:
-    branches: [main]
+    branches: [main,master]
   workflow_dispatch:        # lancement manuel depuis l'onglet Actions
 
 concurrency:                # un seul déploiement à la fois

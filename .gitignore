@@ -1,7 +1,7 @@
 .env
-data/json/*.*
-data/csv/*.*
-data/html/*
+data/json
+data/csv
+data/html
 
 **/*.env.*
 

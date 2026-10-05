@@ -23,9 +23,7 @@ logger = logging.getLogger(__name__)
 # Passer à True quand la recherche à la demande sera implémentée.
 ENABLE_LIVE_SEARCH = False
 
-# Occupation utilisée par le pipeline ET par défaut dans le dashboard.
-# Elle doit être identique des deux côtés, sinon tout apparaît en « nouvelle recherche ».
-DEFAULT_OCCUPANCY = {"n_adults": 2, "n_children": 0, "n_rooms": 1}
+from config_kayak import DEFAULT_OCCUPANCY
 
 # Colonnes à ajouter à la table `hotels` (+ scraped_at pour la fraîcheur)
 SEARCH_COLS = ["checkin_date", "checkout_date", "n_adults", "n_children", "n_rooms"]

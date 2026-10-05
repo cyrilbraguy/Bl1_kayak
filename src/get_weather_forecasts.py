@@ -27,7 +27,8 @@ logger = logging.getLogger(__name__)
 from config_kayak import (
     WEATHER_API_KEY, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY,
     AWS_BUCKET_NAME, AWS_BUCKET_DIR,
-    AWS_DB_NAME, AWS_DB_USER, AWS_DB_PASS, AWS_REGION,
+    AWS_REGION,
+    POIDS_CONFORT, TEMP_OPTIMALE, TEMP_TOLERANCE, VENT_MAX,
 
     BASE_URL_NOMINATIM, BASE_URL_OPENWEATHERMAP,
     CONFIG_CITIES_FILE ,
@@ -42,6 +43,20 @@ from config_kayak import (
     
 )
 
+def comfort_score(summary: pd.DataFrame, poids: dict = POIDS_CONFORT,
+                  t_opt: float = TEMP_OPTIMALE) -> pd.Series:
+    """Score de confort météo entre 0 et 1 (1 = idéal)."""
+    if abs(sum(poids.values()) - 1) > 1e-9:
+        raise ValueError(f"Les poids doivent sommer à 1 (somme = {sum(poids.values()):.2f})")
+    composantes = {
+        "ciel":        summary["clear_sky_ratio"],
+        "humidite":    1 - summary["humidity_mean"] / 100,
+        "pluie":       1 - summary["pop_max"],
+        "temperature": 1 - (summary["temp_mean"] - t_opt).abs() / TEMP_TOLERANCE,
+        "vent":        1 - summary["wind_speed_max"] / VENT_MAX,
+    }
+    score = sum(poids[k] * composantes[k].clip(0, 1) for k in poids)
+    return score.clip(0, 1).round(2)
 
 
 def get_weather(lat:float, lon:float) -> dict :
@@ -88,6 +103,9 @@ def compile_weather(weather_data)-> pd.DataFrame:
 
 
 def compile_weather2(data):
+    """ compile in a dataFrame weather data 
+        coming from call weather_api
+        that is in json format"""
     df = pd.json_normalize(data["list"], sep="_")
     # df["weather_main"] = df["weather"].apply(lambda w: w[0]["main"] if w else None)
     # df["weather_description"] = df["weather"].apply(lambda w: w[0]["description"] if w else None)
@@ -107,7 +125,21 @@ def compile_weather2(data):
 
 def summarize_weather(df: pd.DataFrame, hour_start: int = 8, hour_end: int = 20) -> pd.DataFrame:
     """ summarize weather on 5 days forecast
-    compute daily rain and daily pop (probability of precipitation) between hour_start and hour_end
+        compute daily rain and daily pop (probability of precipitation) between hour_start and hour_end
+        compute daily mean temperature and humidity
+        comfort_score : 0 to 1, based on several criteria (clear sky, temp, humidity, rain, wind)
+        
+
+    Args:
+        df (pd.DataFrame): [description]
+        hour_start (int, optional): [description]. Defaults to 8.
+        hour_end (int, optional): [description]. Defaults to 20.
+
+    Returns:
+        pd.DataFrame: dataframe with summary of weather for each day, with columns : 
+        date, rain_sum, pop_max, temp_mean, humidity_mean, clear_slots_count, 
+        rain_slots_count, wind_speed_max, n_slots, clear_sky_ratio, rain_ratio, is_pleasant_day, 
+        comfort_score : 
     """
     # define criteria 
     # compute summary on several criteria 
@@ -163,19 +195,27 @@ def summarize_weather(df: pd.DataFrame, hour_start: int = 8, hour_end: int = 20)
     )
 
     # Bonus : score continu (0 à 1) plutôt que binaire, plus nuancé
-    summary["comfort_score"] = (
-        0.30 * summary["clear_sky_ratio"]
-        + 0.25 * (1 - (summary["humidity_mean"] / 100)).clip(0, 1)
-        + 0.20 * (1 - summary["pop_max"]).clip(0, 1)
-        + 0.15 * (1 - (summary["temp_mean"] - 21).abs() / 15).clip(0, 1)  # optimum ~21°C
-        + 0.10 * (1 - (summary["wind_speed_max"] / 15)).clip(0, 1)
-    ).clip(0, 1).round(2)
+    # We call a dedicated function that can be parametered:
+    summary["comfort_score"] = comfort_score(summary)
+
+    # summary["comfort_score"] = (
+    #     0.30 * summary["clear_sky_ratio"]
+    #     + 0.25 * (1 - (summary["humidity_mean"] / 100)).clip(0, 1)
+    #     + 0.20 * (1 - summary["pop_max"]).clip(0, 1)
+    #     + 0.15 * (1 - (summary["temp_mean"] - 21).abs() / 15).clip(0, 1)  # optimum ~21°C
+    #     + 0.10 * (1 - (summary["wind_speed_max"] / 15)).clip(0, 1)
+    # ).clip(0, 1).round(2)
 
     return summary
 
 
 def get_weather_data_for_cities(df_cities: pd.DataFrame, scraped_dt : pd.Timestamp) -> pd.DataFrame:
-    """collect weather data for all cities from a df_cities dataftrame 
+    """ collect weather data for all cities from a df_cities dataftrame 
+        - get weather forecasts from openweathermap API for each city (lat, lon)
+        - compile the weather data in a dataframe from json format
+        - summarize the weather data on several criteria on a daily base 
+            (comfort_score, clear_sky_ratio, rain_ratio, is_pleasant_day)
+        - return a dataframe with summary of weather for each city and each date
 
     Args:
         df_cities (pd.DataFrame): pd.DataFrame of cities 
@@ -221,7 +261,27 @@ def run_weather_searches(
     top_n: int = 7, 
      
     ) -> pd.DataFrame: # tuple[pd.DataFrame, list[SearchKey]]
-    
+    """search for cities with best weather conditions for each window of dates
+
+    Args:
+        df_weather_summary (pd.DataFrame):  weather forecasts coming from get_weather_data_for_cities()
+                                            and columns : comfort_score, clear_sky_ratio, rain_ratio, is_pleasant_day
+                                            and in addition 'scraped_at': timestamp of weather scrap
+                                            
+        windows (list[tuple[date, date]]):  time windows for which we want to select best cities 
+                                            coming from build_date_windows(result_weather["date"].unique())
+                                            
+        select_weather_cities_fn (Callable): function to select best cities based on weather criteria, 
+                                             e.g. select_best_weather_cities
+                                             
+        scraped_dt (pd.Timestamp):  timestamp of scrapped data to uniformize scraped datetime on all tables
+        
+        top_n (int, optional):      number of cities to select. Defaults to 7.
+
+    Returns:
+        pd.DataFrame: result of selection of best cities for each window, with weather summary
+                      with columns : city, checkin_date, checkout_date, avg_comfort_score, rain_sum, temp, humidity, clear_slots, rain_slots, wind_speed_max, scraped_at
+    """
     #skip_keys = skip_keys or set()
     weather_summary_windows: list[pd.DataFrame] = []
     failed: list[SearchKey] = []
@@ -259,7 +319,27 @@ def select_best_weather_cities(df_weather_summary: pd.DataFrame, top_n: int = 7,
                                end_date: str | pd.Timestamp | None = None
                                ) -> pd.DataFrame:
     """Select the top N cities with the best weather conditions based on comfort_score.
-    between optional dates """
+    between optional dates 
+    Args:
+        df_weather_summary (pd.DataFrame):  complete weather summary dataframe with columns : 
+                                            city, date, comfort_score, clear_sky_ratio, rain_ratio, is_pleasant_day, 
+                                            scraped_at
+                                            coming from get_weather_data_for_cities()
+                                            
+        top_n (int, optional): number of cities to select. Defaults to 7.
+        start_date (str, optional): start date for the weather forecast. Defaults to None will take beginning of data.
+        end_date (str, optional): end date for the weather forecast. Defaults to None will take end of data
+
+    Raises:
+        ValueError: [description]
+
+    Returns:
+        pd.DataFrame: listint cities with summary weather conditions for the given date window, with columns :
+                      city, checkin_date, checkout_date, avg_comfort_score, rain_sum, temp
+                        , humidity, clear_slots, rain_slots, wind_speed_max, scraped_at
+    """
+        
+
     # Group by city and calculate the average comfort score over the forecast period
     df_weather_summary["date"] = pd.to_datetime(df_weather_summary["date"])
     date_span = df_weather_summary["date"].unique()

@@ -19,6 +19,25 @@ import json
 import random
 import time
 
+# Poids du critère de confort (la somme doit valoir 1)
+POIDS_CONFORT = {
+    "ciel": 0.30, "humidite": 0.25, "pluie": 0.20, "temperature": 0.15, 
+    "vent": 0.10,
+}
+TEMP_OPTIMALE = 21.0   # °C
+TEMP_TOLERANCE = 15.0  # écart (°C) à partir duquel le critère tombe à 0
+VENT_MAX = 15.0        # m/s
+
+# max room price (for all journey of several days)
+USER_MAX_HOTEL_PRICE = 300
+USER_MAX_HOTEL_PRICE_DAY = 100
+
+
+# Occupation utilisée par le pipeline ET par défaut dans le dashboard.
+# Elle doit être identique des deux côtés, sinon tout apparaît en « nouvelle recherche ».
+DEFAULT_OCCUPANCY = {"n_adults": 2, "n_children": 0, "n_rooms": 1}
+
+
 SRC_DIR = Path(__file__).resolve().parent
 BASE_DIR = SRC_DIR.parent
 

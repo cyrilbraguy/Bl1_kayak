@@ -48,7 +48,7 @@ def load_search_keys() -> pd.DataFrame:
 #     return pd.read_sql(q, get_engine(),
 #                        params={"ci": checkin, "co": checkout, "a": n_adults, "c": n_children, "r": n_rooms})
 @st.cache_data(ttl=600)    
-def load_hotels_for(checkin, checkout, n_adults, n_children, n_rooms) -> pd.DataFrame:
+def load_hotels_for(checkin, checkout, n_adults, n_children, n_rooms,max_night_price) -> pd.DataFrame:
     """Hôtels d'une recherche, avec lat/lon de la ville (requis par plot_city_hotels)."""
     q = text("""
         SELECT h.*, c.city_lat AS lat_city, c.city_lon AS lon_city
@@ -64,10 +64,19 @@ def load_hotels_for(checkin, checkout, n_adults, n_children, n_rooms) -> pd.Data
           AND h.n_children = :c
           AND h.n_rooms = :r
     """)
+    nb_nights = (checkout-checkin).days
+    max_price = max_night_price * nb_nights 
+    
+    p = (10-0) / 1 # score same as in select_top_hotels()
     try:
-        return pd.read_sql(q, get_engine(),
+        df= pd.read_sql(q, get_engine(),
                            params={"ci": checkin, "co": checkout, "a": int(n_adults), 
                                    "c": int(n_children), "r": int(n_rooms)})
+        if nb_nights:
+            # to harmonize w/ scrap_hotels() select_top_hotels()
+            df['combined_score_hotel']= df['score_hotel'] - p * (df['price_hotel'] - max_price).clip(lower=0)
+                     
+        return df
     except Exception as e:
         st.error(f"Erreur lors du chargement des hôtels : {e}")
         return pd.DataFrame()

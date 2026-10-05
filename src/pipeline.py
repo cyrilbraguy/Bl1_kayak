@@ -130,20 +130,20 @@ def run_pipeline(
 ) -> dict:
     """Exécute le pipeline complet : villes -> météo -> hôtels -> S3 -> RDS.
     Retourne un résumé pour logging/monitoring."""
-    #get cities coord & save to s3
+    # 1. get cities and get coord & save to s3
     scraped_dt = pd.Timestamp.now()  # scraped_datetime added 01/10/2026
     cities_list_df = load_cities()
     results_df = get_coordinates_cities(cities_list_df)
     results_df.to_csv(os.path.join(DATA_DIR_CSV, "cities.csv"), index=False, encoding="utf-8")
     save_csv_to_s3(results_df, "cities.csv")
 
-    # get weather data on 5 days free formula 
+    # 2. get weather data on 5 days free formula 
     df_cities = results_df
     # scraped_dt
     result_weather = get_weather_data_for_cities(df_cities, scraped_dt = scraped_dt)
     result_weather['scraped_at'] = scraped_dt
     
-    # Weather summary on different time windows (for trip)
+    # 3 make Weather summary on different time windows (for trip)
     # build different time windows for weather and hotels search target
     windows = build_date_windows(result_weather["date"].unique())
     

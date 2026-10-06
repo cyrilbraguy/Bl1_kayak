@@ -120,40 +120,40 @@ Hotels Results are merged with weather_cities table and stored in a CSV file in 
 
 
 columns :  
-    | column | description  | 
-    |--------|--------------|
-    | city | city name with spaces |
-    | avg_comfort_score | average comfort score |
-    | checkin_date | checkin date of time window |
-    | checkout_date | checkout date of time window |
-    | rain_sum | sum of rain volume in mm |
-    | temp | average temperature °C |
-    | humidity | average humidity in % |
-    | clear_slots | nb of clear sky slots of 3 hours on 9h - 18h |
-    | rain_slots | nb of rain slots of 3 hours on 9h - 18h  |
-    | wind_speed_max | max wind speed (km/h) | 
-    | scraped_at | time stamp of weather scrap |
-    | selected| 1 if city is selected 0 if not |
-    | city_name_ | city name with _ replacing spaces | 
-    | city_plus | city name with _ replacing spaces | 
-    | city_lat | latitude | 
-    | city_lon | longitude |   
-    | city_id | unique id from city-name-lat-lon with resp. 4 and 3 digits | 
+    | column | description  |  
+    |--------|--------------|  
+    | city | city name with spaces |  
+    | avg_comfort_score | average comfort score |  
+    | checkin_date | checkin date of time window |  
+    | checkout_date | checkout date of time window |  
+    | rain_sum | sum of rain volume in mm |  
+    | temp | average temperature °C |  
+    | humidity | average humidity in % |  
+    | clear_slots | nb of clear sky slots of 3 hours on 9h - 18h |  
+    | rain_slots | nb of rain slots of 3 hours on 9h - 18h  |  
+    | wind_speed_max | max wind speed (km/h) |   
+    | scraped_at | time stamp of weather scrap |  
+    | selected| 1 if city is selected 0 if not |  
+    | city_name_ | city name with _ replacing spaces |  
+    | city_plus | city name with _ replacing spaces |  
+    | city_lat | latitude |  
+    | city_lon | longitude |    
+    | city_id | unique id from city-name-lat-lon with resp. 4 and 3 digits |  
     | hotel_name | name of hotel |  
-    | url_hotel | url of page |
-    | address_hotel | address of hotel |
-    | hotel_description | description of hotel |
-    | lat_hotel | latitude |
-    | lon_hotel | longitude |
-    | score_hotel | booking score |
-    | price_hotel | price of room(s) |
-    | currency_hotel | currency of hotel price |
-    | room_description | room description |
-    | hotel_city | city of hotel that could differ from city searched |
-    | combined_score_hotel | combined with max price as score_hotel - p * (price_hotel - max_price).clip(lower=0) ; p = (10-0)/1 |
-    | n_adults | default 2 |
-    | n_children | default 0 |
-    | n_rooms | default 1 |
+    | url_hotel | url of page |  
+    | address_hotel | address of hotel |  
+    | hotel_description | description of hotel |  
+    | lat_hotel | latitude |  
+    | lon_hotel | longitude |  
+    | score_hotel | booking score |  
+    | price_hotel | price of room(s) |  
+    | currency_hotel | currency of hotel price |  
+    | room_description | room description |  
+    | hotel_city | city of hotel that could differ from city searched |  
+    | combined_score_hotel | combined with max price as score_hotel - p * (price_hotel - max_price).clip(lower=0) ; p = (10-0)/1 |  
+    | n_adults | default 2 |  
+    | n_children | default 0 |  
+    | n_rooms | default 1 |  
 
 
 

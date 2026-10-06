@@ -17,7 +17,7 @@ import plotly.express as px
 import streamlit as st
 
 from config_kayak import (
-    USER_MAX_HOTEL_PRICE, USER_MAX_HOTEL_PRICE_DAY,
+    ENABLE_LIVE_SEARCH, USER_MAX_HOTEL_PRICE, USER_MAX_HOTEL_PRICE_DAY,
     DEFAULT_OCCUPANCY)
 
 # --- Rend les modules du projet importables (ajuste SRC_DIR si besoin) ---
@@ -35,8 +35,11 @@ try:
     from datetime import date
     from data_access import load_search_keys, load_hotels_for, load_top_cities, load_weather
     from date_picker import render_date_picker, render_search_action
-    from availability import keys_from_df, to_date
+    from availability import keys_from_df, to_date, make_key
     from date_picker import render_date_picker, weather_dates_from_df
+    from live_search import (start_search, search_status, log_tail, SearchBusy,
+                         EXIT_MESSAGES, LIVE_TOP_CITIES)
+
 except ImportError as e:
     st.error(
         f"Import impossible : {e}\n\n"
@@ -66,6 +69,20 @@ st.markdown(
 
 
 COLS_TOP_CITIES = ["city", "lat", "lon", "avg_comfort_score", "selected"]
+
+#add for man search:
+
+@st.fragment(run_every=5)          # relit l'état toutes les 5 s, sans bloquer la page
+def live_progress(key):
+    status, _ = search_status(key)
+    if status == "running":
+        st.info("⏳ Recherche en cours : tu peux quitter la page, elle continue en arrière-plan.")
+        st.code(log_tail(key) or "Démarrage…", language="text")
+    else:
+        st.cache_data.clear()      # sinon la pastille reste 🟠 (cache de 10 min)
+        st.rerun()                 # relance toute l'appli avec les clés à jour
+
+
 
 def filter_hotels_by_combined(hotels_df: pd.DataFrame) -> pd.DataFrame:
     """Filtre les hôtels selon le score combiné (score_hotel - pénalité prix)"""
@@ -482,27 +499,47 @@ with st.container():
     # build_top_hotels ? 
     
     # 3) Message + bouton adaptés au statut (on revient dans la colonne de droite)
+    #update for manual search (!)
     with col_hotels:
-                
-            if picked:
-                checkin, checkout, in_db = picked
-                n_scraped = int(top_cities["selected"].sum()) if not top_cities.empty else 0
-                action = render_search_action(in_db, n_cities=n_scraped)
-                st.session_state.hotels_df = load_hotels_for(checkin, checkout, **occupancy, 
-                                                             max_night_price=user_room_price_max)
-                
-                
+        if picked:
+            checkin, checkout, in_db = picked
+            key = make_key(checkin, checkout, **occupancy)
+            status, rc = search_status(key)
+
+            if status == "running":
+                live_progress(key)          # fragment du message précédent, inchangé
+            else:
+                if status == "failed":
+                    st.error(EXIT_MESSAGES.get(rc, f"Échec de la recherche (code {rc})."))
+                    with st.expander("Journal"):
+                        st.code(log_tail(key, 40), language="text")
+
+                resume = (
+                    f"{checkin:%d/%m/%Y} → {checkout:%d/%m/%Y} · {key.n_adults} adulte(s), "
+                    f"{key.n_children} enfant(s), {key.n_rooms} chambre(s) · "
+                    f"prix max {float(user_room_price_max):g} €"
+                )
+                action = render_search_action(
+                    in_db, n_cities=LIVE_TOP_CITIES,live_enabled=ENABLE_LIVE_SEARCH,
+                    key_suffix=f"{checkin}_{checkout}", summary=resume,
+                )
+
                 if action == "load":
                     try:
-                        #st.session.sub_top_hotels = sub_top_hotels(hotels_df: pd.DataFrame, checkin=None, checkout=None)
-                        st.session_state.hotels_df = load_hotels_for(checkin, checkout, **occupancy, 
-                                                                     max_night_price=user_room_price_max)
+                        st.session_state.hotels_df = load_hotels_for(
+                            checkin, checkout, **occupancy, max_night_price=user_room_price_max
+                        )
                     except Exception as e:
+                        st.session_state.hotels_df = None
                         st.error(f"Lecture des hôtels impossible : {e}")
-                elif action == "search":
-                    st.info("Recherche live à implémenter (ENABLE_LIVE_SEARCH).")
-                
-            
+                else:
+                    st.session_state.hotels_df = None    # pas de résultats périmés à l'écran
+                    if action == "search":
+                        try:
+                            start_search(key, max_price=float(user_room_price_max))
+                            st.rerun()
+                        except (SearchBusy, ValueError) as e:
+                            st.warning(str(e))            
             
 st.divider()
 

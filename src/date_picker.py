@@ -114,11 +114,9 @@ def render_date_picker(
     return checkin, checkout, av.is_in_db(key, keys)
 
 
-def render_search_action(
-    in_db: bool,
-    n_cities: int,
-    live_enabled: bool = av.ENABLE_LIVE_SEARCH,
-) -> str:
+def render_search_action(in_db: bool, n_cities: int, live_enabled: bool | None = None,
+                         key_suffix: str = "", summary: str = "") -> str:
+
     """Affiche le message et le bouton adaptés. Retourne "load" | "search" | "none".
 
     "load"   -> le dashboard lit les résultats déjà en base.
@@ -135,7 +133,10 @@ def render_search_action(
         )
         return "none"
 
+    
     minutes = av.estimate_search_minutes(n_cities)
+    if summary:
+        st.caption(f"**Recherche demandée** : {summary}")   # ← nouveau
     st.warning(
         f"{av.EMOJI_NEW} **Nouvelle recherche en direct** : environ {minutes:.0f} min. "
         "Elle interroge Booking pour chaque ville et ne peut pas être interrompue proprement."

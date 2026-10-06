@@ -130,6 +130,12 @@ USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Ge
 HEADERS = {'User-Agent': USER_AGENT}
 DEFAULT_PARAMS = {"format": "json"}
 
+# Interrupteur : False = dashboard en lecture seule sur le précalculé (mode actuel).
+# Passer à True quand la recherche à la demande sera implémentée.
+ENABLE_LIVE_SEARCH = True
+
+# timeout for manual search (sec ?)
+PIPELINE_TIMEOUT_MIN = 120
 
 # save first cities list to .csv (uncomment to save your first file !): 
 # cities_list_df = pd.DataFrame({'city_name':config_cities_list})

@@ -17,6 +17,11 @@
 # *   Score given by the website users
 # *   Text description of the hotel
 
+from __future__ import annotations
+
+import logging
+
+
 from config_kayak import (
     WEATHER_API_KEY, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY,
     AWS_BUCKET_NAME, AWS_BUCKET_DIR,
@@ -42,6 +47,8 @@ import pandas as pd
 import booking_scraper_init
 importlib.reload(booking_scraper_init)
 from booking_scraper_init import get_hotel_availability, get_hotel_availability_sync
+
+logger = logging.getLogger(__name__)
 
 def save_city_hotel(city_name_: str, data):
     filename = f"{city_name_}_hotels.json"
@@ -83,7 +90,7 @@ def collect_cities_hotels(top_cities,
     results_hotels = []
 
     for city in top_cities.loc[top_cities['selected'] == 1, 'city']:
-        print(f"Searching hotels in {city}...")
+        logger.info(f"Searching hotels in {city}... from {checkin_date} to {checkout_date}")
         try:
             results = get_hotel_availability_sync(
                     city=city,
@@ -95,7 +102,7 @@ def collect_cities_hotels(top_cities,
                     max_results=max_results,
                 )
         except Exception as e:
-            print(f"Erreur pour {city} : {e}")
+            logger.warning(f"Erreur pour {city} : {e}")
             continue # keep results already collected and go to next city
         city_name_ = clean_name(city) 
         # store all json results with {city}_hotels
@@ -106,7 +113,7 @@ def collect_cities_hotels(top_cities,
         save_city_hotel(city_name_, results)   # backup JSON individuel
         results_hotels.extend(results)         # <-- extend, pas append, et pas de réassignation
 
-        print(json.dumps(results, ensure_ascii=False, indent=2))
+        logger.info(json.dumps(results, ensure_ascii=False, indent=2))
         
     
 

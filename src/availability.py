@@ -17,19 +17,28 @@ from typing import Callable, Iterable, NamedTuple
 
 import pandas as pd
 
+import os, tempfile, time               # à ajouter aux imports
+from contextlib import contextmanager
+from pathlib import Path
+
+
 logger = logging.getLogger(__name__)
 
-# Interrupteur : False = dashboard en lecture seule sur le précalculé (mode actuel).
-# Passer à True quand la recherche à la demande sera implémentée.
-ENABLE_LIVE_SEARCH = False
+PIPELINE_LOCK_PATH = Path(tempfile.gettempdir()) / "kayak_pipeline.lock"
+LOCK_STALE_S = int(os.getenv("PIPELINE_TIMEOUT_MIN", "120")) * 60 + 600  # plutot prendre depuis config_kayak
+from config_kayak import DEFAULT_OCCUPANCY, ENABLE_LIVE_SEARCH
 
-from config_kayak import DEFAULT_OCCUPANCY
+
+
 
 # Colonnes à ajouter à la table `hotels` (+ scraped_at pour la fraîcheur)
 SEARCH_COLS = ["checkin_date", "checkout_date", "n_adults", "n_children", "n_rooms"]
 
 EMOJI_IN_DB = "🟢"
 EMOJI_NEW = "🟠"
+
+class PipelineBusy(RuntimeError):
+    """Un pipeline est déjà en cours d'exécution."""
 
 
 class SearchKey(NamedTuple):
@@ -39,6 +48,25 @@ class SearchKey(NamedTuple):
     n_children: int
     n_rooms: int
 
+
+# ----------------------------------------------------------------------
+# manual search 
+# ----------------------------------------------------------------------
+@contextmanager
+def pipeline_lock(path: Path = PIPELINE_LOCK_PATH, stale_s: int = LOCK_STALE_S):
+    """Verrou inter-processus portable (Windows/Linux). Un verrou trop vieux est ignoré."""
+    try:
+        if path.exists() and time.time() - path.stat().st_mtime > stale_s:
+            path.unlink(missing_ok=True)
+        fd = os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+    except FileExistsError as e:
+        raise PipelineBusy("Un pipeline est déjà en cours.") from e
+    try:
+        with os.fdopen(fd, "w") as f:
+            f.write(str(os.getpid()))
+        yield
+    finally:
+        path.unlink(missing_ok=True)
 
 # ----------------------------------------------------------------------
 # Utilitaires de base
@@ -187,7 +215,7 @@ def run_hotel_searches(
     if not scraped_dt:
         scraped_dt = pd.Timestamp.now()
     for checkin, checkout in windows:
-        print(f"* search hotels for window {checkin} - {checkout}")
+        logger.info(f"* search hotels for window {checkin} - {checkout}")  # message ! 
         key = make_key(checkin, checkout, **occupancy)
         if key in skip_keys:
             if force: 
@@ -225,3 +253,4 @@ def run_hotel_searches(
 
     result = pd.concat(frames, ignore_index=True) if frames else pd.DataFrame()
     return result, failed
+

@@ -181,14 +181,24 @@ These tables are used by the fromtend for user consultation
 
 
 #### updates in the pipe
-
+- make work cron auto search !! 
 - add buton w/ additional calc at new dates & options:
-    - modifier checkin a la premiere date doisponible dans weather // ?? 
-    - faire ajouter les dates manquantes
-    - ajouter/ param le bouton calculer
-    - cabler dessus le pipeline (params)
-    - update pipeline pour ajouter des tables ds la bd sql :
-      - 
+  update in_work in branch : manu_search
+    - no modifier checkin a la premiere date doisponible dans weather // ?? 
+    -  OK faire ajouter les dates manquantes
+    - ok :ajouter/ param le bouton calculer
+    - ok : cabler dessus le pipeline (params)
+    - ok : update pipeline pour ajouter des tables ds la bd sql :
+  
+  search is operating and saves into db !! great 
+
+  - to do remaining 06/10/26 : 
+    - auto view hotels list when dates are selected on all configs even ones of auto search cron
+    - when sel checkin date of manu search, auto update status of checkout, and auto update adults, children, .. of available lines !
+    - check user_room_price used is compliant w/ daily limit 
+    - after manu search, auto view & print result of this one ! 
+    - make operate cities hotels print for a manu search ! 
+  
 
 
 

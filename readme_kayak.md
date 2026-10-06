@@ -65,25 +65,25 @@ Cities are ordered on this comfort_score from top to worste ,
 The 5 best destinations are selected  
 
 - Dataframe of cities & weather data are stored in S3 volume with columns :
-   | column | description  | 
-   |--------|--------------|
-   | city | city name with spaces |
-   | avg_comfort_score | average comfort score |
-   | checkin_date | checkin date of time window |
-   | checkout_date | checkout date of time window |
-   | rain_sum | sum of rain volume in mm |
-   | temp | average temperature °C |
-   | humidity | average humidity in % |
-   | clear_slots | nb of clear sky slots of 3 hours on 9h - 18h |
-   | rain_slots | nb of rain slots of 3 hours on 9h - 18h  |
-   | wind_speed_max | max wind speed (km/h) | 
-   | scraped_at | time stamp of weather scrap |
-   | selected| 1 if city is selected 0 if not |
-   | city_name_ | city name with _ replacing spaces | 
-   | city_plus | city name with _ replacing spaces | 
-   | city_lat | latitude | 
-   | city_lon | longitude |   
-   | city_id | unique id from city-name-lat-lon with resp. 4 and 3 digits |  
+   | column | description  |  
+   |--------|--------------|  
+   | city | city name with spaces |  
+   | avg_comfort_score | average comfort score |  
+   | checkin_date | checkin date of time window |  
+   | checkout_date | checkout date of time window |  
+   | rain_sum | sum of rain volume in mm |  
+   | temp | average temperature °C |  
+   | humidity | average humidity in % |  
+   | clear_slots | nb of clear sky slots of 3 hours on 9h - 18h |  
+   | rain_slots | nb of rain slots of 3 hours on 9h - 18h  |  
+   | wind_speed_max | max wind speed (km/h) |  
+   | scraped_at | time stamp of weather scrap |  
+   | selected| 1 if city is selected 0 if not |  
+   | city_name_ | city name with _ replacing spaces |   
+   | city_plus | city name with _ replacing spaces |  
+   | city_lat | latitude |  
+   | city_lon | longitude |    
+   | city_id | unique id from city-name-lat-lon with resp. 4 and 3 digits |    
  
 
 ### 3. Get hotels for these 5 best destinations

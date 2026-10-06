@@ -139,6 +139,8 @@ columns :
     | city_lat | latitude |  
     | city_lon | longitude |    
     | city_id | unique id from city-name-lat-lon with resp. 4 and 3 digits |  
+
+    
     | hotel_name | name of hotel |  
     | url_hotel | url of page |  
     | address_hotel | address of hotel |  

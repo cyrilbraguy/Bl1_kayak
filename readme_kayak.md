@@ -182,7 +182,7 @@ These tables are used by the fromtend for user consultation
 
 #### updates in the pipe
 
-- add buton w/ additional calc at new dates & options:
+- add button w/ additional calc at new dates & options:
     - modifier checkin a la premiere date doisponible dans weather // ?? 
     - faire ajouter les dates manquantes
     - ajouter/ param le bouton calculer

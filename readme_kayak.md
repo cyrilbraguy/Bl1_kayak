@@ -119,7 +119,7 @@ A special order function could be designed that would select top best 2 hotels f
 Hotels Results are merged with weather_cities table and stored in a CSV file in S3 bucket : 
 
 
-columns :
+columns :  
     | column | description  | 
     |--------|--------------|
     | city | city name with spaces |
@@ -175,6 +175,20 @@ To extract these data, a time of at least 5 minutes is necessary, so it has been
 These tables are used by the fromtend for user consultation
 
 # Application map 
+
+
+
+
+
+#### updates in the pipe
+
+- add buton w/ additional calc at new dates & options:
+    - modifier checkin a la premiere date doisponible dans weather // ?? 
+    - faire ajouter les dates manquantes
+    - ajouter/ param le bouton calculer
+    - cabler dessus le pipeline (params)
+    - update pipeline pour ajouter des tables ds la bd sql :
+      - 
 
 
 

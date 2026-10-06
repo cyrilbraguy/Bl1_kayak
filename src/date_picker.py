@@ -9,12 +9,35 @@ Streamlit ne sait pas colorer une option de selectbox : on utilise donc des past
 """
 from __future__ import annotations
 
-from datetime import date
+from datetime import date, timedelta
 from typing import Iterable
 
+import pandas as pd
 import streamlit as st
 
 import availability as av
+
+
+def full_date_range(start, end) -> list[date]:
+    """Tous les jours entre start et end inclus."""
+    s, e = av.to_date(start), av.to_date(end)
+    if e < s:
+        raise ValueError(f"Plage invalide : {s} > {e}")
+    return [s + timedelta(days=i) for i in range((e - s).days + 1)]
+
+
+def weather_dates_from_df(
+    weather: pd.DataFrame,
+    cols: tuple[str, ...] = ("checkin_date", "checkout_date", "date"),
+) -> list[date]:
+    """Dates présentes dans la table weather (colonnes de dates trouvées, doublons retirés)."""
+    if weather is None or weather.empty:
+        return []
+    cols_ok = [c for c in cols if c in weather.columns]
+    if not cols_ok:
+        return []
+    vals = pd.concat([weather[c] for c in cols_ok]).dropna()
+    return sorted({av.to_date(v) for v in vals})
 
 
 def render_date_picker(
@@ -22,40 +45,70 @@ def render_date_picker(
     occupancy: dict,
     keys: set[av.SearchKey],
     standard_checkout=None,
+    weather_dates: Iterable | None = None,
+    min_date=None,
 ) -> tuple[date, date, bool] | None:
     """Affiche les 2 selectbox de dates. Retourne (checkin, checkout, in_db) ou None.
 
-    - Pastille du check-in : calculée avec le check-out « standard » du pipeline (dernier jour).
+    - Dates proposées : TOUS les jours entre la première et la dernière date de `weather_dates`
+      (à défaut, de `available_dates`), même sans recherche précalculée.
+    - Pastille du check-in : 🟢 s'il existe une recherche précalculée commençant ce jour-là.
     - Pastille du check-out : calculée avec le check-in actuellement choisi.
+    - `min_date` : ignore les dates antérieures (ex. aujourd'hui).
     """
-    dates = sorted({av.to_date(d) for d in available_dates})
+    sources = [av.to_date(d) for d in (weather_dates or [])] or [av.to_date(d) for d in available_dates]
+    if len(sources) < 2:
+        st.warning("Il faut au moins 2 dates de prévision pour choisir un séjour.")
+        return None
+
+    dates = full_date_range(min(sources), max(sources))
+    if min_date is not None:
+        dates = [d for d in dates if d >= av.to_date(min_date)]
     if len(dates) < 2:
         st.warning("Il faut au moins 2 dates de prévision pour choisir un séjour.")
         return None
 
     std_checkout = av.to_date(standard_checkout) if standard_checkout else dates[-1]
 
+    # Check-ins pour lesquels une recherche existe déjà, avec la même occupation
+    occ = (int(occupancy["n_adults"]), int(occupancy["n_children"]), int(occupancy["n_rooms"]))
+    checkins_en_base = {k.checkin for k in keys if (k.n_adults, k.n_children, k.n_rooms) == occ}
+
+    # Nettoyage de l'état : une valeur qui n'est plus proposée est oubliée avant le widget
+    checkin_options = dates[:-1]
+    if st.session_state.get("dp_checkin") not in checkin_options:
+        st.session_state.pop("dp_checkin", None)
+
     c1, c2 = st.columns(2)
     with c1:
         checkin = st.selectbox(
             "Check-in",
-            dates[:-1],
+            checkin_options,
             index=0,
-            format_func=lambda d: av.label(d, av.make_key(d, std_checkout, **occupancy), keys),
+            key="dp_checkin",
+            format_func=lambda d: f"{av.EMOJI_IN_DB if d in checkins_en_base else av.EMOJI_NEW} {d:%d/%m}",
         )
+
+    checkout_options = [d for d in dates if d > checkin]
+    if st.session_state.get("dp_checkout") not in checkout_options:
+        st.session_state.pop("dp_checkout", None)
+    # Par défaut : le check-out standard du pipeline s'il est valide, sinon le dernier jour
+    default_co = std_checkout if std_checkout in checkout_options else checkout_options[-1]
+
     with c2:
-        checkout_options = [d for d in dates if d > checkin]
         checkout = st.selectbox(
             "Check-out",
             checkout_options,
-            index=len(checkout_options) - 1,
+            index=checkout_options.index(default_co),
+            key="dp_checkout",
             format_func=lambda d: av.label(d, av.make_key(checkin, d, **occupancy), keys),
         )
 
     st.caption(f"{av.EMOJI_IN_DB} déjà en base (instantané) · {av.EMOJI_NEW} nouvelle recherche (lente)")
 
-    with st.expander("Voir toutes les combinaisons"):
-        st.dataframe(av.availability_matrix(dates, occupancy, keys), use_container_width=True)
+    if len(dates) <= 12:
+        with st.expander("Voir toutes les combinaisons"):
+            st.dataframe(av.availability_matrix(dates, occupancy, keys), width="stretch")
 
     key = av.make_key(checkin, checkout, **occupancy)
     return checkin, checkout, av.is_in_db(key, keys)

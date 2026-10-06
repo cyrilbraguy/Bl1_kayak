@@ -36,6 +36,7 @@ try:
     from data_access import load_search_keys, load_hotels_for, load_top_cities, load_weather
     from date_picker import render_date_picker, render_search_action
     from availability import keys_from_df, to_date
+    from date_picker import render_date_picker, weather_dates_from_df
 except ImportError as e:
     st.error(
         f"Import impossible : {e}\n\n"
@@ -388,6 +389,14 @@ except Exception as e:  # ex. timeout RDS / security group
 # Dates proposées = dates des fenêtres précalculées (aujourd'hui et après)
 today = date.today()
 available_dates = sorted({d for k in keys for d in (k.checkin, k.checkout) if d >= today})
+weather_dates = [
+    d for d in weather_dates_from_df(weather, cols=("checkin_date", "checkout_date"))
+    if d >= today
+]
+
+# Check-out « standard » du pipeline : le plus tardif des recherches précalculées à venir.
+# None si aucune recherche en base : le sélecteur prend alors le dernier jour de la plage.
+standard_checkout = max((k.checkout for k in keys if k.checkout >= today), default=None)
 
 # Carte météo France : dernier run de la table weather + coordonnées des villes
 top_cities = pd.DataFrame(columns=COLS_TOP_CITIES)  # recalculé après le sélecteur de dates
@@ -448,12 +457,18 @@ with st.container():
     # 2) Dates (colonne de gauche) avec statut
     with col_weather:
         st.markdown("#### Weather from openweathermap.org")
-        if len(available_dates) < 2:
-            st.warning("Aucune recherche précalculée : lance d'abord pipeline.py.")
+        if len(weather_dates) < 2 and len(available_dates) < 2:
+            st.warning("Aucune prévision disponible : lance d'abord pipeline.py.")
             picked = None
         else:
-            picked = render_date_picker(available_dates, occupancy, keys)
-        
+            picked = render_date_picker(
+                available_dates=available_dates,          # inchangé : sert de repli
+                occupancy=occupancy,
+                keys=keys,
+                standard_checkout=standard_checkout,      # inchangé
+                weather_dates=weather_dates_from_df(weather),
+                min_date=today,                           # pas de dates passées
+            )      
         scraped_dt = get_scraped_dt()
         st.caption(f"Dernière extraction : {scraped_dt:%d/%m/%Y %H:%M:%S}")
             

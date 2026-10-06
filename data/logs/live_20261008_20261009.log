@@ -1,0 +1,426 @@
+INFO:availability:* search hotels for window 2026-10-08 - 2026-10-09
+INFO:scrap_hotels:Searching hotels in Cassis... from 2026-10-08 to 2026-10-09
+INFO:scrap_hotels:[
+  {
+    "hotel_name": "Hotel Le Golfe",
+    "url": "https://www.booking.com/hotel/fr/le-golfe-cassis.fr.html",
+    "address": "3, Place Grand Carnot, 13260 Cassis, France",
+    "hotel_description": "Situé dans le port de pêche de Cassis, l'Hôtel Le Golfe vous accueille à seulement 400 mètres de la plage de sable.",
+    "city": "Cassis",
+    "latitude": 43.21443437507463,
+    "longitude": 5.535294860601425,
+    "score": 8.3,
+    "price": 188.0,
+    "currency": "EUR",
+    "room_description": "Chambre Familiale - Vue sur Arrière\nSuite privée\n2 lits (1 canapé-lit, 1 grand lit double)\nAucun prépaiement requis – Payez sur place\nPlus que 2 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "Les Jardins de Cassis - Parking Gratuit & Piscine Chauffée",
+    "url": "https://www.booking.com/hotel/fr/les-jardins-de-cassis.fr.html",
+    "address": "197 Avenue Auguste Favier, 13260 Cassis, France",
+    "hotel_description": "Situé dans un jardin de style méditerranéen doté d’une piscine extérieure chauffée et pourvu d’un espace détente avec un jacuzzi et un sauna, l’hôtel Les...",
+    "city": "Cassis",
+    "latitude": 43.221840494518375,
+    "longitude": 5.543384896958969,
+    "score": 8.1,
+    "price": 89.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double\n1 grand lit double\nPlus que 2 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "Best Western Plus Hôtel la Rade",
+    "url": "https://www.booking.com/hotel/fr/la-rade-cassis.fr.html",
+    "address": "1, avenue des Dardanelles, 13260 Cassis, France",
+    "hotel_description": "Le Best Western Plus Hôtel la Rade est situé à 14 mètres du port de pêche de Cassis et de la plage du Bestouan.",
+    "city": "Cassis",
+    "latitude": 43.21522996680949,
+    "longitude": 5.533696934580803,
+    "score": 8.7,
+    "price": 138.0,
+    "currency": "EUR",
+    "room_description": "Chambre Queen Classique - Non-Fumeurs\n1 grand lit double\nPlus que 2 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "The Originals Boutique, Hôtel Cassitel, Cassis",
+    "url": "https://www.booking.com/hotel/fr/interhotel-cassitel.fr.html",
+    "address": "Place Clémenceau, 13260 Cassis, France",
+    "hotel_description": "L’The Originals Boutique, Hôtel Cassitel, Cassis vous accueille en face du port de pêche de Cassis, à seulement 2 minutes à pied de la plage et à 40...",
+    "city": "Cassis",
+    "latitude": 43.213706213836964,
+    "longitude": 5.538958087563515,
+    "score": 7.9,
+    "price": 109.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double ou Lits Jumeaux Classique - Vue sur Port\n1 lit double\nPlus que 2 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "Best Western Hotel & SPA Coeur De Cassis",
+    "url": "https://www.booking.com/hotel/fr/du-grand-jardin.fr.html",
+    "address": "2, rue Pierre Eydin, 13260 Cassis, France",
+    "hotel_description": "Le Best Western Hotel & SPA Cœur de Cassis vous accueille au cœur du centre-ville de Cassis, en plein centre du village, à seulement 200 mètres du port et...",
+    "city": "Cassis",
+    "latitude": 43.21457326278473,
+    "longitude": 5.540146976709366,
+    "score": 8.6,
+    "price": 109.0,
+    "currency": "EUR",
+    "room_description": "Chambre Queen Classique - Non-Fumeurs\n1 grand lit double\nAucun prépaiement requis – Payez sur place\nPlus que 4 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "Zina",
+    "url": "https://www.booking.com/hotel/fr/zina.fr.html",
+    "address": "22 Avenue Jean Baptiste Colbert, 13260 Cassis, France",
+    "hotel_description": "L’hébergement Zina se situe à Cassis, à respectivement 1 km et 19 km de ces lieux d’intérêt : Plage de la Grande Mer et Orange Vélodrome.",
+    "city": "Cassis",
+    "latitude": 43.2201785,
+    "longitude": 5.5401764,
+    "score": 9.2,
+    "price": 95.0,
+    "currency": "EUR",
+    "room_description": "Studio avec Canapé-Lit\nStudio entier • 1 salle de bains • 1 cuisine • 30 m²\n1 canapé-lit"
+  }
+]
+INFO:scrap_hotels:Searching hotels in Bormes les Mimosas... from 2026-10-08 to 2026-10-09
+INFO:scrap_hotels:[
+  {
+    "hotel_name": "Hotel La Voile",
+    "url": "https://www.booking.com/hotel/fr/hotel-la-voile-fr.fr.html",
+    "address": "165 Avenue Des Girelles - La Favière, 83230 Bormes-les-Mimosas, France",
+    "hotel_description": "L’Hôtel La Voile est idéalement situé à seulement 400 mètres des plages et du port de Bormes, dans un environnement paisible et paisible près du village de...",
+    "city": "Bormes_les_Mimosas",
+    "latitude": 43.12549,
+    "longitude": 6.357300000000009,
+    "score": 7.8,
+    "price": 70.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double\nTypes de lits : 1 lit double ou 2 lits simples\nAucun prépaiement requis – Payez sur place\nPlus que 4 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "Linaya Hôtel & Restaurant",
+    "url": "https://www.booking.com/hotel/fr/linaya-amp-restaurant.fr.html",
+    "address": "546 Chemin de la Mer, 83230 Bormes-les-Mimosas, France",
+    "hotel_description": "L’établissement Linaya Hôtel & Restaurant se situe à Bormes-les-Mimosas, à 300 mètres de ce lieu d’intérêt : Plage de la Favière.",
+    "city": "Bormes_les_Mimosas",
+    "latitude": 43.1217418,
+    "longitude": 6.3567413,
+    "score": 7.4,
+    "price": 70.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double avec Salle de Bains Privative\nTypes de lits : 1 lit double ou 2 lits simples\nPlus que 1 disponible à ce tarif"
+  },
+  {
+    "hotel_name": "Le Mirage",
+    "url": "https://www.booking.com/hotel/fr/le-domaine-du-mirage.fr.html",
+    "address": "38, Rue De La Vue Des Iles, 83230 Bormes-les-Mimosas, France",
+    "hotel_description": "L'hôtel Le Mirage est niché au cœur d'un lieu reposant, un équilibre parfait entre mer et nature, pour vous offrir une expérience inoubliable tout au long...",
+    "city": "Bormes_les_Mimosas",
+    "latitude": 43.144568554121996,
+    "longitude": 6.351684182882309,
+    "score": 9.3,
+    "price": 328.0,
+    "currency": "EUR",
+    "room_description": "Chambre Classique\nTypes de lits : 1 lit double ou 2 lits simples\nPetit-déjeuner compris"
+  },
+  {
+    "hotel_name": "Hostellerie du Cigalou",
+    "url": "https://www.booking.com/hotel/fr/hostellerie-du-cigalou.fr.html",
+    "address": "Place Gambetta, 83230 Bormes-les-Mimosas, France",
+    "hotel_description": "Cet hôtel 3 étoiles est situé dans le village médiéval de Bormes-les-Mimosas, à seulement 25 minutes de route de Toulon.",
+    "city": "Bormes_les_Mimosas",
+    "latitude": 43.1519579,
+    "longitude": 6.343283499999984,
+    "score": 8.8,
+    "price": 124.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double\n1 grand lit double\nPlus que 1 disponible à ce tarif"
+  },
+  {
+    "hotel_name": "Hotel Restaurant Bellevue",
+    "url": "https://www.booking.com/hotel/fr/restaurant-bellevue.fr.html",
+    "address": "14 place Gambetta, 83230 Bormes-les-Mimosas, France",
+    "hotel_description": "L’établissement Hotel Restaurant Bellevue vous accueille à Bormes-les-Mimosas, à 5 km de ce lieu d’intérêt : La Favière.",
+    "city": "Bormes_les_Mimosas",
+    "latitude": 43.15187759303926,
+    "longitude": 6.343135982751846,
+    "score": 7.7,
+    "price": 73.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double\n1 grand lit double\nPlus que 1 disponible à ce tarif"
+  },
+  {
+    "hotel_name": "Eden Rose Grand Hotel BW Premier Collection",
+    "url": "https://www.booking.com/hotel/fr/eden-rose-grand-bw-premier-collection.fr.html",
+    "address": "167 Route Du Baguier, 83230 Bormes-les-Mimosas, France",
+    "hotel_description": "L’établissement Eden Rose Grand Hotel BW Premier Collection se situe à Bormes-les-Mimosas, à 5,5 km de ce lieu d’intérêt : La Favière.",
+    "city": "Bormes_les_Mimosas",
+    "latitude": 43.152872,
+    "longitude": 6.342654,
+    "score": 9.0,
+    "price": 204.0,
+    "currency": "EUR",
+    "room_description": "Chambre Lit Queen-Size Confort - Vue sur Mer\n1 grand lit double\nPlus que 1 disponible à ce tarif"
+  }
+]
+INFO:scrap_hotels:Searching hotels in Saintes Maries de la mer... from 2026-10-08 to 2026-10-09
+INFO:scrap_hotels:[
+  {
+    "hotel_name": "Hotel Le Bleu Marine",
+    "url": "https://www.booking.com/hotel/fr/le-bleu-marine.fr.html",
+    "address": "15, Avenue du Docteur Cambon, 13460 Les Saintes-Maries-de-la-Mer, France",
+    "hotel_description": "L'Hôtel Le Bleu Marine se trouve à seulement 150 mètres des plages de la Méditerranée et à 300 mètres du centre des Saintes-Maries-de-la-Mer.",
+    "city": "Saintes_Maries_de_la_mer",
+    "latitude": 43.45463817799243,
+    "longitude": 4.433201998472214,
+    "score": 7.6,
+    "price": 74.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double - Vue sur Village\n1 lit double\nAnnulation gratuite"
+  },
+  {
+    "hotel_name": "Hotel Les Palmiers En Camargue",
+    "url": "https://www.booking.com/hotel/fr/les-palmiers-en-camargue.fr.html",
+    "address": "16 Rue Alphonse Daudet, 13460 Les Saintes-Maries-de-la-Mer, France",
+    "hotel_description": "Doté d'une connexion Wi-Fi gratuite, l'Hotel Les Palmiers En Camargue est situé à Saintes-Maries-de-la-Mer, à 100 mètres des plages de sable et à 200...",
+    "city": "Saintes_Maries_de_la_mer",
+    "latitude": 43.45106617843045,
+    "longitude": 4.4250936806201935,
+    "score": 8.3,
+    "price": 79.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double Économique\n2 lits simples\nAucun prépaiement requis – Payez sur place\nPlus que 2 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "Le Castelet",
+    "url": "https://www.booking.com/hotel/fr/le-castelet-les-saintes-maries-de-la-mer.fr.html",
+    "address": "10 Rue Des Launes, 13460 Les Saintes-Maries-de-la-Mer, France",
+    "hotel_description": "Cet hôtel est situé à Saintes-Maries-de-la-Mer, à 60 mètres seulement de la mer Méditerranée et à 30 mètres de l'Étang des Launes.",
+    "city": "Saintes_Maries_de_la_mer",
+    "latitude": 43.451349492721796,
+    "longitude": 4.425076246261597,
+    "score": 6.8,
+    "price": 64.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double avec Toilettes Communes\n1 lit double\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place\nPlus que 2 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "Hôtel Casa Marina",
+    "url": "https://www.booking.com/hotel/fr/casa-marina-saintes-maries-de-la-mer.fr.html",
+    "address": "1 Avenue Gilbert Leroy, 13460 Les Saintes-Maries-de-la-Mer, France",
+    "hotel_description": "L’établissement Hôtel Casa Marina vous accueille en bord de mer à Saintes-Maries-de-la-Mer, à respectivement 38 km et 400 mètres de ces lieux d’intérêt :...",
+    "city": "Saintes_Maries_de_la_mer",
+    "latitude": 43.451133,
+    "longitude": 4.430953,
+    "score": 9.1,
+    "price": 102.0,
+    "currency": "EUR",
+    "room_description": "Chambre Standard Lit Queen-Size\n1 grand lit double\nPlus que 2 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "Hotel Le Méditérranée",
+    "url": "https://www.booking.com/hotel/fr/le-mediterranee-saintes-maries-de-la-mer.fr.html",
+    "address": "4 Rue Frédéric Mistral, 13460 Les Saintes-Maries-de-la-Mer, France",
+    "hotel_description": "Situé aux Saintes-Maries-de-la-Mer, en Provence-Alpes-Côte d'Azur, à 100 mètres de l'église des Saintes-Maries et à 2 minutes à pied de la plage et du...",
+    "city": "Saintes_Maries_de_la_mer",
+    "latitude": 43.451222809689,
+    "longitude": 4.42666831779093,
+    "score": 7.0,
+    "price": 67.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double avec Toilettes Communes\n1 lit double\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place\nPlus que 2 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "Hotel La Tramontane",
+    "url": "https://www.booking.com/hotel/fr/la-tramontane.fr.html",
+    "address": "94 Chemin Bas de Dromar, 13460 Les Saintes-Maries-de-la-Mer, France",
+    "hotel_description": "L'établissement Hotel La Tramontane vous accueille aux Saintes-Maries-de-la-Mer, au cœur de la Camargue.",
+    "city": "Saintes_Maries_de_la_mer",
+    "latitude": 43.4726010948223,
+    "longitude": 4.410120248794556,
+    "score": 9.0,
+    "price": 70.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double Standard\n1 grand lit double\nPlus que 4 disponibles à ce tarif"
+  }
+]
+INFO:scrap_hotels:Searching hotels in Marseille... from 2026-10-08 to 2026-10-09
+INFO:scrap_hotels:[
+  {
+    "hotel_name": "MEININGER Marseille Centre la Joliette",
+    "url": "https://www.booking.com/hotel/fr/meininger-marseille-centre-la-joliette.fr.html",
+    "address": "25/27 Rue de Forbin, 13002 Marseille, France",
+    "hotel_description": "L’établissement MEININGER Marseille Centre la Joliette se trouve à Marseille, à 400 mètres de ce lieu d’intérêt : Métro Joliette.",
+    "city": "Marseille",
+    "latitude": 43.30574814984538,
+    "longitude": 5.371058398811321,
+    "score": 8.4,
+    "price": 170.0,
+    "currency": "EUR",
+    "room_description": "Chambre Quadruple\n4 lits (2 lits simples, 2 lits superposés)\nPlus que 2 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "Novotel Marseille Centre Prado Vélodrome",
+    "url": "https://www.booking.com/hotel/fr/novotel-marseille-centre-prado.fr.html",
+    "address": "103, Avenue du Prado, 13008 Marseille, France",
+    "hotel_description": "Le Novotel Marseille Centre Prado Vélodrome est installé dans l'un des quartiers d'affaires de Marseille.",
+    "city": "Marseille",
+    "latitude": 43.28068115402996,
+    "longitude": 5.387088060379028,
+    "score": 8.0,
+    "price": 169.0,
+    "currency": "EUR",
+    "room_description": "Chambre Lits Jumeaux Supérieure\n2 lits simples"
+  },
+  {
+    "hotel_name": "ibis Styles Marseille Palais des Congrès Vélodrome",
+    "url": "https://www.booking.com/hotel/fr/ibis-styles-marseille-palais-des-congres-velodrome.fr.html",
+    "address": "162 Boulevard Rabatau Daniel Matalon, 13010 Marseille, France",
+    "hotel_description": "Situé à 1 km du stade Vélodrome Orange au sud de Marseille, l'ibis Styles Marseille Palais des Congrès Vélodrome propose des chambres climatisées dotées...",
+    "city": "Marseille",
+    "latitude": 43.28066065110931,
+    "longitude": 5.399563014507294,
+    "score": 8.5,
+    "price": 125.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double Standard\n1 grand lit double\nPetit-déjeuner compris"
+  },
+  {
+    "hotel_name": "Ruby Lilou Hotel Marseille by IHG",
+    "url": "https://www.booking.com/hotel/fr/ruby-lilou-marseille.fr.html",
+    "address": "Avenue Robert Schuman 42, 13002 Marseille, France",
+    "hotel_description": "L’établissement Ruby Lilou Hotel Marseille by IHG vous accueille à Marseille, à 2,7 km de ce lieu d’intérêt : Plage des Catalans.",
+    "city": "Marseille",
+    "latitude": 43.3028,
+    "longitude": 5.367308,
+    "score": 10.0,
+    "price": 129.0,
+    "currency": "EUR",
+    "room_description": "Chambre Choix de Ruby\n1 grand lit double\nAnnulation gratuite"
+  },
+  {
+    "hotel_name": "Ibis Marseille Centre Prefecture",
+    "url": "https://www.booking.com/hotel/fr/premiere-classe-marseille-centre-xml.fr.html",
+    "address": "13 Rue Lafon, Castellane et Préfecture, 13006 Marseille, France",
+    "hotel_description": "Situé dans le 6e arrondissement de Marseille, l’Ibis Marseille Centre Préfecture dispose d’une connexion Wi-Fi gratuite et d’une réception ouverte 24h/24.",
+    "city": "Marseille",
+    "latitude": 43.291553228272214,
+    "longitude": 5.381971076130867,
+    "score": 7.2,
+    "price": 192.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double Standard\n1 lit double\nPlus que 7 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "HOTEL SYLVABELLE",
+    "url": "https://www.booking.com/hotel/fr/sylvabelle-marseille12.fr.html",
+    "address": "63 Rue Sylvabelle, Castellane et Préfecture, 13006 Marseille, France",
+    "hotel_description": "L’établissement HOTEL SYLVABELLE bénéficie d’un emplacement attractif dans le quartier Castellane et Préfecture de Marseille, à respectivement 2,4 km, 600...",
+    "city": "Marseille",
+    "latitude": 43.288849,
+    "longitude": 5.377536,
+    "score": 5.2,
+    "price": 59.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double Standard\n1 lit double"
+  }
+]
+INFO:scrap_hotels:Searching hotels in Collioure... from 2026-10-08 to 2026-10-09
+INFO:scrap_hotels:[
+  {
+    "hotel_name": "Chambres Rue de la République",
+    "url": "https://www.booking.com/hotel/fr/chambres-rue-de-la-republique.fr.html",
+    "address": "16 Rue de la République, 66190 Collioure, France",
+    "hotel_description": "L’établissement Chambres Rue de la République se trouve à Collioure, à respectivement 400 mètres et 42 km de ces lieux d’intérêt : Plage de Port d’Avall et...",
+    "city": "Collioure",
+    "latitude": 42.52556369773399,
+    "longitude": 3.0827967208667815,
+    "score": 8.0,
+    "price": 83.0,
+    "currency": "EUR",
+    "room_description": "Chambre Lits Jumeaux Standard\n2 lits simples\nPlus que 1 disponible à ce tarif"
+  },
+  {
+    "hotel_name": "Les Roches Brunes",
+    "url": "https://www.booking.com/hotel/fr/les-roches-brunes-collioure.fr.html",
+    "address": "Route de Port-Vendres, 66190 Collioure, France",
+    "hotel_description": "L’établissement Les Roches Brunes se trouve à Collioure, à quelques pas de ce lieu d’intérêt : Plage La Balette.",
+    "city": "Collioure",
+    "latitude": 42.52534777273077,
+    "longitude": 3.0903244632682725,
+    "score": 9.3,
+    "price": 167.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double de 17 m² avec Terrasse - Vue sur Mer\n1 grand lit double\nPlus que 2 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "La Frégate",
+    "url": "https://www.booking.com/hotel/fr/la-fra-c-gate-collioure.fr.html",
+    "address": "24 Boulevard Camille Pelletan, 66190 Collioure, France",
+    "hotel_description": "Situé à Collioure, l’établissement La Frégate comprend un salon commun, une terrasse, un restaurant et un bar.",
+    "city": "Collioure",
+    "latitude": 42.52638625163285,
+    "longitude": 3.083256594836712,
+    "score": 8.1,
+    "price": 106.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double Essentiel\n1 lit double\nPlus que 7 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "Hôtel des Templiers",
+    "url": "https://www.booking.com/hotel/fr/ha-tel-des-templiers.fr.html",
+    "address": "5 rue Colbert, 66190 Collioure, France",
+    "hotel_description": "Comportant 2 000 œuvres d'art originales de peintres du XXe siècle y ayant séjourné, l'Hôtel des Templiers est situé à 200 mètres du château royal de...",
+    "city": "Collioure",
+    "latitude": 42.52666545948847,
+    "longitude": 3.0839408934116364,
+    "score": 8.5,
+    "price": 98.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double Standard avec Douche\n1 lit double\nPlus que 4 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "Hotel Méditerranée",
+    "url": "https://www.booking.com/hotel/fr/mediterranee-collioure.fr.html",
+    "address": "Avenue Aristide Maillol, 66190 Collioure, France",
+    "hotel_description": "Doté d'un jardin de style méditerranéen et d'une terrasse, l'Hotel Méditerranée se trouve à Collioure, à 5 minutes de marche de la plage la plus proche.",
+    "city": "Collioure",
+    "latitude": 42.52708253934128,
+    "longitude": 3.080262914299965,
+    "score": 8.1,
+    "price": 113.0,
+    "currency": "EUR",
+    "room_description": "Chambre Double\n1 lit double\nAucun prépaiement requis – Payez sur place\nPlus que 3 disponibles à ce tarif"
+  },
+  {
+    "hotel_name": "La roussette",
+    "url": "https://www.booking.com/hotel/fr/la-roussette-collioure.fr.html",
+    "address": "17 Avenue Aristide Maillol, 66190 Collioure, France",
+    "hotel_description": "Situé à Collioure, l’établissement La roussette comprend une connexion Wi-Fi gratuite et offre une vue sur la ville.",
+    "city": "Collioure",
+    "latitude": 42.5268578,
+    "longitude": 3.080574,
+    "score": 7.7,
+    "price": 111.0,
+    "currency": "EUR",
+    "room_description": "Appartement avec Vue sur la Montagne\nAppartement entier • 1 chambre • 1 salon • 1 salle de bains • 1 cuisine • 32 m²\n2 lits (1 lit double, 1 canapé-lit)\nAnnulation gratuite\nAucun prépaiement requis – Payez sur place\nPlus que 1 disponible à ce tarif"
+  }
+]
+INFO:availability:Recherche terminée SearchKey(checkin=datetime.date(2026, 10, 8), checkout=datetime.date(2026, 10, 9), n_adults=2, n_children=0, n_rooms=1) : 30 hôtels
+INFO:botocore.credentials:Found credentials in environment variables.
+INFO:s3_utils:CSV sauvegardé sur s3://kayak-cyril/kayak/hotels_manual_20261008_20261009_2a0c1r_20261006_105317.csv
+INFO:pipeline:CSV : C:\Users\Cyril\Documents\python\jedha\jedha_Full_stack\Jedha_certif_CDSD\Block1\Kayak_weather_hotels\data\csv\hotels_manual_20261008_20261009_2a0c1r_20261006_105317.csv
+INFO:pipeline:Résumé : {'status': 'ok', 'mode': 'manual', 'scraped_at': '2026-10-06 10:53:17', 'csv': 'C:\\Users\\Cyril\\Documents\\python\\jedha\\jedha_Full_stack\\Jedha_certif_CDSD\\Block1\\Kayak_weather_hotels\\data\\csv\\hotels_manual_20261008_20261009_2a0c1r_20261006_105317.csv', 'n_cities': 37, 'n_hotels': 30, 'n_weather': 37}
+https://nominatim.openstreetmap.org/search
+select best weather cities for window 2026-10-08 - 2026-10-09
+                       city  ...                            city_id
+0                    Cassis  ...                    cassis-4321-554
+1        Bormes les Mimosas  ...        bormes-les-mimosas-4315-634
+2  Saintes Maries de la mer  ...  saintes-maries-de-la-mer-4345-443
+3                 Marseille  ...                 marseille-4330-538
+4                 Collioure  ...                 collioure-4253-308
+
+[5 rows x 17 columns]
+ATTENTION : get_hotel_availability_sync() est un wrapper synchrone pour Jupyter/VSCode. Z
+ATTENTION : get_hotel_availability_sync() est un wrapper synchrone pour Jupyter/VSCode. Z
+ATTENTION : get_hotel_availability_sync() est un wrapper synchrone pour Jupyter/VSCode. Z
+ATTENTION : get_hotel_availability_sync() est un wrapper synchrone pour Jupyter/VSCode. Z
+ATTENTION : get_hotel_availability_sync() est un wrapper synchrone pour Jupyter/VSCode. Z

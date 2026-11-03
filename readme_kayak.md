@@ -10,6 +10,7 @@ This is a travel application, a search engine to identify the best trip destinat
   
 The application will propose you the best destinations for your trip and hotels based on the above criteria and time window 
 
+Original github repository : https://github.com/cyrilbraguy/Bl1_kayak  
 View the full presentation of the project : <a href="./zz_doc/braguy_CDSD_block1_kayak.pdf"   target="_blank">Bloc1_Kayak_presentation_cyril.pdf</a>  
 View the application : <a href="https://cyrilbrg-kayak.hf.space" target="_blank">Kayak_trip_application</a>  
 

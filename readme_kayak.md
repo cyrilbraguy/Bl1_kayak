@@ -1,13 +1,22 @@
 
-# Projet Kayak : 
-![Kayak](https://seekvectorlogo.com/wp-content/uploads/2018/01/kayak-vector-logo.png)
+# Projet Kayak : An application to prepare your trips in France
+<img src="https://seekvectorlogo.com/wp-content/uploads/2018/01/kayak-vector-logo.png" alt="Kayak logo" width="30%" />
+
 
 # Pitch
 This is a travel application, a search engine to identify the best trip destinations within a list of 35 cities to visit in France, from reliable informations on :
 - weather, 
 - hotel rooms availability in these destinations  
   
-The application will propose you the best destinations and hotels based on the above criteria and time window 
+The application will propose you the best destinations for your trip and hotels based on the above criteria and time window 
+
+View the full presentation of the project : <a href="./zz_doc/braguy_CDSD_block1_kayak.pdf"   target="_blank">Bloc1_Kayak_presentation_cyril.pdf</a>  
+View the application : <a href="https://cyrilbrg-kayak.hf.space" target="_blank">Kayak_trip_application</a>  
+
+<img src="./zz_doc/kayak_application_screen1_2026-11-03 115146.png" alt="Kayak screen 1" width="60%" />
+
+
+
 
 ## Application :  
 ### 1. Cities :  
@@ -159,7 +168,10 @@ columns :
 
 ### Frontend streamlit 
 
+
 A frontend streamlit is developped showing : 
+This is what you see of the application
+src/dashboard_app.py
 
 ### pipeline.py : 
 
@@ -175,9 +187,23 @@ To extract these data, a time of at least 5 minutes is necessary, so it has been
 These tables are used by the fromtend for user consultation
 
 # Application map 
+to complete
 
-
-
+# .env
+You shall have a .env file to run the solution locally or in a dockerfile : 
+.env
+``
+# projet kayak cyril 
+# weather api key
+WEATHER_API_KEY=your_weather_api_key
+AWS_ACCESS_KEY_ID=aws_access_hey
+AWS_SECRET_ACCESS_KEY=
+AWS_BUCKET_NAME=aws_bucket_name
+AWS_BUCKET_DIR=
+AWS_REGION=eu-west-3
+DATABASE_URL=postgresql://
+``
+Or you shall also declare these secrets on HF space if you run on HF space:
 
 
 #### updates in the pipe
@@ -190,27 +216,21 @@ These tables are used by the fromtend for user consultation
     - update pipeline pour ajouter des tables ds la bd sql :
       - 
 
-
-
 # deployment 
+In a dockerspace , on Huggingface space
 
-
-Kayak_weather_hotels/  
-├── src/                 (dashboard_app.py, pipeline.py, scheduler.py…)  
-├── data/config/  
-├── docker/              (Dockerfile, requirements.txt, entrypoint.sh)  
-└── .dockerignore  
 
 Kayak_weather_hotels/  
 ├── .dockerignore          ← ici  
-├── src/  
+├── src/                 (dashboard_app.py, pipeline.py, scheduler.py…)
 ├── data/config/  
 └── docker/  
     ├── Dockerfile  
     ├── entrypoint.sh  
     └── requirements.txt  
 
-Architecture du programme ::  
+
+Architecture of program ::  
 scrape_data.py :
 read cities 
 
@@ -242,8 +262,9 @@ etl_selection
 
 store in db 
 
-prompt pour le frontend streamlit : 
 
+# prompt pour le frontend streamlit en local: 
+`streamlit run ./src/dashboard_app.py`
 
 # lancement du dockerfile : 
 docker build -f docker/Dockerfile -t kayak_streamlit .
